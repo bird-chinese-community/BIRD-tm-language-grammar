@@ -4,6 +4,8 @@
 
 This repository hosts syntax files (`tmLanguage`) for BIRD2, designed to enhance developer productivity through syntax highlighting in configuration files.
 
+Unlike the straightforward paradigms of INI or Nginx configurations, BIRD employs a distinctly intricate configuration model with unique implementation challenges.
+
 > **BIRD** (BIRD Internet Routing Daemon)  
 > Open-source routing daemon for managing routing tables on network infrastructure.
 
