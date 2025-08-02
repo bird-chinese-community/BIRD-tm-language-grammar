@@ -44,7 +44,8 @@ The [BIRD Chinese Community](https://github.com/bird-chinese-community) extends 
 
 ## License
 
-Distributed under **[Mozilla Public License 2.0](LICENSE)**
+- Syntax files are distributed under **[Mozilla Public License 2.0](LICENSE.syntax)**
+- Sample configuration files are distributed under **[MIT License](LICENSE.sample)**
 
 [public-code-search-results-list]: https://github.com/search?q=%22protocol+bgp%22+OR+%22neighbor%22+OR+%22local+as%22+path%3A*.conf+NOT+is%3Afork&type=code&ref=advsearch
 [public-repo-search-results-list]: https://github.com/search?q=bird+config&type=repositories&ref=advsearch

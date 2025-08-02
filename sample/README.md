@@ -9,4 +9,4 @@ This directory contains sample BIRD2 configuration files for various use cases.
 
 ## License
 
-This sample is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This sample is licensed under the MIT License - see the [LICENSE](../LICENSE.sample) file for details.
