@@ -13,7 +13,9 @@ Unlike the straightforward paradigms of INI or Nginx configurations, BIRD employ
 
 Despite its role in core internet infrastructure, BIRD2 still lacks native syntax highlighting and formatting support in mainstream editors like `VSCode` and `Shiki`.
 
-Network engineers and developers have long relied on workarounds, such as using Nginx or INI syntax modes. However, these do not accurately represent the complex grammar of BIRD2.
+Network engineers and developers have long relied on workarounds, such as using Nginx or INI syntax modes.
+
+However, these do not accurately represent the complex grammar of BIRD2.
 
 To address this issue, the **BIRD Chinese Community** has officially open-sourced a TextMate-based syntax grammar for BIRD2. Our goal is to improve developer experience and foster broader ecosystem support.
 
