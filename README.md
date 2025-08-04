@@ -2,12 +2,12 @@
 
 ## Introduction
 
+> **BIRD** (BIRD Internet Routing Daemon)  
+> Open-source routing daemon for managing routing tables on network infrastructure.
+
 This repository hosts syntax files (`tmLanguage`) for BIRD2, designed to enhance developer productivity through syntax highlighting in configuration files.
 
 Unlike the straightforward paradigms of INI or Nginx configurations, BIRD employs a distinctly intricate configuration model with unique implementation challenges.
-
-> **BIRD** (BIRD Internet Routing Daemon)  
-> Open-source routing daemon for managing routing tables on network infrastructure.
 
 ## Why This Project
 
@@ -25,7 +25,7 @@ To address this issue, the **BIRD Chinese Community** has officially open-source
   - [Shiki #149](https://github.com/shikijs/textmate-grammars-themes/pull/149)
 
 - 🚧 A VSCode plugin with full syntax highlighting and formatting support is actively under development.
-  👉 [Join the closed beta on Telegram](https://t.me/bird_cnn/23) (Chinese only)
+  - 👉 [Join the closed beta on Telegram](https://t.me/bird_cnn/23) (Chinese only)
 
 ## Try It Live
 
@@ -65,7 +65,7 @@ The [BIRD Chinese Community](https://github.com/bird-chinese-community) extends 
 ## License
 
 - Syntax files are distributed under **[Mozilla Public License 2.0](LICENSE.syntax)**
-- Sample configuration files are distributed under **[MIT License](LICENSE.sample)**
+- Sample configuration files (`/sample/*`) are distributed under **[MIT License](LICENSE.sample)**
 
 [public-code-search-results-list]: https://github.com/search?q=%22protocol+bgp%22+OR+%22neighbor%22+OR+%22local+as%22+path%3A*.conf+NOT+is%3Afork&type=code&ref=advsearch
 [public-repo-search-results-list]: https://github.com/search?q=bird+config&type=repositories&ref=advsearch
