@@ -9,8 +9,28 @@ Unlike the straightforward paradigms of INI or Nginx configurations, BIRD employ
 > **BIRD** (BIRD Internet Routing Daemon)  
 > Open-source routing daemon for managing routing tables on network infrastructure.
 
-> **BIRD2** (BIRD version 2)  
-> Not backward compatible with BIRD v1, with limited forward compatibility to BIRD v3 syntax.
+## Why This Project
+
+Despite its role in core internet infrastructure, BIRD2 still lacks native syntax highlighting and formatting support in mainstream editors like `VSCode` and `Shiki`.
+
+Network engineers and developers have long relied on workarounds, such as using Nginx or INI syntax modes. However, these do not accurately represent the complex grammar of BIRD2.
+
+To address this issue, the **BIRD Chinese Community** has officially open-sourced a TextMate-based syntax grammar for BIRD2. Our goal is to improve developer experience and foster broader ecosystem support.
+
+## Project Status
+
+- Pull requests have been submitted to upstream projects:
+
+  - [GitHub Linguist #7513](https://github.com/github/linguist/pull/7513)
+  - [Shiki #149](https://github.com/shikijs/textmate-grammars-themes/pull/149)
+
+- 🚧 A VSCode plugin with full syntax highlighting and formatting support is actively under development.
+  👉 [Join the closed beta on Telegram](https://t.me/bird_cnn/23) (Chinese only)
+
+## Try It Live
+
+- 🌐 **Playground** (via Shiki preview):
+  [https://deploy-preview-149--textmate-grammars-themes.netlify.app/?theme=ayu-dark\&grammar=bird2](https://deploy-preview-149--textmate-grammars-themes.netlify.app/?theme=ayu-dark&grammar=bird2)
 
 ## Community Adoption Evidence
 
