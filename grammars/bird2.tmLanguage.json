@@ -6,7 +6,7 @@
   "fileTypes": [".conf"],
   "author": "BIRD Chinese Community (Alice39s) <dev-bird@xmsl.dev>",
   "description": "BIRD2 Configuration Language",
-  "version": "1.0.2-20250803",
+  "version": "1.0.3-20250805",
   "patterns": [
     {
       "include": "#comments"
@@ -46,6 +46,9 @@
     },
     {
       "include": "#next-hop-statements"
+    },
+    {
+      "include": "#neighbor-statements"
     },
     {
       "include": "#import-export-statements"
@@ -384,6 +387,38 @@
     "protocol-definitions": {
       "patterns": [
         {
+          "name": "meta.protocol-definition-with-template.bird",
+          "begin": "\\b(protocol)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s+(from)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\{",
+          "end": "\\}",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.protocol.bird"
+            },
+            "2": {
+              "name": "entity.name.type.protocol.bird"
+            },
+            "3": {
+              "name": "entity.name.function.protocol.bird"
+            },
+            "4": {
+              "name": "keyword.control.template-reference.bird"
+            },
+            "5": {
+              "name": "entity.name.function.template.bird"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.block.end.bird"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
           "name": "meta.protocol-definition-with-name.bird",
           "begin": "\\b(protocol)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\{",
           "end": "\\}",
@@ -516,6 +551,46 @@
         }
       ]
     },
+    "neighbor-statements": {
+      "patterns": [
+        {
+          "name": "meta.neighbor-statement.bird",
+          "match": "\\\\b(neighbor)\\\\s+([0-9a-fA-F:.]+)\\\\s*(%\\\\s*'([^']+)')?\\\\s+(as)\\\\s+([0-9]+)\\\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.neighbor.bird"
+            },
+            "2": {
+              "name": "constant.numeric.ip-address.bird"
+            },
+            "3": {
+              "name": "meta.interface-reference.bird"
+            },
+            "4": {
+              "name": "string.quoted.single.interface.bird"
+            },
+            "5": {
+              "name": "keyword.control.as.bird"
+            },
+            "6": {
+              "name": "constant.numeric.asn.bird"
+            }
+          }
+        },
+        {
+          "name": "meta.source-address-statement.bird",
+          "match": "\\\\b(source address)\\\\s+([0-9a-fA-F:.]+)\\\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.source.bird"
+            },
+            "2": {
+              "name": "constant.numeric.ip-address.bird"
+            }
+          }
+        }
+      ]
+    },
     "import-export-statements": {
       "patterns": [
         {
@@ -532,6 +607,52 @@
               "name": "entity.name.function.filter.bird"
             }
           }
+        },
+        {
+          "name": "meta.import-filter-inline.bird",
+          "begin": "\\\\b(import)\\\\s+(filter)\\\\s*\\\\{",
+          "end": "\\\\}",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.import-export.bird"
+            },
+            "2": {
+              "name": "keyword.control.filter.bird"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.block.end.bird"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "name": "meta.export-where-clause.bird",
+          "begin": "\\\\b(export)\\\\s+(where)\\\\b",
+          "end": ";",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.import-export.bird"
+            },
+            "2": {
+              "name": "keyword.control.where.bird"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.terminator.statement.bird"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
         },
         {
           "name": "meta.export-statement.bird",
@@ -566,7 +687,7 @@
         },
         {
           "name": "keyword.control.structure.bird",
-          "match": "\\b(?:table|define|include|attribute|eval|ipv4|ipv6|local|as)\\b"
+          "match": "\\b(?:table|define|include|attribute|eval|ipv4|ipv6|local|as|from|where|cost|limit|action)\\b"
         }
       ]
     },
