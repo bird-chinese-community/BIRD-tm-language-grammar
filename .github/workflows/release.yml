@@ -1,0 +1,52 @@
+name: Release grammars
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'grammars/bird2.tmLanguage.json'
+      - 'grammars/bird2.syntax.vim'
+  workflow_dispatch: {}
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Compute release metadata
+        id: meta
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node scripts/release.js --gha-outputs
+
+      - name: Create/Update TextMate release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.meta.outputs.tm_tag }}
+          name: ${{ steps.meta.outputs.tm_name }}
+          body: ${{ steps.meta.outputs.tm_body }}
+          files: |
+            grammars/bird2.tmLanguage.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create/Update Vim release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.meta.outputs.vim_tag }}
+          name: ${{ steps.meta.outputs.vim_name }}
+          body: ${{ steps.meta.outputs.vim_body }}
+          files: |
+            grammars/bird2.syntax.vim
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

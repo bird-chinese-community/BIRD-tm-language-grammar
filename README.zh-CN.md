@@ -2,6 +2,8 @@
 
 简体中文 | [English](README.md)
 
+[![TextMate 语法](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=tm-v*&label=TextMate%20语法)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases) [![Vim 语法](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=vim-v*&label=Vim%20语法)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases)
+
 ### 目录
 
 - [BIRD2 Configuration Language](#bird2-configuration-language)
