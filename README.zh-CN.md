@@ -62,8 +62,8 @@
    - 仅 Neovim：`bash scripts/install.sh --neovim`
    - 仅 Vim：`bash scripts/install.sh --vim`
    或手动复制：
-   - Vim：`cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim && cp -r vim/ftdetect ~/.vim/`
-   - Neovim：`cp grammars/bird2.syntax.vim ~/.config/nvim/syntax/bird2.vim && cp -r nvim/plugin ~/.config/nvim/`
+   - Vim：`cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim && cp -r misc/vim/ftdetect ~/.vim/`
+   - Neovim：`cp grammars/bird2.syntax.vim ~/.config/nvim/syntax/bird2.vim && cp -r misc/nvim/plugin ~/.config/nvim/`
 3. 打开 `sample/basic.conf` 验证高亮；用 `:verbose set ft?` 查看是否为 `filetype=bird2`。
 
 #### JetBrains（TextMate Bundles）

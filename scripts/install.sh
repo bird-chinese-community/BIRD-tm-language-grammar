@@ -56,6 +56,46 @@ install_neovim() {
   ok "Lua filetype registration written to: ${YELLOW}$INSTALL_PLUGIN${RESET}"
 }
 
+# Ensure Vim enables filetype/plugins/indent and syntax highlighting
+ensure_vim_runtime_config() {
+  local vimrc="${VIMRC:-$HOME/.vimrc}"
+  # Backup existing vimrc if present
+  if [[ -f "$vimrc" ]]; then
+    cp "$vimrc" "$vimrc.bak-$(date +%Y%m%d%H%M%S)"
+  fi
+  touch "$vimrc"
+  if ! grep -qE '^[[:space:]]*filetype plugin indent on([[:space:]]|$)' "$vimrc"; then
+    printf "\nfiletype plugin indent on\n" >> "$vimrc"
+    ok "Enabled in ${YELLOW}$vimrc${RESET}: filetype plugin indent on"
+  else
+    info "${YELLOW}$vimrc${RESET} already enables: filetype plugin indent on"
+  fi
+  if ! grep -qE '^[[:space:]]*syntax on([[:space:]]|$)' "$vimrc"; then
+    printf "syntax on\n" >> "$vimrc"
+    ok "Enabled in ${YELLOW}$vimrc${RESET}: syntax on"
+  else
+    info "${YELLOW}$vimrc${RESET} already enables: syntax on"
+  fi
+}
+
+# Ensure Neovim has syntax/filetype enabled via a small bootstrap plugin
+ensure_neovim_runtime_config() {
+  local nvim_config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+  local bootstrap_lua="$nvim_config_dir/plugin/bird2-bootstrap.lua"
+  mkdir -p "$nvim_config_dir/plugin"
+  cat > "$bootstrap_lua" <<'LUA'
+-- Auto-enable syntax and filetype for Neovim if not already enabled
+if vim.g.syntax_on == nil then
+  vim.cmd('syntax on')
+end
+-- Neovim generally enables filetype detection by default, but ensure plugin+indent too
+if vim.g.did_load_filetypes == nil then
+  vim.cmd('filetype plugin indent on')
+end
+LUA
+  ok "Wrote Neovim bootstrap: ${YELLOW}$bootstrap_lua${RESET}"
+}
+
 DO_VIM=false; DO_NVIM=false
 if [[ "$#" -gt 0 ]]; then
   for arg in "$@"; do
@@ -71,8 +111,8 @@ fi
 if ! $DO_VIM && ! $DO_NVIM; then DO_VIM=true; DO_NVIM=true; fi
 
 info "Installing BIRD2 syntax..."
-$DO_VIM && install_vim || true
-$DO_NVIM && install_neovim || true
+$DO_VIM && { install_vim; ensure_vim_runtime_config; } || true
+$DO_NVIM && { install_neovim; ensure_neovim_runtime_config; } || true
 
 ok "Installation completed."
 

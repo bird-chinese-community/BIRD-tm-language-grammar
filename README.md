@@ -66,8 +66,8 @@ To address this issue, the **BIRD Chinese Community** has officially open-source
    - Only Neovim: `bash scripts/install.sh --neovim`
    - Only Vim: `bash scripts/install.sh --vim`
    Or manual copy:
-   - Vim: `cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim && cp -r vim/ftdetect ~/.vim/`
-   - Neovim: `cp grammars/bird2.syntax.vim ~/.config/nvim/syntax/bird2.vim && cp -r nvim/plugin ~/.config/nvim/`
+   - Vim: `cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim && cp -r misc/vim/ftdetect ~/.vim/`
+   - Neovim: `cp grammars/bird2.syntax.vim ~/.config/nvim/syntax/bird2.vim && cp -r misc/nvim/plugin ~/.config/nvim/`
 3. Open `sample/basic.conf` and verify highlighting. Optional: use `:verbose set ft?` to confirm `filetype=bird2`.
 
 ### Jetbrains (TextMate Bundles)
