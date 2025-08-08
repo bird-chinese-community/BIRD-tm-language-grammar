@@ -2,7 +2,8 @@
 
 简体中文 | [English](README.md)
 
-[![TextMate 语法](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=tm-v*&label=TextMate%20语法)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases) [![Vim 语法](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=vim-v*&label=Vim%20语法)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases)
+[![TextMate Grammar](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=tm-v*&label=TextMate%20grammar)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases?q=tm-v)
+[![Vim Syntax](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=vim-v*&label=Vim%20syntax)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases?q=Vim%20Syntax)
 
 ### 目录
 
