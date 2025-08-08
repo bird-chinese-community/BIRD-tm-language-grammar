@@ -1,6 +1,7 @@
 # BIRD2 Configuration Language
 
 ## Table of Contents
+
 - [Table of Contents](#table-of-contents)
 - [Introduction](#introduction)
 - [Why This Project](#why-this-project)
@@ -10,6 +11,7 @@
   - [GitHub Usage Statistics](#github-usage-statistics)
   - [Production Deployment at Internet Scale](#production-deployment-at-internet-scale)
 - [Editors \& IDE Support](#editors-ide-support)
+  - [VSCode](#vscode)
   - [Vim](#vim)
   - [Jetbrains (TextMate Bundles)](#jetbrains-textmate-bundles)
 - [Contributors](#contributors)
@@ -74,7 +76,19 @@ BIRD2 powers critical internet infrastructure for major operators:
 
 ## Editors & IDE Support
 
+### VSCode
+
+[![VS Code Marketplace](https://img.shields.io/badge/VS%20Code%20Marketplace-Install-blue?logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=BIRDCC.vscode-bird2-conf) [![Open VSX Registry](https://img.shields.io/badge/Open%20VSX%20Registry-Install-blue?logo=eclipseide)](https://open-vsx.org/extension/BIRDCC/vscode-bird2-conf)
+
+- Install the VSCode extension from [Open VSX Registry](https://open-vsx.org/extension/BIRDCC/vscode-bird2-conf) / [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=BIRDCC.vscode-bird2-conf).
+- Open any BIRD2 configuration file and enjoy syntax highlighting.
+
 ### Vim
+
+> [!NOTE]
+> We recommend using VSCode for the best experience.
+>
+> Note: We are still in the testing phase for our support for Vim syntax highlighting.
 
 - Copy syntax file: `cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim` (Neovim: `~/.config/nvim/syntax/bird2.vim`).
 - Add filetype detection (create `~/.vim/ftdetect/bird2.vim`):

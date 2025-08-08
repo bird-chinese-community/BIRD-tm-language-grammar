@@ -9,6 +9,7 @@
   - [进展公示](#进展公示)
   - [在线体验](#在线体验)
   - [编辑器与 IDE 支持](#编辑器与-ide-支持)
+    - [VSCode](#vscode)
     - [Vim 导入](#vim-导入)
     - [JetBrains（TextMate Bundles）](#jetbrains-textmate-bundles)
   - [贡献者致谢](#贡献者致谢)
@@ -48,12 +49,26 @@
 
 ### 编辑器与 IDE 支持
 
+#### VSCode
+
+[![VS Code Marketplace](https://img.shields.io/badge/VS%20Code%20Marketplace-Install-blue?logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=BIRDCC.vscode-bird2-conf) [![Open VSX Registry](https://img.shields.io/badge/Open%20VSX%20Registry-Install-blue?logo=eclipseide)](https://open-vsx.org/extension/BIRDCC/vscode-bird2-conf)
+
+- 安装 VSCode 扩展：[Open VSX Registry](https://open-vsx.org/extension/BIRDCC/vscode-bird2-conf) / [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=BIRDCC.vscode-bird2-conf)。
+- 打开任意 BIRD2 配置文件并享受语法高亮。
+
 #### Vim 导入
 
-- 复制语法文件：`cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim`（Neovim 路径：`~/.config/nvim/syntax/bird2.vim`）。
-- 新建文件类型关联（创建 `~/.vim/ftdetect/bird2.vim`）：
-  `autocmd BufRead,BufNewFile *.bird,*.bird2,*.bird3,*.bird*.conf setfiletype bird2`
-- 打开 `sample/` 目录下任一 `.conf` 文件验证高亮；用 `:verbose set ft?` 查看是否为 `filetype=bird2`。
+> [!NOTE]
+> 我们推荐使用 VSCode 以获得最佳体验。
+>
+> 请注意：Vim 语法高亮文件仍处于 Beta 阶段，欢迎反馈。
+
+1. 复制语法文件：`cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim`（Neovim 路径：`~/.config/nvim/syntax/bird2.vim`）。
+2. 新建文件类型关联（创建 `~/.vim/ftdetect/bird2.vim`）：
+   ```vim
+   autocmd BufRead,BufNewFile *.bird,*.bird2,*.bird3,*.bird*.conf setfiletype bird2
+   ```
+3. 打开 `sample/` 目录下任一 `.conf` 文件验证高亮；用 `:verbose set ft?` 查看是否为 `filetype=bird2`。
 
 #### JetBrains（TextMate Bundles）
 
