@@ -73,16 +73,16 @@ function buildReleaseBody({ kind, version, owner, repo, previousTag, tag }) {
   const compareLine = previousTag && repoUrl ? `Compare: ${repoUrl}/compare/${previousTag}...${tag}` : 'Initial release for this track.';
   const installLinks = repoUrl
     ? [
-        `- Editors & IDE Support: ${repoUrl}#editors-ide-support`,
-        `- VSCode: ${repoUrl}#vscode`,
-        `- Vim: ${repoUrl}#vim`,
-        `- JetBrains (TextMate Bundles): ${repoUrl}#jetbrains-textmate-bundles`,
+        `- Editors & IDE Support: [Install](${repoUrl}#editors-ide-support)`,
+        `- VSCode: [Install](${repoUrl}#vscode)`,
+        `- Vim: [Install](${repoUrl}#vim)`,
+        `- JetBrains (TextMate Bundles): [Install](${repoUrl}#jetbrains-textmate-bundles)`,
       ].join('\n')
     : '- See README for installation instructions.';
   return (
-    `Release ${kind} ${version}\n\n` +
+    `Release ${kind} - \`${version}\`\n\n` +
     `${compareLine}\n\n` +
-    `Installation & usage:\n${installLinks}`
+    `## Installation\n${installLinks}`
   );
 }
 

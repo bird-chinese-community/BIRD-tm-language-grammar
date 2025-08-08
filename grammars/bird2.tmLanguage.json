@@ -6,7 +6,7 @@
   "fileTypes": ["conf", "bird", "bird2", "bird3", "bird.conf", "bird2.conf", "bird3.conf"],
   "author": "BIRD Chinese Community (Alice39s) <dev-bird@xmsl.dev>",
   "description": "BIRD2 Configuration Language",
-  "version": "1.0.4-20250808",
+  "version": "1.0.5-20250808",
   "patterns": [
     {
       "include": "#comments"
