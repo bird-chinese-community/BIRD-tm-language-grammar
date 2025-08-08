@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: BIRD2 Configuration
 " Scope:    BIRD2 config files (bird2, .conf)
-" Version:  1.0.1-beta-20250808
+" Version:  1.0.2-beta-20250808
 " License:  MPL-2.0
 " Author:   BIRD Chinese Community (Alice39s) <dev-bird@xmsl.dev>
 " Based on: grammars/bird2.tmLanguage.json (1.0.5-20250808)
@@ -126,7 +126,7 @@ syn match  bird2ImportRef /\<import\s\+filter\s\+[A-Za-z_][A-Za-z0-9_]*\>/ conta
 syn region bird2Template  start=/\<template\>\s\+[A-Za-z_][A-Za-z0-9_]*\s\+[A-Za-z_][A-Za-z0-9_]*\s*{/ end=/}/ contains=ALLBUT,Spell
 syn region bird2FilterDef start=/\<filter\>\s\+[A-Za-z_][A-Za-z0-9_]*\s*{/ end=/}/ contains=ALLBUT,Spell
 syn region bird2FuncDef   start=/\<function\>\s\+[A-Za-z_][A-Za-z0-9_]*\s*(/ end=/}/ contains=ALLBUT,Spell
-syn region bird2Protocol  start=/\<protocol\>\s\+[A-Za-z_][A-Za-z0-9_]*\%\s\+[A-Za-z_][A-Za-z0-9_]*\%\(\s\+from\s\+[A-Za-z_][A-Za-z0-9_]*\)\?\s*{/ end=/}/ contains=ALLBUT,Spell
+syn region bird2Protocol  start=/\<protocol\>\s\+[A-Za-z_][A-Za-z0-9_]*\s\+[A-Za-z_][A-Za-z0-9_]*\(\s\+from\s\+[A-Za-z_][A-Za-z0-9_]*\)\?\s*{/ end=/}/ contains=ALLBUT,Spell
 
 " BGP path list [= ... =]
 syn region bird2BgpPath   start=/\[=/ end=/=\]/ contains=bird2Number,bird2Operator,bird2Wildcard

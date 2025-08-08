@@ -62,12 +62,13 @@ To address this issue, the **BIRD Chinese Community** has officially open-source
 > Note: We are still in the testing phase for our support for Vim syntax highlighting.
 
 1. Clone this repository: `git clone https://github.com/bird-chinese-community/bird-tm-language-grammar.git`.
-2. Copy syntax file: `cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim` (Neovim: `~/.config/nvim/syntax/bird2.vim`).
-3. Add filetype detection (create `~/.vim/ftdetect/bird2.vim`):
-  ```vim
-  autocmd BufRead,BufNewFile *.bird,*.bird2,*.bird3,*.bird*.conf setfiletype bird2
-  ```
-4. Open any file in `sample/` and verify highlighting. Optional: use `:verbose set ft?` to confirm `filetype=bird2`.
+2. Quick install:
+   - Neovim: `bash scripts/install-to-neovim.sh`
+   - Vim: `bash scripts/install-to-vim.sh`
+   Or manual copy:
+   - Vim: `cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim && cp -r vim/ftdetect ~/.vim/`
+   - Neovim: `cp grammars/bird2.syntax.vim ~/.config/nvim/syntax/bird2.vim && cp -r nvim/plugin ~/.config/nvim/`
+3. Open any file in `sample/` and verify highlighting. Optional: use `:verbose set ft?` to confirm `filetype=bird2`.
 
 ### Jetbrains (TextMate Bundles)
 

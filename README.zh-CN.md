@@ -58,12 +58,13 @@
 > 请注意：Vim 语法高亮文件仍处于 Beta 阶段，欢迎反馈。
 
 1. 克隆此仓库：`git clone https://github.com/bird-chinese-community/bird-tm-language-grammar.git`。
-2. 复制语法文件：`cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim`（Neovim 路径：`~/.config/nvim/syntax/bird2.vim`）。
-3. 新建文件类型关联（创建 `~/.vim/ftdetect/bird2.vim`）：
-   ```vim
-   autocmd BufRead,BufNewFile *.bird,*.bird2,*.bird3,*.bird*.conf setfiletype bird2
-   ```
-4. 打开 `sample/` 目录下任一 `.conf` 文件验证高亮；用 `:verbose set ft?` 查看是否为 `filetype=bird2`。
+2. 一键安装：
+   - Neovim: `bash scripts/install-to-neovim.sh`
+   - Vim: `bash scripts/install-to-vim.sh`
+   或手动复制：
+   - Vim：`cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim && cp -r vim/ftdetect ~/.vim/`
+   - Neovim：`cp grammars/bird2.syntax.vim ~/.config/nvim/syntax/bird2.vim && cp -r nvim/plugin ~/.config/nvim/`
+3. 打开 `sample/` 目录下任一 `.conf` 文件验证高亮；用 `:verbose set ft?` 查看是否为 `filetype=bird2`。
 
 #### JetBrains（TextMate Bundles）
 
