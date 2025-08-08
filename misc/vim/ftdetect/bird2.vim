@@ -19,7 +19,19 @@ augroup bird2_ftdetect
     
     " Enhanced pattern matching for BIRD-specific keywords
     " Includes: protocols, router id, templates, filters, flow/roa tables, static routes
-    let l:pat = '\v<(protocol\s+(bgp|ospf|rip|device|direct|kernel|pipe|babel|radv|rpki|bfd|static))|(^\s*router\s+id)|(^\s*template\s+)|(^\s*filter\s+)|(<flow[46]>)|(<roa[46]>)|(^\s*table\s+)|(^\s*define\s+)|(^\s*function\s+)|(^\s*ipv[46]\s+table)>'
+    " Split into simpler patterns to avoid NFA regexp complexity errors
+    let l:patterns = [
+      \ '\<protocol\s\+\(bgp\|ospf\|rip\|device\|direct\|kernel\|pipe\|babel\|radv\|rpki\|bfd\|static\)\>',
+      \ '^\s*router\s\+id\>',
+      \ '^\s*template\>',
+      \ '^\s*filter\>',
+      \ '\<flow[46]\>',
+      \ '\<roa[46]\>',
+      \ '^\s*table\>',
+      \ '^\s*define\>',
+      \ '^\s*function\>',
+      \ '\<ipv[46]\s\+table\>'
+      \ ]
     
     for lnum in range(1, l:max_lines)
       let l:line = getline(lnum)
@@ -28,10 +40,13 @@ augroup bird2_ftdetect
         continue
       endif
       
-      if l:line =~? l:pat
-        setfiletype bird2
-        return
-      endif
+      " Check each pattern separately
+      for l:pat in l:patterns
+        if l:line =~? l:pat
+          setfiletype bird2
+          return
+        endif
+      endfor
     endfor
   endfunction
   
