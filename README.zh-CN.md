@@ -58,13 +58,13 @@
 > 请注意：Vim 语法高亮文件仍处于 Beta 阶段，欢迎反馈。
 
 1. 克隆此仓库：`git clone https://github.com/bird-chinese-community/bird-tm-language-grammar.git`。
-2. 一键安装：
-   - Neovim: `bash scripts/install-to-neovim.sh`
-   - Vim: `bash scripts/install-to-vim.sh`
+2. 一键安装：`bash scripts/install.sh`（同时安装 Vim 和 Neovim）
+   - 仅 Neovim：`bash scripts/install.sh --neovim`
+   - 仅 Vim：`bash scripts/install.sh --vim`
    或手动复制：
    - Vim：`cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim && cp -r vim/ftdetect ~/.vim/`
    - Neovim：`cp grammars/bird2.syntax.vim ~/.config/nvim/syntax/bird2.vim && cp -r nvim/plugin ~/.config/nvim/`
-3. 打开 `sample/` 目录下任一 `.conf` 文件验证高亮；用 `:verbose set ft?` 查看是否为 `filetype=bird2`。
+3. 打开 `sample/basic.conf` 验证高亮；用 `:verbose set ft?` 查看是否为 `filetype=bird2`。
 
 #### JetBrains（TextMate Bundles）
 

@@ -3,28 +3,13 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-SRC_SYNTAX="$REPO_ROOT/grammars/bird2.syntax.vim"
-SRC_FTDETECT="$REPO_ROOT/misc/vim/ftdetect/bird2.vim"
 
-if [[ ! -f "$SRC_SYNTAX" ]]; then
-  echo "Error: grammar source not found: $SRC_SYNTAX" >&2
-  exit 1
+# Minimal color for notice
+if [[ -t 1 ]] && command -v tput >/dev/null 2>&1 && [[ $(tput colors 2>/dev/null || echo 0) -ge 8 ]]; then
+  YELLOW="$(tput setaf 3)"; RESET="$(tput sgr0)"
+else
+  YELLOW=""; RESET=""
 fi
 
-VIM_HOME="${VIM_HOME:-$HOME/.vim}"
-mkdir -p "$VIM_HOME/syntax" "$VIM_HOME/ftdetect"
-
-INSTALL_SYNTAX="$VIM_HOME/syntax/bird2.vim"
-cp "$SRC_SYNTAX" "$INSTALL_SYNTAX"
-
-if [[ ! -f "$SRC_FTDETECT" ]]; then
-  echo "Error: ftdetect source not found: $SRC_FTDETECT" >&2
-  exit 1
-fi
-
-INSTALL_FTDETECT="$VIM_HOME/ftdetect/bird2.vim"
-cp "$SRC_FTDETECT" "$INSTALL_FTDETECT"
-
-echo "[bird2] Installed Vim syntax to: $INSTALL_SYNTAX"
-echo "[bird2] Filetype detection written to: $INSTALL_FTDETECT"
-echo "[bird2] Verify in Vim with: :verbose set ft? (should be filetype=bird2)"
+echo -e "${YELLOW}[bird2] scripts/install-to-vim.sh is deprecated. Use: bash scripts/install.sh --vim${RESET}" >&2
+exec "$REPO_ROOT/scripts/install.sh" --vim
