@@ -1,9 +1,14 @@
 # BIRD2 Configuration Language
 
+<div align="center">
+
+![Preview](.github/assets/bird2-grammar-preview.jpg)
+
 English | [简体中文](README.zh-CN.md)
 
-[![TextMate Grammar](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=tm-v*&label=TextMate%20grammar)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases?q=tm-v)
-[![Vim Syntax](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=vim-v*&label=Vim%20syntax)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases?q=Vim%20Syntax)
+[![TextMate Grammar](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=tm-v*&label=TextMate%20grammar)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases?q=tm-v) [![Vim Syntax](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=vim-v*&label=Vim%20syntax)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases?q=Vim%20Syntax)
+
+</div>
 
 ## Table of Contents
 
@@ -50,12 +55,24 @@ To address this issue, the **BIRD Chinese Community** has officially open-source
 
 ### VSCode
 
+<div align="center">
+
+![VSCode Syntax Highlighting Preview](.github/assets/vscode-bird2-preview.jpg)
+
 [![VS Code Marketplace](https://img.shields.io/badge/VS%20Code%20Marketplace-Install-blue?logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=BIRDCC.vscode-bird2-conf) [![Open VSX Registry](https://img.shields.io/badge/Open%20VSX%20Registry-Install-blue?logo=eclipseide)](https://open-vsx.org/extension/BIRDCC/vscode-bird2-conf)
+
+</div>
 
 - Install the VSCode extension from [Open VSX Registry](https://open-vsx.org/extension/BIRDCC/vscode-bird2-conf) / [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=BIRDCC.vscode-bird2-conf).
 - Open any BIRD2 configuration file and enjoy syntax highlighting.
 
 ### Vim
+
+<div align="center">
+
+![Vim Syntax Highlighting Preview](.github/assets/bird2-grammar-vim-preview.jpg)
+
+</div>
 
 > [!NOTE]
 > We recommend using VSCode for the best experience.
@@ -72,6 +89,12 @@ To address this issue, the **BIRD Chinese Community** has officially open-source
 3. Open `sample/basic.conf` and verify highlighting. Optional: use `:verbose set ft?` to confirm `filetype=bird2`.
 
 ### Jetbrains (TextMate Bundles)
+
+<div align="center">
+
+![JetBrains IDEA Syntax Highlighting Preview](.github/assets/jetbrains-idea-bird2-preview.jpg)
+
+</div>
 
 > [!NOTE]
 > We recommend VSCode for the best experience, but JetBrains with TextMate Bundles works well for syntax highlighting.

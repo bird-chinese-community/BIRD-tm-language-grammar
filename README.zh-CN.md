@@ -1,9 +1,14 @@
 ## BIRD2 Configuration Language
 
+<div align="center">
+
+![Preview](.github/assets/bird2-grammar-preview.jpg)
+
 简体中文 | [English](README.md)
 
-[![TextMate Grammar](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=tm-v*&label=TextMate%20grammar)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases?q=tm-v)
-[![Vim Syntax](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=vim-v*&label=Vim%20syntax)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases?q=Vim%20Syntax)
+[![TextMate Grammar](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=tm-v*&label=TextMate%20grammar)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases?q=tm-v) [![Vim Syntax](https://img.shields.io/github/v/tag/bird-chinese-community/bird-tm-language-grammar?filter=vim-v*&label=Vim%20syntax)](https://github.com/bird-chinese-community/bird-tm-language-grammar/releases?q=Vim%20Syntax)
+
+</div>
 
 ### 目录
 
@@ -46,12 +51,20 @@
 
 #### VSCode
 
+![VSCode 语法高亮 预览](.github/assets/vscode-bird2-preview.jpg)
+
 [![VS Code Marketplace](https://img.shields.io/badge/VS%20Code%20Marketplace-Install-blue?logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=BIRDCC.vscode-bird2-conf) [![Open VSX Registry](https://img.shields.io/badge/Open%20VSX%20Registry-Install-blue?logo=eclipseide)](https://open-vsx.org/extension/BIRDCC/vscode-bird2-conf)
 
 - 安装 VSCode 扩展：[Open VSX Registry](https://open-vsx.org/extension/BIRDCC/vscode-bird2-conf) / [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=BIRDCC.vscode-bird2-conf)。
 - 打开任意 BIRD2 配置文件并享受语法高亮。
 
 #### Vim 导入
+
+<div align="center">
+
+![Vim 语法高亮 预览](.github/assets/bird2-grammar-vim-preview.jpg)
+
+</div>
 
 > [!NOTE]
 > 我们推荐使用 VSCode 以获得最佳体验。
@@ -68,6 +81,12 @@
 3. 打开 `sample/basic.conf` 验证高亮；用 `:verbose set ft?` 查看是否为 `filetype=bird2`。
 
 #### JetBrains（TextMate Bundles）
+
+<div align="center">
+
+![JetBrains IDEA 语法高亮 预览](.github/assets/jetbrains-idea-bird2-preview.jpg)
+
+</div>
 
 > [!NOTE]
 > 我们推荐使用 VSCode 以获得最佳体验，此方案仅作为备选方案。
