@@ -1,5 +1,20 @@
 # BIRD2 Configuration Language
 
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Introduction](#introduction)
+- [Why This Project](#why-this-project)
+- [Project Status](#project-status)
+- [Try It Live](#try-it-live)
+- [Community Adoption Evidence](#community-adoption-evidence)
+  - [GitHub Usage Statistics](#github-usage-statistics)
+  - [Production Deployment at Internet Scale](#production-deployment-at-internet-scale)
+- [Editors \& IDE Support](#editors-ide-support)
+  - [Vim](#vim)
+  - [Jetbrains (TextMate Bundles)](#jetbrains-textmate-bundles)
+- [Contributors](#contributors)
+- [License](#license)
+
 ## Introduction
 
 > **BIRD** (BIRD Internet Routing Daemon)  
@@ -56,6 +71,29 @@ BIRD2 powers critical internet infrastructure for major operators:
 - **Cloudflare Anycast Edge**  
   Deployed on every server in 280+ PoPs for sub-second failover routing  
   [Architecture Deep Dive](https://blog.cloudflare.com/cloudflares-architecture-eliminating-single-p/)
+
+## Editors & IDE Support
+
+### Vim
+
+- Copy syntax file: `cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim` (Neovim: `~/.config/nvim/syntax/bird2.vim`).
+- Add filetype detection (create `~/.vim/ftdetect/bird2.vim`):
+  `autocmd BufRead,BufNewFile *.bird,*.bird2,*.bird3,*.bird*.conf setfiletype bird2`
+- Open any file in `sample/` and verify highlighting. Optional: use `:verbose set ft?` to confirm `filetype=bird2`.
+
+### Jetbrains (TextMate Bundles)
+
+> [!NOTE]
+> We recommend VSCode for the best experience, but JetBrains with TextMate Bundles works well for syntax highlighting.
+
+1. Prepare the language pack
+   a) Open https://open-vsx.org/extension/BIRDCC/vscode-bird2-conf ▸ Resources (lower right) ▸ Download the latest `.vsix` package;
+   b) Unzip the `.vsix` file using any archiver;
+   c) In the unzipped folder, locate the directory containing `package.json`, keep this path for the next step;
+2. Open IntelliJ IDEA: Settings/Preferences ▸ Editor ▸ TextMate Bundles;
+3. Click ➕ (Add) and select the directory from step 1(c);
+4. Scroll the language list, confirm that `bird2` appears and check the box;
+5. Follow prompts to restart the IDE.
 
 ## Contributors
 

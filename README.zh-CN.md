@@ -1,5 +1,19 @@
 ## BIRD2 Configuration Language
 
+### 目录
+
+- [BIRD2 Configuration Language](#bird2-configuration-language)
+  - [目录](#目录)
+  - [项目背景](#项目背景)
+  - [项目意义](#项目意义)
+  - [进展公示](#进展公示)
+  - [在线体验](#在线体验)
+  - [编辑器与 IDE 支持](#编辑器与-ide-支持)
+    - [Vim 导入](#vim-导入)
+    - [JetBrains（TextMate Bundles）](#jetbrains-textmate-bundles)
+  - [贡献者致谢](#贡献者致谢)
+  - [许可协议](#许可协议)
+
 ### 项目背景
 
 > **BIRD**（BIRD Internet Routing Daemon）  
@@ -31,6 +45,29 @@
 
 - 🌐 **Playground**（通过 Shiki 预览）：  
   [https://deploy-preview-149--textmate-grammars-themes.netlify.app/?theme=ayu-dark\&grammar=bird2](https://deploy-preview-149--textmate-grammars-themes.netlify.app/?theme=ayu-dark&grammar=bird2)
+
+### 编辑器与 IDE 支持
+
+#### Vim 导入
+
+- 复制语法文件：`cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim`（Neovim 路径：`~/.config/nvim/syntax/bird2.vim`）。
+- 新建文件类型关联（创建 `~/.vim/ftdetect/bird2.vim`）：
+  `autocmd BufRead,BufNewFile *.bird,*.bird2,*.bird3,*.bird*.conf setfiletype bird2`
+- 打开 `sample/` 目录下任一 `.conf` 文件验证高亮；用 `:verbose set ft?` 查看是否为 `filetype=bird2`。
+
+#### JetBrains（TextMate Bundles）
+
+> [!NOTE]
+> 我们推荐使用 VSCode 以获得最佳体验，此方案仅作为备选方案。
+
+1. 准备语言包
+   a) 打开 https://open-vsx.org/extension/BIRDCC/vscode-bird2-conf ▸ 右下角 Resources ▸ 下载最新 `.vsix` 安装包；
+   b) 使用解压工具直接解压该 `.vsix` 文件；
+   c) 在解压后的目录中，**找到包含 `package.json` 的目录**，并记录该路径；
+2. 打开 IntelliJ IDEA：Settings/Preferences ▸ Editor ▸ TextMate Bundles；
+3. 点击 ➕（Add）并选择刚才 `1(c)` 步的目录；
+4. 在语言列表中找到 `bird2`，勾选启用；
+5. 按提示重启 IDE 生效。
 
 ### 贡献者致谢
 
