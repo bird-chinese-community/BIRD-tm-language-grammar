@@ -1,5 +1,7 @@
 # BIRD2 Configuration Language
 
+English | [简体中文](README.zh-CN.md)
+
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)

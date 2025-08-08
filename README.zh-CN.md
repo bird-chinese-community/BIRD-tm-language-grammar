@@ -1,5 +1,7 @@
 ## BIRD2 Configuration Language
 
+简体中文 | [English](README.md)
+
 ### 目录
 
 - [BIRD2 Configuration Language](#bird2-configuration-language)
