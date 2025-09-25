@@ -3,7 +3,15 @@
   "displayName": "BIRD2 Configuration",
   "name": "bird2",
   "scopeName": "source.bird2",
-  "fileTypes": ["conf", "bird", "bird2", "bird3", "bird.conf", "bird2.conf", "bird3.conf"],
+  "fileTypes": [
+    "conf",
+    "bird",
+    "bird2",
+    "bird3",
+    "bird.conf",
+    "bird2.conf",
+    "bird3.conf"
+  ],
   "author": "BIRD Chinese Community (Alice39s) <dev-bird@xmsl.dev>",
   "description": "BIRD2 Configuration Language",
   "version": "1.0.6-20250808",
@@ -154,7 +162,7 @@
           "patterns": [
             {
               "name": "constant.character.escape.bird",
-              "match": "\\\\."
+              "match": "\\."
             }
           ]
         },
@@ -555,7 +563,7 @@
       "patterns": [
         {
           "name": "meta.neighbor-statement.bird",
-          "match": "\\\\b(neighbor)\\\\s+([0-9a-fA-F:.]+)\\\\s*(%\\\\s*'([^']+)')?\\\\s+(as)\\\\s+([0-9]+)\\\\b",
+          "match": "\\b(neighbor)\\s+([0-9a-fA-F:.]+)\\s*(%\\s*'([^']+)')?\\s+(as)\\s+([0-9]+)\\b",
           "captures": {
             "1": {
               "name": "keyword.control.neighbor.bird"
@@ -579,7 +587,7 @@
         },
         {
           "name": "meta.source-address-statement.bird",
-          "match": "\\\\b(source address)\\\\s+([0-9a-fA-F:.]+)\\\\b",
+          "match": "\\b(source address)\\s+([0-9a-fA-F:.]+)\\b",
           "captures": {
             "1": {
               "name": "keyword.control.source.bird"
@@ -610,8 +618,8 @@
         },
         {
           "name": "meta.import-filter-inline.bird",
-          "begin": "\\\\b(import)\\\\s+(filter)\\\\s*\\\\{",
-          "end": "\\\\}",
+          "begin": "\\b(import)\\s+(filter)\\s*\\{",
+          "end": "\\}",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.import-export.bird"
@@ -633,7 +641,7 @@
         },
         {
           "name": "meta.export-where-clause.bird",
-          "begin": "\\\\b(export)\\\\s+(where)\\\\b",
+          "begin": "\\b(export)\\s+(where)\\b",
           "end": ";",
           "beginCaptures": {
             "1": {
