@@ -66,7 +66,7 @@ To address this issue, the **BIRD Chinese Community** has officially open-source
 - Install the VSCode extension from [Open VSX Registry](https://open-vsx.org/extension/BIRDCC/vscode-bird2-conf) / [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=BIRDCC.vscode-bird2-conf).
 - Open any BIRD2 configuration file and enjoy syntax highlighting.
 
-### Vim
+### Vim / Neovim
 
 <div align="center">
 
@@ -77,16 +77,38 @@ To address this issue, the **BIRD Chinese Community** has officially open-source
 > [!NOTE]
 > We recommend using VSCode for the best experience.
 >
-> Note: We are still in the testing phase for our support for Vim syntax highlighting.
+> Vim/Neovim support has been migrated to dedicated repositories for better maintenance and feature updates.
 
-1. Clone this repository: `git clone https://github.com/bird-chinese-community/bird-tm-language-grammar.git`.
+**Dedicated Plugin Repositories:**
+
+- **Vim**: [bird-chinese-community/bird2.vim](https://github.com/bird-chinese-community/bird2.vim)
+- **Neovim**: [bird-chinese-community/bird2.nvim](https://github.com/bird-chinese-community/bird2.nvim)
+
+**Installation:**
+
+Vim (using vim-plug):
+```vim
+Plug 'bird-chinese-community/bird2.vim'
+```
+
+Neovim (using lazy.nvim):
+```lua
+{
+  "bird-chinese-community/bird2.nvim",
+  ft = "bird2",
+  config = function()
+    require("bird2").setup()
+  end
+}
+```
+
+**Backward Compatibility (still installable from this repo):**
+
+1. Clone this repository: `git clone https://github.com/bird-chinese-community/bird-tm-language-grammar.git`
 2. Quick install: `bash scripts/install.sh` (installs Vim and Neovim)
    - Only Neovim: `bash scripts/install.sh --neovim`
    - Only Vim: `bash scripts/install.sh --vim`
-   Or manual copy:
-   - Vim: `cp grammars/bird2.syntax.vim ~/.vim/syntax/bird2.vim && cp -r misc/vim/ftdetect ~/.vim/`
-   - Neovim: `cp grammars/bird2.syntax.vim ~/.config/nvim/syntax/bird2.vim && cp -r misc/nvim/plugin ~/.config/nvim/`
-3. Open `sample/basic.conf` and verify highlighting. Optional: use `:verbose set ft?` to confirm `filetype=bird2`.
+3. Open `sample/basic.conf` and verify highlighting. Optional: use `:verbose set ft?` to confirm `filetype=bird2`
 
 ### Jetbrains (TextMate Bundles)
 
