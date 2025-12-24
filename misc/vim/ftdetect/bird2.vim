@@ -1,1 +1,1 @@
-../../../../bird2.vim/ftdetect/bird2.vim
+../../../external/bird2.vim/ftdetect/bird2.vim

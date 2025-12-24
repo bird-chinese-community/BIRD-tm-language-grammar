@@ -1,1 +1,1 @@
-../../bird2.vim/syntax/bird2.vim
+../external/bird2.vim/syntax/bird2.vim

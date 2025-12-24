@@ -1,1 +1,1 @@
-../../../../bird2.nvim/plugin/bird2.lua
+../../../external/bird2.nvim/plugin/bird2.lua
