@@ -1,6 +1,6 @@
 [submodule "external/bird2.vim"]
 	path = external/bird2.vim
-	url = https://github.com/bird-chinese-community/bird2.vim.git
+	url = https://github.com/bird-chinese-community/BIRD2.vim.git
 [submodule "external/bird2.nvim"]
 	path = external/bird2.nvim
-	url = https://github.com/bird-chinese-community/bird2.nvim.git
+	url = https://github.com/bird-chinese-community/BIRD2.nvim.git
