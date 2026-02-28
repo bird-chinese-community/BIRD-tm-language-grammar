@@ -193,6 +193,6 @@ function run() {
 try {
   run();
 } catch (error) {
-  console.error(error.message || String(error));
+  console.error(error && error.stack ? error.stack : error);
   process.exit(1);
 }
