@@ -21,6 +21,7 @@
     - [VSCode](#vscode)
     - [Vim 导入](#vim-导入)
     - [JetBrains（TextMate Bundles）](#jetbrains-textmate-bundles)
+  - [开发工作流](#开发工作流)
   - [进展公示](#进展公示)
   - [贡献者致谢](#贡献者致谢)
   - [许可协议](#许可协议)
@@ -121,6 +122,18 @@ Neovim (使用 lazy.nvim):
 3. 点击 ➕（Add）并选择刚才 `1(c)` 步的目录；
 4. 在语言列表中找到 `bird2`，勾选启用；
 5. 按提示重启 IDE 生效。
+
+### 开发工作流
+
+本仓库使用 **Prek** 作为 pre-commit 执行器。
+
+1. 安装并启用 hooks：
+   - `prek install --install-hooks`
+2. 在修改语法文件前后执行定向检查：
+   - `prek run --files grammars/bird2.tmLanguage.json`
+   - `prek run --files external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim`
+3. 在提交或发起 PR 前执行：
+   - `prek run --all-files`
 
 ### 进展公示
 

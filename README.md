@@ -20,6 +20,7 @@ English | [简体中文](README.zh-CN.md)
   - [VSCode](#vscode)
   - [Vim](#vim)
   - [Jetbrains (TextMate Bundles)](#jetbrains-textmate-bundles)
+- [Development Workflow](#development-workflow)
 - [Project Status](#project-status)
 - [Community Adoption Evidence](#community-adoption-evidence)
   - [GitHub Usage Statistics](#github-usage-statistics)
@@ -129,6 +130,18 @@ Neovim (using lazy.nvim):
 3. Click ➕ (Add) and select the directory from step 1(c);
 4. Scroll the language list, confirm that `bird2` appears and check the box;
 5. Follow prompts to restart the IDE.
+
+## Development Workflow
+
+This repository uses **Prek** as the pre-commit runner.
+
+1. Install Prek and install hooks:
+   - `prek install --install-hooks`
+2. Before/after editing syntax files, run targeted checks:
+   - `prek run --files grammars/bird2.tmLanguage.json`
+   - `prek run --files external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim`
+3. Before pushing or opening a PR, run:
+   - `prek run --all-files`
 
 ## Project Status
 

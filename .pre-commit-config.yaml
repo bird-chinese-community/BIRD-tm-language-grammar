@@ -1,0 +1,38 @@
+minimum_prek_version: "0.3.0"
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: pretty-format-json
+        files: ^grammars/bird2\.tmLanguage\.json$
+
+  - repo: local
+    hooks:
+      - id: bird2-tm-json-validate
+        name: Validate tmLanguage JSON by jq
+        language: system
+        entry: bash -lc 'jq empty grammars/bird2.tmLanguage.json'
+        pass_filenames: false
+        files: ^grammars/bird2\.tmLanguage\.json$
+
+      - id: bird2-vim-source-check
+        name: Source Vim syntax files headlessly
+        language: system
+        entry: bash -lc 'vim -Nu NONE -n -es -c "set nomore" -c "source external/bird2.vim/syntax/bird2.vim" -c "source external/bird2.nvim/syntax/bird2.vim" -c "qa!"'
+        pass_filenames: false
+        files: ^external/(bird2\.vim|bird2\.nvim)/syntax/bird2\.vim$
+
+      - id: bird2-vim-mirror-consistency
+        name: Ensure bird2.vim and bird2.nvim syntax mirrors stay in sync
+        language: system
+        entry: bash -lc 'diff -u external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim'
+        pass_filenames: false
+        files: ^external/(bird2\.vim|bird2\.nvim)/syntax/bird2\.vim$
