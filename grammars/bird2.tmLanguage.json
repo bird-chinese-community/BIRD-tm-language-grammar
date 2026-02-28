@@ -86,6 +86,9 @@
       "include": "#structural-keywords"
     },
     {
+      "include": "#protocol-phrases"
+    },
+    {
       "include": "#functional-keywords"
     },
     {
@@ -757,6 +760,22 @@
         {
           "name": "keyword.control.structure.bird",
           "match": "\\b(?:protocol|table|define|include|attribute|eval|ipv4|ipv6|local|as|from|where|cost|limit|action)\\b"
+        }
+      ]
+    },
+    "protocol-phrases": {
+      "patterns": [
+        {
+          "name": "keyword.other.bfd.phrase.bird",
+          "match": "\\b(?:strict\\s+bind|zero\\s+udp6\\s+checksum\\s+rx|idle\\s+tx\\s+interval|multiplier|keyed|meticulous)\\b"
+        },
+        {
+          "name": "keyword.other.babel.phrase.bird",
+          "match": "\\b(?:send\\s+timestamps|rtt\\s+(?:cost|min|max|decay)|next\\s+hop\\s+prefer|prefer|native)\\b"
+        },
+        {
+          "name": "keyword.other.bgp.phrase.bird",
+          "match": "\\b(?:next\\s+hop\\s+(?:self|address|ibgp|ebgp)|link\\s+local\\s+next\\s+hop\\s+format|import\\s+table|export\\s+table|base\\s+table|add\\s+paths|aigp\\s+originate|long\\s+lived\\s+graceful\\s+restart|long\\s+lived\\s+stale\\s+time|dynamic\\s+name(?:\\s+digits)?|strict\\s+bind|free\\s+bind|ttl\\s+security|multihop\\s+password|rr\\s+client|rs\\s+client|advertise\\s+hostname|interpret\\s+communities|deterministic\\s+med|default\\s+bgp_local_pref|default\\s+bgp_med|med\\s+metric|igp\\s+metric|missing\\s+lladdr|gateway\\s+address|forwarding\\s+addressed|gateway\\s+recursive|allow\\s+local\\s+as|allow\\s+bogus\\s+as|originate\\s+community|full\\s+route\\s+table|capabilities|primary)\\b"
         }
       ]
     },
