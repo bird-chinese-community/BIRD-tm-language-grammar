@@ -37,3 +37,13 @@ repos:
         entry: bash -lc 'diff -u external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim'
         pass_filenames: false
         files: ^external/(bird2\.vim|bird2\.nvim)/syntax/bird2\.vim$
+
+      - id: commitlint
+        name: Commit message lint (commitlint)
+        language: node
+        entry: commitlint --config commitlint.config.cjs --edit
+        stages: [commit-msg]
+        pass_filenames: true
+        additional_dependencies:
+          - '@commitlint/cli@19.8.0'
+          - '@commitlint/config-conventional@19.8.0'
