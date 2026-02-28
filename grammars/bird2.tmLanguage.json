@@ -23,10 +23,10 @@
       "include": "#strings"
     },
     {
-      "include": "#numbers"
+      "include": "#ip-addresses"
     },
     {
-      "include": "#ip-addresses"
+      "include": "#prefixes"
     },
     {
       "include": "#vpn-rd"
@@ -38,7 +38,7 @@
       "include": "#bgp-paths"
     },
     {
-      "include": "#prefixes"
+      "include": "#print-statements"
     },
     {
       "include": "#template-definitions"
@@ -62,6 +62,27 @@
       "include": "#import-export-statements"
     },
     {
+      "include": "#variable-declarations"
+    },
+    {
+      "include": "#method-calls"
+    },
+    {
+      "include": "#function-calls"
+    },
+    {
+      "include": "#method-properties"
+    },
+    {
+      "include": "#route-attributes"
+    },
+    {
+      "include": "#data-types"
+    },
+    {
+      "include": "#constants"
+    },
+    {
       "include": "#structural-keywords"
     },
     {
@@ -74,43 +95,22 @@
       "include": "#builtin-functions"
     },
     {
-      "include": "#method-properties"
-    },
-    {
-      "include": "#route-attributes"
-    },
-    {
-      "include": "#data-types"
-    },
-    {
-      "include": "#operators"
-    },
-    {
-      "include": "#constants"
-    },
-    {
       "include": "#filter-names"
     },
     {
       "include": "#user-variables"
     },
     {
-      "include": "#function-calls"
+      "include": "#operators"
     },
     {
-      "include": "#method-calls"
-    },
-    {
-      "include": "#variable-declarations"
+      "include": "#numbers"
     },
     {
       "include": "#symbols"
     },
     {
       "include": "#blocks"
-    },
-    {
-      "include": "#print-statements"
     }
   ],
   "repository": {
