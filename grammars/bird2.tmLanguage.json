@@ -859,7 +859,7 @@
       "patterns": [
         {
           "name": "support.variable.property.bird",
-          "match": "(?<=\\.)\\s*(?:first|last|last_nonaggregated|len|asn|data|data1|data2|is_v4|ip|src|dst|rd|maxlen|type|mask|min|max)\\b"
+          "match": "(?<=\\.)\\s*(?:first|last|last_nonaggregated|len|asn|data|data1|data2|is_v4|ip|src|dst|rd|maxlen|type|mask|min|max)\\b(?!\\s*\\()"
         }
       ]
     },
