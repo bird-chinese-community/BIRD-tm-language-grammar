@@ -134,6 +134,9 @@ Neovim (使用 lazy.nvim):
    - `prek run --files external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim`
 3. 在提交或发起 PR 前执行：
    - `prek run --all-files`
+4. 快速提升 tm 语法 + Vim/Neovim 语法快照的 patch 版本：
+   - `node scripts/bump-version.js --dry-run`
+   - `node scripts/bump-version.js`
 
 ### 进展公示
 

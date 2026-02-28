@@ -142,6 +142,9 @@ This repository uses **Prek** as the pre-commit runner.
    - `prek run --files external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim`
 3. Before pushing or opening a PR, run:
    - `prek run --all-files`
+4. Bump patch version for tm grammar + Vim/Neovim syntax snapshots:
+   - `node scripts/bump-version.js --dry-run`
+   - `node scripts/bump-version.js`
 
 ## Project Status
 
