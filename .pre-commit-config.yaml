@@ -12,6 +12,7 @@ repos:
       - id: check-merge-conflict
       - id: detect-private-key
       - id: pretty-format-json
+        args: [--autofix]
         files: ^grammars/bird2\.tmLanguage\.json$
 
   - repo: local
