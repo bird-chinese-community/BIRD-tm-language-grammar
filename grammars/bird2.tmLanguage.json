@@ -224,7 +224,7 @@
       "patterns": [
         {
           "name": "constant.numeric.bytestring.bird",
-          "match": "\\bhex:(?:[0-9a-fA-F]{2}(?:[:\\-\\s\\.]*[0-9a-fA-F]{2})*)?"
+          "match": "\\bhex:[0-9a-fA-F]{2}(?:[:\\-\\s\\.]*[0-9a-fA-F]{2})*"
         },
         {
           "name": "constant.numeric.bytestring.bird",
