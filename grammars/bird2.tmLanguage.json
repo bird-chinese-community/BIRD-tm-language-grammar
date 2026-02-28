@@ -714,6 +714,10 @@
           "match": "\\b(?:interface|type|wired|wireless|tunnel|rxcost|limit|hello|update|interval|port|tx|class|dscp|priority|rx|buffer|length|check|link|rtt|cost|min|max|decay|send|timestamps)\\b"
         },
         {
+          "name": "keyword.other.rpki.bird",
+          "match": "\\b(?:refresh|expire|transport|ssh|tcp|user|address|version|ignore|private|public|key)\\b|\\b(?:local\\s+address|ignore\\s+max\\s+length|min\\s+version|max\\s+version|bird\\s+private\\s+key|remote\\s+public\\s+key)\\b"
+        },
+        {
           "name": "keyword.other.auth.bird",
           "match": "\\b(?:authentication|none|mac|permissive|password|generate|accept|from|to|algorithm|hmac|sha1|sha256|sha384|sha512|blake2s128|blake2s256|blake2b256|blake2b512)\\b"
         },
