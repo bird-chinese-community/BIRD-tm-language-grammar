@@ -1,0 +1,21 @@
+name: Quality checks
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  prek:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Run Prek checks
+        uses: j178/prek-action@v1
+        with:
+          args: --all-files --show-diff-on-failure
