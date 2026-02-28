@@ -138,4 +138,3 @@ ${BLUE}${BOLD}NOTE:${RESET} Vim/Neovim support is now maintained in dedicated re
 
 Consider using the dedicated plugins for automatic updates and better features!
 EOF
-
