@@ -6,6 +6,8 @@ on:
     paths:
       - 'grammars/bird2.tmLanguage.json'
       - 'grammars/bird2.syntax.vim'
+      - 'external/bird2.vim/**'
+      - '.gitmodules'
   workflow_dispatch: {}
 
 jobs:
@@ -16,6 +18,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Setup Node
         uses: actions/setup-node@v4

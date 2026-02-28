@@ -20,7 +20,18 @@ function readJson(filePath) {
 }
 
 function readVimVersion(filePath) {
-  const content = fs.readFileSync(filePath, 'utf8');
+  let content;
+  try {
+    content = fs.readFileSync(filePath, 'utf8');
+  } catch (error) {
+    if (error && error.code === 'ENOENT') {
+      throw new Error(
+        `Vim syntax file is missing at ${filePath}. ` +
+        'If this repository uses submodules, run: git submodule update --init --recursive'
+      );
+    }
+    throw error;
+  }
   const lines = content.split(/\r?\n/);
   for (const line of lines) {
     const m = line.match(/^["\s]*Version:\s*([^\s]+)/);
