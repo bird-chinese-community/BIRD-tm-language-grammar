@@ -703,7 +703,7 @@
       "patterns": [
         {
           "name": "keyword.control.protocol-type.bird",
-          "match": "\\b(?:static|rip|ospf|bgp|babel|rpki|bfd|device|direct|kernel|pipe|perf|mrt|aggregator|l3vpn|radv)\\b"
+          "match": "\\b(?:static|rip|ospf|bgp|babel|rpki|bfd|bmp|device|direct|kernel|pipe|perf|mrt|aggregator|l3vpn|radv)\\b"
         },
         {
           "name": "keyword.control.routing.bird",
