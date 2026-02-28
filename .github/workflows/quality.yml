@@ -18,4 +18,4 @@ jobs:
       - name: Run Prek checks
         uses: j178/prek-action@v1
         with:
-          args: --all-files --show-diff-on-failure
+          extra-args: --all-files --show-diff-on-failure

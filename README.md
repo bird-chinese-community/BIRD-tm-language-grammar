@@ -136,7 +136,7 @@ Neovim (using lazy.nvim):
 This repository uses **Prek** as the pre-commit runner.
 
 1. Install Prek and install hooks:
-   - `prek install --install-hooks --hook-type pre-commit --hook-type commit-msg`
+   - `prek install --install-hooks --hook-type pre-commit --hook-type pre-push --hook-type commit-msg`
 2. Before/after editing syntax files, run targeted checks:
    - `prek run --files grammars/bird2.tmLanguage.json`
    - `prek run --files external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim`
