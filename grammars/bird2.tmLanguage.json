@@ -715,7 +715,7 @@
         },
         {
           "name": "keyword.other.rpki.bird",
-          "match": "\\b(?:refresh|expire|transport|ssh|tcp|user|address|version|ignore|private|public|key)\\b|\\b(?:local\\s+address|ignore\\s+max\\s+length|min\\s+version|max\\s+version|bird\\s+private\\s+key|remote\\s+public\\s+key)\\b"
+          "match": "\\b(?:refresh|retry|expire|transport|ssh|tcp|user|address|version|ignore|private|public|key)\\b|\\b(?:local\\s+address|ignore\\s+max\\s+length|min\\s+version|max\\s+version|bird\\s+private\\s+key|remote\\s+public\\s+key)\\b"
         },
         {
           "name": "keyword.other.auth.bird",
