@@ -259,7 +259,10 @@
               "match": "\\b[0-9]+\\b"
             },
             {
-              "include": "#numbers"
+              "include": "#operators"
+            },
+            {
+              "include": "#symbols"
             }
           ]
         }
@@ -829,7 +832,7 @@
       "patterns": [
         {
           "name": "support.function.builtin.bird",
-          "match": "\\b(?:defined|unset|print|printn|roa_check|aspa_check|aspa_check_downstream|aspa_check_upstream|from_hex|format|prepend|add|delete|filter|empty|reset|bt_assert|bt_test_suite|bt_test_same)\\b"
+          "match": "\\b(?:defined|unset|roa_check|aspa_check|aspa_check_downstream|aspa_check_upstream|from_hex|format|append|prepend|add|delete|empty|reset|bt_assert|bt_test_suite|bt_test_same)\\b"
         }
       ]
     },
@@ -837,7 +840,7 @@
       "patterns": [
         {
           "name": "support.variable.property.bird",
-          "match": "\\b(?:first|last|last_nonaggregated|len|asn|data|data1|data2|is_v4|ip|src|dst|rd|maxlen|type|mask|min|max)\\b"
+          "match": "(?<=\\.)\\s*(?:first|last|last_nonaggregated|len|asn|data|data1|data2|is_v4|ip|src|dst|rd|maxlen|type|mask|min|max)\\b"
         }
       ]
     },
@@ -853,7 +856,7 @@
       "patterns": [
         {
           "name": "storage.type.bird",
-          "match": "\\b(?:int|bool|ip|prefix|rd|pair|quad|ec|lc|string|bytestring|bgpmask|bgppath|clist|eclist|lclist|set|enum|route)\\b"
+          "match": "\\b(?:(?:int|pair|quad|ip|prefix|ec|lc|rd|enum)\\s+set|int|bool|ip|prefix|rd|pair|quad|ec|lc|string|bytestring|bgpmask|bgppath|clist|eclist|lclist|set|enum|route)\\b"
         }
       ]
     },
@@ -861,11 +864,15 @@
       "patterns": [
         {
           "name": "keyword.operator.comparison.bird",
-          "match": "(?:==|!=|<=|>=|<|>|=|~|!~)"
+          "match": "(?:==|!=|<=|>=|!~|=|~|<|>)"
         },
         {
           "name": "keyword.operator.logical.bird",
           "match": "(?:&&|\\|\\||!|->)"
+        },
+        {
+          "name": "keyword.operator.concat.bird",
+          "match": "(?:\\+\\+)"
         },
         {
           "name": "keyword.operator.arithmetic.bird",
@@ -874,10 +881,6 @@
         {
           "name": "keyword.operator.range.bird",
           "match": "\\.\\."
-        },
-        {
-          "name": "keyword.operator.assignment.bird",
-          "match": "="
         },
         {
           "name": "keyword.operator.accessor.bird",
@@ -976,7 +979,7 @@
       "patterns": [
         {
           "name": "meta.variable-declaration.bird",
-          "match": "\\b(int|bool|ip|prefix|rd|pair|quad|ec|lc|string|bytestring|bgpmask|bgppath|clist|eclist|lclist|set|enum|route)\\s+([a-zA-Z_][a-zA-Z0-9_]*)(?:\\s*=|;)",
+          "match": "\\b((?:(?:int|pair|quad|ip|prefix|ec|lc|rd|enum)\\s+set)|int|bool|ip|prefix|rd|pair|quad|ec|lc|string|bytestring|bgpmask|bgppath|clist|eclist|lclist|set|enum|route)\\s+([a-zA-Z_][a-zA-Z0-9_]*)(?:\\s*=|;)",
           "captures": {
             "1": {
               "name": "storage.type.bird"
