@@ -14,7 +14,7 @@
   ],
   "author": "BIRD Chinese Community (Alice39s) <dev-bird@xmsl.dev>",
   "description": "BIRD2 Configuration Language",
-  "version": "1.0.8-20260301",
+  "version": "1.0.9-20260306",
   "patterns": [
     {
       "include": "#comments"
@@ -1244,3 +1244,4 @@
   "foldingStartMarker": "\\{\\s*$",
   "foldingStopMarker": "^\\s*\\}"
 }
+
