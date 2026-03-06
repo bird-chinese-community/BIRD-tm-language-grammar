@@ -666,7 +666,7 @@
         },
         {
           "name": "meta.neighbor-port-statement.bird",
-          "match": "\\b(neighbor)\\s+([0-9a-fA-F:.]+)\\s*(%\\s*(?:'([0-9A-Za-z_.:-]+)'|([A-Za-z0-9_.:-]+)))?(?:\\s+(as)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*)))?\\s+(port)\\s+([0-9]+)\\b",
+          "match": "\\b(neighbor)\\s+([0-9a-fA-F:.]+)\\s*(%\\s*(?:'([0-9A-Za-z_.:-]+)'|([A-Za-z0-9_.:-]+)))?(?:\\s+(as)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*)))?\\s+(port)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*))\\b",
           "captures": {
             "1": {
               "name": "keyword.control.neighbor.bird"
