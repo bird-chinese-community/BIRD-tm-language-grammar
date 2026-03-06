@@ -626,8 +626,47 @@
     "neighbor-statements": {
       "patterns": [
         {
-          "name": "meta.neighbor-statement.bird",
-          "match": "\\b(neighbor)\\s+([0-9a-fA-F:.]+)\\s*(%\\s*'([^']+)')?\\s+(as)\\s+([0-9]+)\\b",
+          "name": "meta.local-as-statement.bird",
+          "match": "\\b(local)\\s+((?:[0-9a-fA-F:.]+|[A-Za-z_][A-Za-z0-9_]*|'[0-9A-Za-z_.:-]+'))(?:\\s+(port)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*)))?\\s+(as)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*))\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.local.bird"
+            },
+            "2": {
+              "name": "entity.name.symbol.local-address.bird"
+            },
+            "3": {
+              "name": "keyword.control.port.bird"
+            },
+            "4": {
+              "name": "constant.numeric.port.bird"
+            },
+            "5": {
+              "name": "keyword.control.as.bird"
+            },
+            "6": {
+              "name": "constant.numeric.asn.bird"
+            }
+          }
+        },
+        {
+          "name": "meta.local-as-template-statement.bird",
+          "match": "\\b(local)\\s+(as)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*))\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.local.bird"
+            },
+            "2": {
+              "name": "keyword.control.as.bird"
+            },
+            "3": {
+              "name": "constant.numeric.asn.bird"
+            }
+          }
+        },
+        {
+          "name": "meta.neighbor-port-statement.bird",
+          "match": "\\b(neighbor)\\s+([0-9a-fA-F:.]+)\\s*(%\\s*(?:'([0-9A-Za-z_.:-]+)'|([A-Za-z0-9_.:-]+)))?(?:\\s+(as)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*)))?\\s+(port)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*))\\b",
           "captures": {
             "1": {
               "name": "keyword.control.neighbor.bird"
@@ -642,9 +681,120 @@
               "name": "string.quoted.single.interface.bird"
             },
             "5": {
-              "name": "keyword.control.as.bird"
+              "name": "variable.other.interface.bird"
             },
             "6": {
+              "name": "keyword.control.as.bird"
+            },
+            "7": {
+              "name": "constant.numeric.asn.bird"
+            },
+            "8": {
+              "name": "keyword.control.port.bird"
+            },
+            "9": {
+              "name": "constant.numeric.port.bird"
+            }
+          }
+        },
+        {
+          "name": "meta.neighbor-port-symbolic-statement.bird",
+          "match": "\\b(neighbor)\\s+((?:'[0-9A-Za-z_.:-]+'|(?!as\\b|range\\b)[A-Za-z_][A-Za-z0-9_]*))\\s*(%\\s*(?:'([0-9A-Za-z_.:-]+)'|([A-Za-z0-9_.:-]+)))?(?:\\s+(as)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*)))?\\s+(port)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*))\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.neighbor.bird"
+            },
+            "2": {
+              "name": "entity.name.symbol.neighbor-address.bird"
+            },
+            "3": {
+              "name": "meta.interface-reference.bird"
+            },
+            "4": {
+              "name": "string.quoted.single.interface.bird"
+            },
+            "5": {
+              "name": "variable.other.interface.bird"
+            },
+            "6": {
+              "name": "keyword.control.as.bird"
+            },
+            "7": {
+              "name": "constant.numeric.asn.bird"
+            },
+            "8": {
+              "name": "keyword.control.port.bird"
+            },
+            "9": {
+              "name": "constant.numeric.port.bird"
+            }
+          }
+        },
+        {
+          "name": "meta.neighbor-statement.bird",
+          "match": "\\b(neighbor)\\s+([0-9a-fA-F:.]+)\\s*(%\\s*(?:'([0-9A-Za-z_.:-]+)'|([A-Za-z0-9_.:-]+)))?\\s+(as)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*))\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.neighbor.bird"
+            },
+            "2": {
+              "name": "constant.numeric.ip-address.bird"
+            },
+            "3": {
+              "name": "meta.interface-reference.bird"
+            },
+            "4": {
+              "name": "string.quoted.single.interface.bird"
+            },
+            "5": {
+              "name": "variable.other.interface.bird"
+            },
+            "6": {
+              "name": "keyword.control.as.bird"
+            },
+            "7": {
+              "name": "constant.numeric.asn.bird"
+            }
+          }
+        },
+        {
+          "name": "meta.neighbor-symbolic-statement.bird",
+          "match": "\\b(neighbor)\\s+((?:'[0-9A-Za-z_.:-]+'|(?!as\\b|range\\b)[A-Za-z_][A-Za-z0-9_]*))\\s*(%\\s*(?:'([0-9A-Za-z_.:-]+)'|([A-Za-z0-9_.:-]+)))?\\s+(as)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*))\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.neighbor.bird"
+            },
+            "2": {
+              "name": "entity.name.symbol.neighbor-address.bird"
+            },
+            "3": {
+              "name": "meta.interface-reference.bird"
+            },
+            "4": {
+              "name": "string.quoted.single.interface.bird"
+            },
+            "5": {
+              "name": "variable.other.interface.bird"
+            },
+            "6": {
+              "name": "keyword.control.as.bird"
+            },
+            "7": {
+              "name": "constant.numeric.asn.bird"
+            }
+          }
+        },
+        {
+          "name": "meta.neighbor-template-statement.bird",
+          "match": "\\b(neighbor)\\s+(as)\\s+((?:[0-9]+|[A-Za-z_][A-Za-z0-9_]*))\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.neighbor.bird"
+            },
+            "2": {
+              "name": "keyword.control.as.bird"
+            },
+            "3": {
               "name": "constant.numeric.asn.bird"
             }
           }
