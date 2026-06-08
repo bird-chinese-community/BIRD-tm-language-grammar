@@ -925,11 +925,43 @@
         },
         {
           "name": "keyword.other.bgp.phrase.bird",
-          "match": "\\b(?:ipv4\\s+multicast|ipv4\\s+mpls|ipv6\\s+multicast|ipv6\\s+mpls|vpn4\\s+multicast|vpn4\\s+mpls|vpn6\\s+multicast|vpn6\\s+mpls|next\\s+hop\\s+(?:self|address|ibgp|ebgp)|link\\s+local\\s+next\\s+hop\\s+format|import\\s+table|export\\s+table|base\\s+table|add\\s+paths|aigp\\s+originate|long\\s+lived\\s+graceful\\s+restart|long\\s+lived\\s+stale\\s+time|dynamic\\s+name(?:\\s+digits)?|free\\s+bind|ttl\\s+security|multihop\\s+password|authentication\\s+ao|tx\\s+size\\s+warning|rr\\s+client|rs\\s+client|advertise\\s+hostname|interpret\\s+communities|deterministic\\s+med|default\\s+bgp_local_pref|default\\s+bgp_med|med\\s+metric|igp\\s+metric|missing\\s+lladdr|gateway\\s+address|forwarding\\s+addressed|gateway\\s+recursive|allow\\s+local\\s+as|allow\\s+bogus\\s+as|originate\\s+community|full\\s+route\\s+table|capabilities|primary)\\b"
+          "match": "\\b(?:ipv4\\s+multicast|ipv4\\s+mpls|ipv6\\s+multicast|ipv6\\s+mpls|vpn4\\s+multicast|vpn4\\s+mpls|vpn6\\s+multicast|vpn6\\s+mpls|next\\s+hop\\s+(?:self|address|ibgp|ebgp)|link\\s+local\\s+next\\s+hop\\s+format|import\\s+table|export\\s+table|base\\s+table|add\\s+paths|aigp\\s+originate|long\\s+lived\\s+graceful\\s+restart|long\\s+lived\\s+stale\\s+time|dynamic\\s+name(?:\\s+digits)?|free\\s+bind|ttl\\s+security|multihop\\s+password|authentication\\s+ao|tx\\s+size\\s+warning|rr\\s+client|rs\\s+client|advertise\\s+hostname|interpret\\s+communities|deterministic\\s+med|default\\s+bgp_local_pref|default\\s+bgp_med|med\\s+metric|igp\\s+metric|missing\\s+lladdr|gateway\\s+address|forwarding\\s+addressed|gateway\\s+recursive|allow\\s+local\\s+as|allow\\s+bogus\\s+as|allow\\s+bgp_local_pref|allow\\s+bgp_med|enable\\s+route\\s+refresh|require\\s+extended\\s+next\\s+hop|originate\\s+community|full\\s+route\\s+table|capabilities|primary)\\b"
+        },
+        {
+          "name": "keyword.other.bgp-role.phrase.bird",
+          "match": "\\b(?:local\\s+role|require\\s+roles)\\b"
         },
         {
           "name": "keyword.other.mpls.phrase.bird",
           "match": "\\b(?:mpls\\s+domain|label\\s+range|label\\s+policy|static\\s+label|dynamic\\s+label)\\b"
+        },
+        {
+          "name": "keyword.other.auth-window.phrase.bird",
+          "match": "\\b(?:generate\\s+from|generate\\s+to|accept\\s+from|accept\\s+to)\\b"
+        },
+        {
+          "name": "keyword.other.channel-limit.phrase.bird",
+          "match": "\\b(?:import\\s+limit|export\\s+limit)\\b"
+        },
+        {
+          "name": "keyword.other.socket.phrase.bird",
+          "match": "\\b(?:tx\\s+class|tx\\s+dscp|tx\\s+priority)\\b"
+        },
+        {
+          "name": "keyword.other.interface.phrase.bird",
+          "match": "\\b(?:rx\\s+buffer|tx\\s+length|check\\s+link)\\b"
+        },
+        {
+          "name": "keyword.other.diagnostics.phrase.bird",
+          "match": "\\b(?:debug\\s+latency\\s+limit|debug\\s+latency|watchdog\\s+warning|watchdog\\s+timeout)\\b"
+        },
+        {
+          "name": "keyword.other.table.phrase.bird",
+          "match": "\\b(?:min\\s+settle\\s+time|max\\s+settle\\s+time|gc\\s+threshold|export\\s+settle\\s+time)\\b"
+        },
+        {
+          "name": "keyword.other.kernel.phrase.bird",
+          "match": "\\b(?:merge\\s+paths|netlink\\s+rx\\s+buffer)\\b"
         },
         {
           "name": "keyword.other.l3vpn.phrase.bird",
@@ -969,7 +1001,7 @@
         },
         {
           "name": "keyword.other.operations.phrase.bird",
-          "match": "\\b(?:router\\s+id\\s+from|vrf\\s+default|receive\\s+limit|import\\s+keep\\s+filtered|rpki\\s+reload)\\b"
+          "match": "\\b(?:router\\s+id\\s+from|vrf\\s+default|receive\\s+limit|import\\s+keep\\s+filtered|rpki\\s+reload|mrtdump\\s+protocols)\\b"
         }
       ]
     },
