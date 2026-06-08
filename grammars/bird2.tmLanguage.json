@@ -909,7 +909,7 @@
         },
         {
           "name": "keyword.control.structure.bird",
-          "match": "\\b(?:protocol|table|define|include|attribute|eval|ipv4|ipv6|local|as|from|where|cost|limit|action)\\b"
+          "match": "\\b(?:protocol|table|define|include|attribute|eval|ipv4|ipv6|ipv6\\s+sadr|ipv4\\s+mpls|ipv6\\s+mpls|vpn4\\s+mpls|vpn6\\s+mpls|local|as|from|where|cost|limit|action)\\b"
         }
       ]
     },
@@ -925,7 +925,7 @@
         },
         {
           "name": "keyword.other.bgp.phrase.bird",
-          "match": "\\b(?:next\\s+hop\\s+(?:self|address|ibgp|ebgp)|link\\s+local\\s+next\\s+hop\\s+format|import\\s+table|export\\s+table|base\\s+table|add\\s+paths|aigp\\s+originate|long\\s+lived\\s+graceful\\s+restart|long\\s+lived\\s+stale\\s+time|dynamic\\s+name(?:\\s+digits)?|free\\s+bind|ttl\\s+security|multihop\\s+password|authentication\\s+ao|tx\\s+size\\s+warning|rr\\s+client|rs\\s+client|advertise\\s+hostname|interpret\\s+communities|deterministic\\s+med|default\\s+bgp_local_pref|default\\s+bgp_med|med\\s+metric|igp\\s+metric|missing\\s+lladdr|gateway\\s+address|forwarding\\s+addressed|gateway\\s+recursive|allow\\s+local\\s+as|allow\\s+bogus\\s+as|originate\\s+community|full\\s+route\\s+table|capabilities|primary)\\b"
+          "match": "\\b(?:ipv4\\s+multicast|ipv4\\s+mpls|ipv6\\s+multicast|ipv6\\s+mpls|vpn4\\s+multicast|vpn4\\s+mpls|vpn6\\s+multicast|vpn6\\s+mpls|next\\s+hop\\s+(?:self|address|ibgp|ebgp)|link\\s+local\\s+next\\s+hop\\s+format|import\\s+table|export\\s+table|base\\s+table|add\\s+paths|aigp\\s+originate|long\\s+lived\\s+graceful\\s+restart|long\\s+lived\\s+stale\\s+time|dynamic\\s+name(?:\\s+digits)?|free\\s+bind|ttl\\s+security|multihop\\s+password|authentication\\s+ao|tx\\s+size\\s+warning|rr\\s+client|rs\\s+client|advertise\\s+hostname|interpret\\s+communities|deterministic\\s+med|default\\s+bgp_local_pref|default\\s+bgp_med|med\\s+metric|igp\\s+metric|missing\\s+lladdr|gateway\\s+address|forwarding\\s+addressed|gateway\\s+recursive|allow\\s+local\\s+as|allow\\s+bogus\\s+as|originate\\s+community|full\\s+route\\s+table|capabilities|primary)\\b"
         },
         {
           "name": "keyword.other.mpls.phrase.bird",
@@ -942,6 +942,10 @@
         {
           "name": "keyword.other.threading.phrase.bird",
           "match": "\\b(?:thread\\s+group|cork\\s+threshold|route\\s+refresh\\s+export\\s+settle\\s+time|digest\\s+settle\\s+time|filter\\s+stacks|max\\s+generation)\\b"
+        },
+        {
+          "name": "keyword.other.operations.phrase.bird",
+          "match": "\\b(?:router\\s+id\\s+from|vrf\\s+default|receive\\s+limit|import\\s+keep\\s+filtered|rpki\\s+reload)\\b"
         }
       ]
     },
@@ -973,7 +977,7 @@
         },
         {
           "name": "keyword.other.config.bird",
-          "match": "\\b(?:hostname|description|debug|log|syslog|stderr|bird|protocols|tables|channels|timeouts|passwords|bfd|confederation|cluster|stub|dead|neighbors|area|md5|multihop|passive|rfc1583compat|tick|ls|retransmit|transmit|ack|state|database|summary|external|nssa|translator|always|candidate|never|role|stability|election|action|warn|warning|block|disable|keep|filtered|receive|modify|add|delete|withdraw|unreachable|blackhole|prohibit|unreach|igp_metric|localpref|med|origin|community|large_community|ext_community|as_path|prepend|weight|gateway|scope|onlink|recursive|multipath|igp|channel|sadr|src|learn|persist|via|ng|threads|thread|group|cork|threshold|settle|digest|fixed|ping|wakeup|scheduling|sockets|allocator|timers)\\b"
+          "match": "\\b(?:hostname|description|debug|log|syslog|stderr|bird|protocols|tables|channels|timeouts|passwords|bfd|confederation|cluster|stub|dead|neighbors|area|md5|multihop|passive|rfc1583compat|tick|ls|retransmit|transmit|ack|state|database|summary|external|nssa|translator|always|candidate|never|role|stability|election|action|warn|warning|block|disable|keep|filtered|receive|modify|add|delete|withdraw|unreachable|blackhole|prohibit|unreach|igp_metric|localpref|med|origin|community|large_community|ext_community|as_path|prepend|weight|gateway|scope|onlink|recursive|multipath|igp|channel|sadr|src|learn|persist|via|ng|threads|thread|group|cork|threshold|settle|digest|fixed|ping|wakeup|scheduling|sockets|allocator|timers|mrtdump|timeformat|preexport|noexport|exported|stats|count|rpki|reload)\\b"
         },
         {
           "name": "keyword.other.flowspec.bird",
@@ -981,7 +985,7 @@
         },
         {
           "name": "keyword.other.address.bird",
-          "match": "\\b(?:vpn4|vpn6|mpls|aspa|roa4|roa6|eth|evpn)\\b"
+          "match": "\\b(?:ipv4-mpls|ipv6-mpls|ipv6-sadr|vpn4-mc|vpn4-mpls|vpn6-mc|vpn6-mpls|vpn4|vpn6|mpls|aspa|roa4|roa6|eth|evpn|neighbor)\\b"
         },
         {
           "name": "keyword.other.quick-declaration.bird",
