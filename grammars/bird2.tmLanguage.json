@@ -917,7 +917,7 @@
       "patterns": [
         {
           "name": "keyword.other.bfd.phrase.bird",
-          "match": "\\b(?:strict\\s+bind|zero\\s+udp6\\s+checksum\\s+rx|idle\\s+tx\\s+interval|multiplier|keyed|meticulous)\\b"
+          "match": "\\b(?:strict\\s+bind|zero\\s+udp6\\s+checksum\\s+rx|idle\\s+tx\\s+interval|express\\s+thread\\s+group|multiplier|keyed|meticulous)\\b"
         },
         {
           "name": "keyword.other.babel.phrase.bird",
@@ -925,7 +925,23 @@
         },
         {
           "name": "keyword.other.bgp.phrase.bird",
-          "match": "\\b(?:next\\s+hop\\s+(?:self|address|ibgp|ebgp)|link\\s+local\\s+next\\s+hop\\s+format|import\\s+table|export\\s+table|base\\s+table|add\\s+paths|aigp\\s+originate|long\\s+lived\\s+graceful\\s+restart|long\\s+lived\\s+stale\\s+time|dynamic\\s+name(?:\\s+digits)?|free\\s+bind|ttl\\s+security|multihop\\s+password|rr\\s+client|rs\\s+client|advertise\\s+hostname|interpret\\s+communities|deterministic\\s+med|default\\s+bgp_local_pref|default\\s+bgp_med|med\\s+metric|igp\\s+metric|missing\\s+lladdr|gateway\\s+address|forwarding\\s+addressed|gateway\\s+recursive|allow\\s+local\\s+as|allow\\s+bogus\\s+as|originate\\s+community|full\\s+route\\s+table|capabilities|primary)\\b"
+          "match": "\\b(?:next\\s+hop\\s+(?:self|address|ibgp|ebgp)|link\\s+local\\s+next\\s+hop\\s+format|import\\s+table|export\\s+table|base\\s+table|add\\s+paths|aigp\\s+originate|long\\s+lived\\s+graceful\\s+restart|long\\s+lived\\s+stale\\s+time|dynamic\\s+name(?:\\s+digits)?|free\\s+bind|ttl\\s+security|multihop\\s+password|authentication\\s+ao|tx\\s+size\\s+warning|rr\\s+client|rs\\s+client|advertise\\s+hostname|interpret\\s+communities|deterministic\\s+med|default\\s+bgp_local_pref|default\\s+bgp_med|med\\s+metric|igp\\s+metric|missing\\s+lladdr|gateway\\s+address|forwarding\\s+addressed|gateway\\s+recursive|allow\\s+local\\s+as|allow\\s+bogus\\s+as|originate\\s+community|full\\s+route\\s+table|capabilities|primary)\\b"
+        },
+        {
+          "name": "keyword.other.mpls.phrase.bird",
+          "match": "\\b(?:mpls\\s+domain|label\\s+range|label\\s+policy|static\\s+label|dynamic\\s+label)\\b"
+        },
+        {
+          "name": "keyword.other.evpn-bridge.phrase.bird",
+          "match": "\\b(?:encapsulation\\s+vxlan|vlan\\s+filtering|vlan\\s+range|vni|vid|bridge\\s+device|kbr\\s+source)\\b"
+        },
+        {
+          "name": "keyword.other.aspa.phrase.bird",
+          "match": "\\b(?:aspa\\s+providers|transit\\s+providers)\\b"
+        },
+        {
+          "name": "keyword.other.threading.phrase.bird",
+          "match": "\\b(?:thread\\s+group|cork\\s+threshold|route\\s+refresh\\s+export\\s+settle\\s+time|digest\\s+settle\\s+time|filter\\s+stacks|max\\s+generation)\\b"
         }
       ]
     },
@@ -933,7 +949,7 @@
       "patterns": [
         {
           "name": "keyword.control.protocol-type.bird",
-          "match": "\\b(?:static|rip|ospf|bgp|babel|rpki|bfd|bmp|device|direct|kernel|pipe|perf|mrt|aggregator|l3vpn|radv)\\b"
+          "match": "\\b(?:static|rip|ospf|bgp|babel|rpki|bfd|bmp|device|direct|kernel|pipe|perf|mrt|aggregator|l3vpn|radv|bridge|evpn)\\b"
         },
         {
           "name": "keyword.control.routing.bird",
@@ -957,7 +973,7 @@
         },
         {
           "name": "keyword.other.config.bird",
-          "match": "\\b(?:hostname|description|debug|log|syslog|stderr|bird|protocols|tables|channels|timeouts|passwords|bfd|confederation|cluster|stub|dead|neighbors|area|md5|multihop|passive|rfc1583compat|tick|ls|retransmit|transmit|ack|state|database|summary|external|nssa|translator|always|candidate|never|role|stability|election|action|warn|block|disable|keep|filtered|receive|modify|add|delete|withdraw|unreachable|blackhole|prohibit|unreach|igp_metric|localpref|med|origin|community|large_community|ext_community|as_path|prepend|weight|gateway|scope|onlink|recursive|multipath|igp|channel|sadr|src|learn|persist|via|ng)\\b"
+          "match": "\\b(?:hostname|description|debug|log|syslog|stderr|bird|protocols|tables|channels|timeouts|passwords|bfd|confederation|cluster|stub|dead|neighbors|area|md5|multihop|passive|rfc1583compat|tick|ls|retransmit|transmit|ack|state|database|summary|external|nssa|translator|always|candidate|never|role|stability|election|action|warn|warning|block|disable|keep|filtered|receive|modify|add|delete|withdraw|unreachable|blackhole|prohibit|unreach|igp_metric|localpref|med|origin|community|large_community|ext_community|as_path|prepend|weight|gateway|scope|onlink|recursive|multipath|igp|channel|sadr|src|learn|persist|via|ng|threads|thread|group|cork|threshold|settle|digest|fixed|ping|wakeup|scheduling|sockets|allocator|timers)\\b"
         },
         {
           "name": "keyword.other.flowspec.bird",
@@ -965,7 +981,7 @@
         },
         {
           "name": "keyword.other.address.bird",
-          "match": "\\b(?:vpn4|vpn6|mpls|aspa|roa4|roa6)\\b"
+          "match": "\\b(?:vpn4|vpn6|mpls|aspa|roa4|roa6|eth|evpn)\\b"
         },
         {
           "name": "keyword.other.quick-declaration.bird",
@@ -1001,7 +1017,7 @@
       "patterns": [
         {
           "name": "support.function.builtin.bird",
-          "match": "\\b(?:defined|unset|roa_check|aspa_check|aspa_check_downstream|aspa_check_upstream|from_hex|format|append|prepend|add|delete|empty|reset|bt_assert|bt_test_suite|bt_test_same)\\b"
+          "match": "\\b(?:defined|unset|roa_check|aspa_check|aspa_check_downstream|aspa_check_upstream|from_hex|format|append|prepend|add|delete|empty|reset|bt_assert|bt_check_assign|bt_test_suite|bt_test_same)\\b"
         }
       ]
     },
@@ -1009,7 +1025,7 @@
       "patterns": [
         {
           "name": "support.variable.property.bird",
-          "match": "(?<=\\.)\\s*(?:first|last|last_nonaggregated|len|asn|data|data1|data2|is_v4|ip|src|dst|rd|maxlen|type|mask|min|max)\\b(?!\\s*\\()"
+          "match": "(?<=\\.)\\s*(?:first|last|last_nonaggregated|len|asn|data|data1|data2|is_v4|ip|src|dst|rd|maxlen|type|mask|min|max|mac|vlan_id|evpn_type|evpn_tag|evpn_esi|router_ip)\\b(?!\\s*\\()"
         }
       ]
     },
@@ -1017,7 +1033,7 @@
       "patterns": [
         {
           "name": "support.variable.route-attribute.bird",
-          "match": "\\b(?:net|scope|preference|from|gw|proto|source|dest|ifname|ifindex|weight|gw_mpls|gw_mpls_stack|onlink|igp_metric|mpls_label|mpls_policy|mpls_class|bgp_path|bgp_origin|bgp_next_hop|bgp_med|bgp_local_pref|bgp_community|bgp_ext_community|bgp_large_community|bgp_originator_id|bgp_cluster_list|ospf_metric1|ospf_metric2|ospf_tag|ospf_router_id|rip_metric|rip_tag|mypath|mylclist)\\b"
+          "match": "\\b(?:net|scope|preference|from|gw|proto|source|dest|ifname|ifindex|weight|gw_mpls|gw_mpls_stack|onlink|igp_metric|mpls_label|mpls_policy|mpls_class|bgp_path|bgp_origin|bgp_next_hop|bgp_med|bgp_local_pref|bgp_community|bgp_ext_community|bgp_large_community|bgp_originator_id|bgp_cluster_list|bgp_atomic_aggr|bgp_aggregator|bgp_aigp|bgp_pmsi_tunnel|bgp_otc|bgp_mpls_label_stack|ospf_metric1|ospf_metric2|ospf_tag|ospf_router_id|rip_metric|rip_tag|rip_from|babel_metric|babel_router_id|babel_seqno|radv_preference|radv_lifetime|krt_source|krt_metric|krt_prefsrc|krt_realm|krt_scope|krt_mtu|krt_lock_mtu|krt_feature_allfrag|krt_feature_ecn|kbr_source|mypath|mylclist)\\b"
         }
       ]
     },
@@ -1089,7 +1105,7 @@
         },
         {
           "name": "constant.language.net-type.bird",
-          "match": "\\b(?:NET_IP4|NET_IP6|NET_IP6_SADR|NET_VPN4|NET_VPN6|NET_ROA4|NET_ROA6|NET_FLOW4|NET_FLOW6|NET_MPLS)\\b"
+          "match": "\\b(?:NET_IP4|NET_IP6|NET_IP6_SADR|NET_VPN4|NET_VPN6|NET_ROA4|NET_ROA6|NET_FLOW4|NET_FLOW6|NET_MPLS|NET_ETH|NET_ASPA|NET_EVPN|NET_EVPN_EAD|NET_EVPN_MAC|NET_EVPN_IMET|NET_EVPN_ES)\\b"
         },
         {
           "name": "constant.language.mpls.bird",
@@ -1244,4 +1260,3 @@
   "foldingStartMarker": "\\{\\s*$",
   "foldingStopMarker": "^\\s*\\}"
 }
-
