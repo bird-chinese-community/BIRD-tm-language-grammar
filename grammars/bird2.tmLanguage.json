@@ -917,7 +917,7 @@
       "patterns": [
         {
           "name": "keyword.other.bfd.phrase.bird",
-          "match": "\\b(?:strict\\s+bind|zero\\s+udp6\\s+checksum\\s+rx|idle\\s+tx\\s+interval|express\\s+thread\\s+group|multiplier|keyed|meticulous)\\b"
+          "match": "\\b(?:strict\\s+bind|zero\\s+udp6\\s+checksum\\s+rx|idle\\s+tx\\s+interval|min\\s+rx\\s+interval|min\\s+tx\\s+interval|accept\\s+ipv4|accept\\s+multihop|authentication\\s+meticulous\\s+keyed\\s+sha1|express\\s+thread\\s+group|multiplier|keyed|meticulous)\\b"
         },
         {
           "name": "keyword.other.babel.phrase.bird",
@@ -925,7 +925,7 @@
         },
         {
           "name": "keyword.other.bgp.phrase.bird",
-          "match": "\\b(?:ipv4\\s+multicast|ipv4\\s+mpls|ipv6\\s+multicast|ipv6\\s+mpls|vpn4\\s+multicast|vpn4\\s+mpls|vpn6\\s+multicast|vpn6\\s+mpls|next\\s+hop\\s+(?:self|address|ibgp|ebgp)|link\\s+local\\s+next\\s+hop\\s+format|import\\s+table|export\\s+table|base\\s+table|add\\s+paths|aigp\\s+originate|long\\s+lived\\s+graceful\\s+restart|long\\s+lived\\s+stale\\s+time|dynamic\\s+name(?:\\s+digits)?|free\\s+bind|ttl\\s+security|multihop\\s+password|authentication\\s+ao|tx\\s+size\\s+warning|rr\\s+client|rs\\s+client|advertise\\s+hostname|interpret\\s+communities|deterministic\\s+med|default\\s+bgp_local_pref|default\\s+bgp_med|med\\s+metric|igp\\s+metric|missing\\s+lladdr|gateway\\s+address|forwarding\\s+addressed|gateway\\s+recursive|allow\\s+local\\s+as|allow\\s+bogus\\s+as|allow\\s+bgp_local_pref|allow\\s+bgp_med|enable\\s+route\\s+refresh|require\\s+extended\\s+next\\s+hop|originate\\s+community|full\\s+route\\s+table|capabilities|primary)\\b"
+          "match": "\\b(?:ipv4\\s+multicast|ipv4\\s+mpls|ipv6\\s+multicast|ipv6\\s+mpls|vpn4\\s+multicast|vpn4\\s+mpls|vpn6\\s+multicast|vpn6\\s+mpls|next\\s+hop\\s+(?:self|address|ibgp|ebgp)|next\\s+hop\\s+prefer\\s+global|next\\s+hop\\s+prefer\\s+local|next\\s+hop\\s+keep|link\\s+local\\s+next\\s+hop\\s+format|import\\s+table|export\\s+table|base\\s+table|igp\\s+table|add\\s+paths|require\\s+add\\s+paths|aigp\\s+originate|long\\s+lived\\s+graceful\\s+restart|long\\s+lived\\s+stale\\s+time|dynamic\\s+name(?:\\s+digits)?|free\\s+bind|ttl\\s+security|multihop\\s+password|authentication\\s+ao|tx\\s+size\\s+warning|rr\\s+client|rs\\s+client|advertise\\s+hostname|interpret\\s+communities|deterministic\\s+med|default\\s+bgp_local_pref|default\\s+bgp_med|med\\s+metric|igp\\s+metric|missing\\s+lladdr|gateway\\s+address|forwarding\\s+addressed|gateway\\s+recursive|allow\\s+local\\s+as|allow\\s+bogus\\s+as|allow\\s+bgp_local_pref|allow\\s+bgp_med|allow\\s+as\\s+sets|enable\\s+route\\s+refresh|enable\\s+enhanced\\s+route\\s+refresh|require\\s+route\\s+refresh|require\\s+enhanced\\s+route\\s+refresh|enable\\s+as4|require\\s+as4|enable\\s+extended\\s+messages|require\\s+extended\\s+messages|require\\s+hostname|require\\s+graceful\\s+restart|require\\s+long\\s+lived\\s+graceful\\s+restart|require\\s+extended\\s+next\\s+hop|disable\\s+after\\s+error|disable\\s+after\\s+cease|enforce\\s+first\\s+as|neighbor\\s+range|interface\\s+range|originate\\s+community|full\\s+route\\s+table|capabilities|primary)\\b"
         },
         {
           "name": "keyword.other.bgp-role.phrase.bird",
@@ -977,11 +977,11 @@
         },
         {
           "name": "keyword.other.bmp.phrase.bird",
-          "match": "\\b(?:monitoring\\s+rib\\s+in\\s+pre_policy|monitoring\\s+rib\\s+in\\s+post_policy)\\b"
+          "match": "\\b(?:monitoring\\s+rib\\s+in\\s+pre_policy|monitoring\\s+rib\\s+in\\s+post_policy|system\\s+description|system\\s+name|tx\\s+buffer\\s+limit)\\b"
         },
         {
           "name": "keyword.other.radv.phrase.bird",
-          "match": "\\b(?:solicited\\s+ra\\s+unicast|router\\s+discovery)\\b"
+          "match": "\\b(?:solicited\\s+ra\\s+unicast|router\\s+discovery|min\\s+ra\\s+interval|max\\s+ra\\s+interval|default\\s+lifetime|current\\s+hop\\s+limit)\\b"
         },
         {
           "name": "keyword.other.rip.phrase.bird",
@@ -993,7 +993,11 @@
         },
         {
           "name": "keyword.other.aspa.phrase.bird",
-          "match": "\\b(?:aspa\\s+providers|transit\\s+providers)\\b"
+          "match": "\\b(?:aspa\\s+providers|transit\\s+providers|route\\s+aspa)\\b"
+        },
+        {
+          "name": "keyword.other.flowspec.phrase.bird",
+          "match": "\\b(?:next\\s+header|icmp\\s+type|icmp\\s+code|tcp\\s+flags)\\b"
         },
         {
           "name": "keyword.other.threading.phrase.bird",
