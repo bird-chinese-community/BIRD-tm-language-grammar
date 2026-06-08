@@ -231,6 +231,20 @@ const checks = [
       "retry keep",
     ],
   },
+  {
+    label: "BIRD 2.19 Static and RPKI phrases",
+    tokens: [
+      "recursive mpls",
+      "show static",
+      "igp table",
+      "check link",
+      "transport tcp",
+      "transport ssh",
+      "authentication none",
+      "authentication md5",
+      "expire keep",
+    ],
+  },
 ];
 
 const missing = [];

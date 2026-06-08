@@ -936,6 +936,10 @@
           "match": "\\b(?:mpls\\s+domain|label\\s+range|label\\s+policy|static\\s+label|dynamic\\s+label)\\b"
         },
         {
+          "name": "keyword.other.static.phrase.bird",
+          "match": "\\b(?:recursive\\s+mpls|show\\s+static|igp\\s+table|check\\s+link)\\b"
+        },
+        {
           "name": "keyword.other.auth-window.phrase.bird",
           "match": "\\b(?:generate\\s+from|generate\\s+to|accept\\s+from|accept\\s+to)\\b"
         },
@@ -1025,7 +1029,7 @@
         },
         {
           "name": "keyword.other.rpki.bird",
-          "match": "\\b(?:refresh\\s+keep|retry\\s+keep|local\\s+address|ignore\\s+max\\s+length|min\\s+version|max\\s+version|bird\\s+private\\s+key|remote\\s+public\\s+key)\\b|\\b(?:refresh|retry|expire|transport|ssh|tcp|user|address|version|ignore|private|public|key)\\b"
+          "match": "\\b(?:refresh\\s+keep|retry\\s+keep|expire\\s+keep|transport\\s+tcp|transport\\s+ssh|authentication\\s+none|authentication\\s+md5|local\\s+address|ignore\\s+max\\s+length|min\\s+version|max\\s+version|bird\\s+private\\s+key|remote\\s+public\\s+key)\\b|\\b(?:refresh|retry|expire|transport|ssh|tcp|user|address|version|ignore|private|public|key)\\b"
         },
         {
           "name": "keyword.other.auth.bird",
