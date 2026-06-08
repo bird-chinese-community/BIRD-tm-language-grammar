@@ -131,6 +131,7 @@ Neovim (使用 lazy.nvim):
    - `prek install --install-hooks --hook-type pre-commit --hook-type pre-push --hook-type commit-msg`
 2. 在修改语法文件前后执行定向检查：
    - `prek run --files grammars/bird2.tmLanguage.json`
+   - `node scripts/check-grammar-coverage.js`
    - `prek run --files external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim`
 3. 在提交或发起 PR 前执行：
    - `prek run --all-files`
