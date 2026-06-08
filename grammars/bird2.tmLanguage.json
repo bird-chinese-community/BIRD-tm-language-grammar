@@ -932,8 +932,32 @@
           "match": "\\b(?:mpls\\s+domain|label\\s+range|label\\s+policy|static\\s+label|dynamic\\s+label)\\b"
         },
         {
+          "name": "keyword.other.l3vpn.phrase.bird",
+          "match": "\\b(?:route\\s+distinguisher|import\\s+target|export\\s+target|route\\s+target)\\b"
+        },
+        {
           "name": "keyword.other.evpn-bridge.phrase.bird",
           "match": "\\b(?:encapsulation\\s+vxlan|vlan\\s+filtering|vlan\\s+range|vni|vid|bridge\\s+device|kbr\\s+source)\\b"
+        },
+        {
+          "name": "keyword.other.evpn.phrase.bird",
+          "match": "\\b(?:tunnel\\s+device|router\\s+address)\\b"
+        },
+        {
+          "name": "keyword.other.bmp.phrase.bird",
+          "match": "\\b(?:monitoring\\s+rib\\s+in\\s+pre_policy|monitoring\\s+rib\\s+in\\s+post_policy)\\b"
+        },
+        {
+          "name": "keyword.other.radv.phrase.bird",
+          "match": "\\b(?:solicited\\s+ra\\s+unicast|router\\s+discovery)\\b"
+        },
+        {
+          "name": "keyword.other.rip.phrase.bird",
+          "match": "\\b(?:split\\s+horizon)\\b"
+        },
+        {
+          "name": "keyword.other.ospf.phrase.bird",
+          "match": "\\b(?:link\\s+lsa\\s+suppression)\\b"
         },
         {
           "name": "keyword.other.aspa.phrase.bird",

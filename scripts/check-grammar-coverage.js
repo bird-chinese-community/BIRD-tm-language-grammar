@@ -108,6 +108,23 @@ const checks = [
       "count",
     ],
   },
+  {
+    label: "BIRD 2.19 / 3.3 protocol-specific phrases",
+    tokens: [
+      "route distinguisher",
+      "import target",
+      "export target",
+      "route target",
+      "tunnel device",
+      "router address",
+      "monitoring rib in pre_policy",
+      "monitoring rib in post_policy",
+      "solicited ra unicast",
+      "router discovery",
+      "split horizon",
+      "link lsa suppression",
+    ],
+  },
 ];
 
 const missing = [];
