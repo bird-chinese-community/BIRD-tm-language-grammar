@@ -921,7 +921,7 @@
         },
         {
           "name": "keyword.other.babel.phrase.bird",
-          "match": "\\b(?:send\\s+timestamps|rtt\\s+(?:cost|min|max|decay)|next\\s+hop\\s+prefer|prefer|native)\\b"
+          "match": "\\b(?:send\\s+timestamps|rtt\\s+(?:cost|min|max|decay)|next\\s+hop\\s+prefer|next\\s+hop\\s+ipv4|authentication\\s+mac\\s+permissive|randomize\\s+router\\s+id|show\\s+babel\\s+interfaces|show\\s+babel\\s+entries|prefer|native)\\b"
         },
         {
           "name": "keyword.other.bgp.phrase.bird",
@@ -989,7 +989,7 @@
         },
         {
           "name": "keyword.other.ospf.phrase.bird",
-          "match": "\\b(?:link\\s+lsa\\s+suppression)\\b"
+          "match": "\\b(?:link\\s+lsa\\s+suppression|stub\\s+router|graceful\\s+restart\\s+aware|graceful\\s+restart\\s+time|ecmp\\s+limit|merge\\s+external|instance\\s+id|default\\s+nssa|default\\s+cost2?|translator\\s+stability|virtual\\s+link|real\\s+broadcast|ptp\\s+netmask|strict\\s+nonbroadcast|show\\s+ospf\\s+neighbors|show\\s+ospf\\s+topology\\s+all|show\\s+ospf\\s+state\\s+all|show\\s+ospf\\s+lsadb)\\b"
         },
         {
           "name": "keyword.other.aspa.phrase.bird",
@@ -1025,7 +1025,7 @@
         },
         {
           "name": "keyword.other.rpki.bird",
-          "match": "\\b(?:refresh|retry|expire|transport|ssh|tcp|user|address|version|ignore|private|public|key)\\b|\\b(?:local\\s+address|ignore\\s+max\\s+length|min\\s+version|max\\s+version|bird\\s+private\\s+key|remote\\s+public\\s+key)\\b"
+          "match": "\\b(?:refresh\\s+keep|retry\\s+keep|local\\s+address|ignore\\s+max\\s+length|min\\s+version|max\\s+version|bird\\s+private\\s+key|remote\\s+public\\s+key)\\b|\\b(?:refresh|retry|expire|transport|ssh|tcp|user|address|version|ignore|private|public|key)\\b"
         },
         {
           "name": "keyword.other.auth.bird",
