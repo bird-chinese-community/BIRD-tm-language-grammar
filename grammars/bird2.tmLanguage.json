@@ -1106,6 +1106,10 @@
           "match": "\\b(?:always\\s+add\\s+path)\\b"
         },
         {
+          "name": "keyword.other.perf.phrase.bird",
+          "match": "\\b(?:mode\\s+import|mode\\s+export|exp\\s+from|exp\\s+to|threshold\\s+min|threshold\\s+max)\\b"
+        },
+        {
           "name": "keyword.other.operations.phrase.bird",
           "match": "\\b(?:router\\s+id\\s+from|graceful\\s+restart\\s+wait|vrf\\s+default|receive\\s+limit|import\\s+keep\\s+filtered|rpki\\s+reload|mrtdump\\s+protocols)\\b"
         },

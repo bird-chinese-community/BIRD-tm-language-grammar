@@ -322,6 +322,12 @@ const checks = [
       "tcp flags",
       "route aspa",
       "always add path",
+      "mode import",
+      "mode export",
+      "exp from",
+      "exp to",
+      "threshold min",
+      "threshold max",
     ],
   },
   {
