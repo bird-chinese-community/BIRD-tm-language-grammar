@@ -1119,7 +1119,7 @@
         },
         {
           "name": "keyword.other.auth.bird",
-          "match": "\\b(?:cmac\\s+aes128|authentication|none|mac|permissive|password|generate|accept|from|to|algorithm|hmac|cmac|aes128|sha1|sha256|sha384|sha512|blake2s128|blake2s256|blake2b256|blake2b512)\\b"
+          "match": "\\b(?:cmac\\s+aes128|authentication|none|mac|permissive|ao|password|key|keys|secret|deprecated|preferred|generate|accept|from|to|algorithm|hmac|cmac|aes128|sha1|sha224|sha256|sha384|sha512|blake2s128|blake2s256|blake2b256|blake2b512)\\b"
         },
         {
           "name": "keyword.other.time.bird",

@@ -130,6 +130,12 @@ const checks = [
       "vlan filtering",
       "aspa providers",
       "authentication ao",
+      "key",
+      "keys",
+      "secret",
+      "preferred",
+      "deprecated",
+      "sha224",
     ],
   },
   {
@@ -260,6 +266,7 @@ const checks = [
       "interface range",
       "send id",
       "recv id",
+      "cmac aes128",
       "next hop address",
       "next hop self",
       "next hop prefer global",
@@ -304,7 +311,6 @@ const checks = [
       "peer table",
       "aggregate on",
       "merge by",
-      "cmac aes128",
     ],
   },
   {
