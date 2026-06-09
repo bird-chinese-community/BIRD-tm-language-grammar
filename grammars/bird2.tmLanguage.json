@@ -1187,7 +1187,7 @@
       "patterns": [
         {
           "name": "support.variable.route-attribute.bird",
-          "match": "\\b(?:net|scope|preference|from|gw|proto|source|dest|ifname|ifindex|weight|gw_mpls|gw_mpls_stack|onlink|igp_metric|mpls_label|mpls_policy|mpls_class|bgp_path|bgp_origin|bgp_next_hop|bgp_med|bgp_local_pref|bgp_community|bgp_ext_community|bgp_large_community|bgp_originator_id|bgp_cluster_list|bgp_atomic_aggr|bgp_aggregator|bgp_aigp|bgp_pmsi_tunnel|bgp_otc|bgp_mpls_label_stack|ospf_metric1|ospf_metric2|ospf_tag|ospf_router_id|rip_metric|rip_tag|rip_from|babel_metric|babel_router_id|babel_seqno|radv_preference|radv_lifetime|krt_source|krt_metric|krt_prefsrc|krt_realm|krt_scope|krt_mtu|krt_lock_mtu|krt_feature_allfrag|krt_feature_ecn|kbr_source|mypath|mylclist)\\b"
+          "match": "\\b(?:net|scope|preference|from|gw|proto|source|dest|ifname|ifindex|weight|gw_mpls|gw_mpls_stack|onlink|igp_metric|mpls_label|mpls_policy|mpls_class|bgp_path|bgp_origin|bgp_next_hop|bgp_med|bgp_local_pref|bgp_community|bgp_ext_community|bgp_large_community|bgp_originator_id|bgp_cluster_list|bgp_atomic_aggr|bgp_aggregator|bgp_aigp|bgp_pmsi_tunnel|bgp_otc|bgp_mpls_label_stack|ospf_metric1|ospf_metric2|ospf_tag|ospf_router_id|rip_metric|rip_tag|rip_from|babel_metric|babel_router_id|babel_seqno|radv_preference|radv_lifetime|krt_source|krt_metric|krt_prefsrc|krt_realm|krt_scope|krt_mtu|krt_window|krt_rtt|krt_rttvar|krt_ssthresh|krt_sstresh|krt_cwnd|krt_advmss|krt_reordering|krt_hoplimit|krt_initcwnd|krt_rto_min|krt_initrwnd|krt_quickack|krt_congctl|krt_fastopen_no_cookie|krt_lock_mtu|krt_lock_window|krt_lock_rtt|krt_lock_rttvar|krt_lock_ssthresh|krt_lock_sstresh|krt_lock_cwnd|krt_lock_advmss|krt_lock_reordering|krt_lock_hoplimit|krt_lock_initcwnd|krt_lock_rto_min|krt_lock_initrwnd|krt_lock_quickack|krt_lock_congctl|krt_lock_fastopen_no_cookie|krt_feature_allfrag|krt_feature_ecn|kbr_source|mypath|mylclist)\\b"
         }
       ]
     },
@@ -1239,15 +1239,15 @@
         },
         {
           "name": "constant.language.scope.bird",
-          "match": "\\b(?:SCOPE_HOST|SCOPE_LINK|SCOPE_SITE|SCOPE_ORGANIZATION|SCOPE_UNIVERSE)\\b"
+          "match": "\\b(?:SCOPE_HOST|SCOPE_LINK|SCOPE_SITE|SCOPE_ORGANIZATION|SCOPE_UNIVERSE|SCOPE_UNDEFINED)\\b"
         },
         {
           "name": "constant.language.source.bird",
-          "match": "\\b(?:RTS_STATIC|RTS_INHERIT|RTS_DEVICE|RTS_RIP|RTS_OSPF|RTS_OSPF_IA|RTS_OSPF_EXT1|RTS_OSPF_EXT2|RTS_BGP|RTS_PIPE|RTS_BABEL)\\b"
+          "match": "\\b(?:RTS_STATIC|RTS_INHERIT|RTS_DEVICE|RTS_STATIC_DEVICE|RTS_REDIRECT|RTS_RIP|RTS_OSPF|RTS_OSPF_IA|RTS_OSPF_EXT1|RTS_OSPF_EXT2|RTS_BGP|RTS_PIPE|RTS_BABEL|RTS_RPKI|RTS_L3VPN|RTS_AGGREGATED|RTS_BRIDGE|RTS_EVPN)\\b"
         },
         {
           "name": "constant.language.dest.bird",
-          "match": "\\b(?:RTD_ROUTER|RTD_DEVICE|RTD_MULTIPATH|RTD_BLACKHOLE|RTD_UNREACHABLE|RTD_PROHIBIT)\\b"
+          "match": "\\b(?:RTD_UNICAST|RTD_ROUTER|RTD_DEVICE|RTD_MULTIPATH|RTD_BLACKHOLE|RTD_UNREACHABLE|RTD_PROHIBIT)\\b"
         },
         {
           "name": "constant.language.roa.bird",
@@ -1258,8 +1258,16 @@
           "match": "\\b(?:ASPA_UNKNOWN|ASPA_INVALID|ASPA_VALID)\\b"
         },
         {
+          "name": "constant.language.bgp-origin.bird",
+          "match": "\\b(?:ORIGIN_IGP|ORIGIN_EGP|ORIGIN_INCOMPLETE)\\b"
+        },
+        {
+          "name": "constant.language.ra-preference.bird",
+          "match": "\\b(?:RA_PREF_LOW|RA_PREF_MEDIUM|RA_PREF_HIGH)\\b"
+        },
+        {
           "name": "constant.language.net-type.bird",
-          "match": "\\b(?:NET_IP4|NET_IP6|NET_IP6_SADR|NET_VPN4|NET_VPN6|NET_ROA4|NET_ROA6|NET_FLOW4|NET_FLOW6|NET_MPLS|NET_ETH|NET_ASPA|NET_EVPN|NET_EVPN_EAD|NET_EVPN_MAC|NET_EVPN_IMET|NET_EVPN_ES)\\b"
+          "match": "\\b(?:NET_IP4|NET_IP6|NET_IP6_SADR|NET_VPN4|NET_VPN6|NET_ROA4|NET_ROA6|NET_FLOW4|NET_FLOW6|NET_MPLS|NET_ETH|NET_ASPA|NET_EVPN|NET_EVPN_EAD|NET_EVPN_MAC|NET_EVPN_IMET|NET_EVPN_ES|NET_NEIGHBOR)\\b"
         },
         {
           "name": "constant.language.mpls.bird",
