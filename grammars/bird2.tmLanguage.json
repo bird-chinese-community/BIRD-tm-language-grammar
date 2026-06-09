@@ -921,7 +921,7 @@
         },
         {
           "name": "keyword.other.babel.phrase.bird",
-          "match": "\\b(?:send\\s+timestamps|rtt\\s+(?:cost|min|max|decay)|next\\s+hop\\s+prefer|next\\s+hop\\s+ipv4|authentication\\s+mac\\s+permissive|randomize\\s+router\\s+id|show\\s+babel\\s+interfaces|show\\s+babel\\s+neighbors|show\\s+babel\\s+entries|show\\s+babel\\s+routes|prefer|native)\\b"
+          "match": "\\b(?:hello\\s+interval|update\\s+interval|send\\s+timestamps|rtt\\s+(?:cost|min|max|decay)|next\\s+hop\\s+prefer\\s+ipv6|next\\s+hop\\s+prefer|next\\s+hop\\s+ipv4|next\\s+hop\\s+ipv6|authentication\\s+mac\\s+permissive|authentication\\s+mac|randomize\\s+router\\s+id|show\\s+babel\\s+interfaces|show\\s+babel\\s+neighbors|show\\s+babel\\s+entries|show\\s+babel\\s+routes|prefer|native)\\b"
         },
         {
           "name": "keyword.other.bgp.phrase.bird",
@@ -985,15 +985,15 @@
         },
         {
           "name": "keyword.other.radv.phrase.bird",
-          "match": "\\b(?:solicited\\s+ra\\s+unicast|router\\s+discovery|min\\s+ra\\s+interval|max\\s+ra\\s+interval|default\\s+lifetime|current\\s+hop\\s+limit|propagate\\s+routes|other\\s+config|reachable\\s+time|retrans\\s+timer|valid\\s+lifetime|preferred\\s+lifetime|rdnss\\s+local|dnssl\\s+local|custom\\s+option\\s+type|custom\\s+option\\s+local|managed)\\b"
+          "match": "\\b(?:solicited\\s+ra\\s+unicast|router\\s+discovery|min\\s+ra\\s+interval|max\\s+ra\\s+interval|min\\s+delay|link\\s+mtu|default\\s+lifetime|route\\s+lifetime|default\\s+preference|route\\s+preference|prefix\\s+linger\\s+time|route\\s+linger\\s+time|current\\s+hop\\s+limit|propagate\\s+routes|other\\s+config|reachable\\s+time|retrans\\s+timer|valid\\s+lifetime|preferred\\s+lifetime|lifetime\\s+sensitive|pd\\s+preferred|rdnss\\s+local|dnssl\\s+local|custom\\s+option\\s+type|custom\\s+option\\s+local|managed)\\b"
         },
         {
           "name": "keyword.other.rip.phrase.bird",
-          "match": "\\b(?:split\\s+horizon|poison\\s+reverse|demand\\s+circuit|ecmp\\s+weight|ttl\\s+security\\s+tx\\s+only|authentication\\s+plaintext|authentication\\s+cryptographic)\\b"
+          "match": "\\b(?:rip\\s+ng|mode\\s+multicast|mode\\s+broadcast|version\\s+only|check\\s+zero|update\\s+time|timeout\\s+time|garbage\\s+time|retransmit\\s+time|split\\s+horizon|poison\\s+reverse|demand\\s+circuit|ecmp\\s+weight|show\\s+rip\\s+interfaces|show\\s+rip\\s+neighbors|ttl\\s+security\\s+tx\\s+only|authentication\\s+plaintext|authentication\\s+cryptographic)\\b"
         },
         {
           "name": "keyword.other.ospf.phrase.bird",
-          "match": "\\b(?:link\\s+lsa\\s+suppression|stub\\s+router|graceful\\s+restart\\s+aware|graceful\\s+restart\\s+time|ecmp\\s+limit|merge\\s+external|instance\\s+id|default\\s+nssa|default\\s+cost2?|translator\\s+stability|virtual\\s+link|real\\s+broadcast|ptp\\s+netmask|strict\\s+nonbroadcast|show\\s+ospf\\s+neighbors|show\\s+ospf\\s+topology\\s+all|show\\s+ospf\\s+state\\s+all|show\\s+ospf\\s+lsadb)\\b"
+          "match": "\\b(?:link\\s+lsa\\s+suppression|stub\\s+router|graceful\\s+restart\\s+aware|graceful\\s+restart\\s+time|ecmp\\s+limit|merge\\s+external|rfc5838|vpn\\s+pe|instance\\s+id|default\\s+nssa|default\\s+cost2?|stub\\s+cost|translator\\s+stability|virtual\\s+link|transmit\\s+delay|dead\\s+count|type\\s+pointomultipoint|real\\s+broadcast|ptp\\s+netmask|ptp\\s+address|strict\\s+nonbroadcast|rx\\s+buffer\\s+normal|rx\\s+buffer\\s+large|authentication\\s+simple|show\\s+ospf\\s+interface|show\\s+ospf\\s+neighbors|show\\s+ospf\\s+topology\\s+all|show\\s+ospf\\s+state\\s+all|show\\s+ospf\\s+lsadb\\s+global|show\\s+ospf\\s+lsadb\\s+area|show\\s+ospf\\s+lsadb\\s+link|show\\s+ospf\\s+lsadb\\s+type|show\\s+ospf\\s+lsadb\\s+lsid|show\\s+ospf\\s+lsadb\\s+self|show\\s+ospf\\s+lsadb\\s+router|show\\s+ospf\\s+lsadb)\\b"
         },
         {
           "name": "keyword.other.aspa.phrase.bird",
