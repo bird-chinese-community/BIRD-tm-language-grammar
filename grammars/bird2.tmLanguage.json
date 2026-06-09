@@ -957,7 +957,7 @@
         },
         {
           "name": "keyword.other.diagnostics.phrase.bird",
-          "match": "\\b(?:debug\\s+latency\\s+limit|debug\\s+latency|debug\\s+show\\s+route|watchdog\\s+warning|watchdog\\s+timeout)\\b"
+          "match": "\\b(?:debug\\s+latency\\s+limit|debug\\s+latency|debug\\s+show\\s+route|debug\\s+protocols|debug\\s+channels|debug\\s+tables|debug\\s+commands|watchdog\\s+warning|watchdog\\s+timeout)\\b"
         },
         {
           "name": "keyword.other.table.phrase.bird",
@@ -1029,7 +1029,7 @@
         },
         {
           "name": "keyword.other.cli-dump.phrase.bird",
-          "match": "\\b(?:dump\\s+tables|dump\\s+attribute\\s+stats|dump\\s+ao\\s+keys|dump\\s+filter\\s+all|dump\\s+resources|dump\\s+sockets|dump\\s+events|dump\\s+interfaces|dump\\s+neighbors|dump\\s+attributes|dump\\s+routes|dump\\s+protocols|mrt\\s+dump\\s+table|mrt\\s+dump\\s+where|mrt\\s+dump\\s+to|mrt\\s+dump\\s+filter|mrt\\s+dump|timeformat\\s+iso|configure\\s+soft\\s+timeout|configure\\s+soft|configure\\s+timeout|configure\\s+confirm|configure\\s+undo|configure\\s+status|configure\\s+check)\\b"
+          "match": "\\b(?:dump\\s+tables|dump\\s+attribute\\s+stats|dump\\s+ao\\s+keys|dump\\s+filter\\s+all|dump\\s+resources|dump\\s+sockets|dump\\s+events|dump\\s+interfaces|dump\\s+neighbors|dump\\s+attributes|dump\\s+routes|dump\\s+protocols|mrt\\s+dump\\s+table|mrt\\s+dump\\s+where|mrt\\s+dump\\s+to|mrt\\s+dump\\s+filter|mrt\\s+dump|timeformat\\s+route|timeformat\\s+protocol|timeformat\\s+base|timeformat\\s+log|timeformat\\s+iso|configure\\s+soft\\s+timeout|configure\\s+soft|configure\\s+timeout|configure\\s+confirm|configure\\s+undo|configure\\s+status|configure\\s+check|restrict|echo)\\b"
         }
       ]
     },
