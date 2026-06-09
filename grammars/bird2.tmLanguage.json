@@ -917,7 +917,7 @@
       "patterns": [
         {
           "name": "keyword.other.bfd.phrase.bird",
-          "match": "\\b(?:strict\\s+bind|zero\\s+udp6\\s+checksum\\s+rx|idle\\s+tx\\s+interval|min\\s+rx\\s+interval|min\\s+tx\\s+interval|accept\\s+ipv4|accept\\s+multihop|authentication\\s+meticulous\\s+keyed\\s+sha1|express\\s+thread\\s+group|multiplier|keyed|meticulous)\\b"
+          "match": "\\b(?:strict\\s+bind|zero\\s+udp6\\s+checksum\\s+rx|idle\\s+tx\\s+interval|min\\s+rx\\s+interval|min\\s+tx\\s+interval|accept\\s+ipv4|accept\\s+multihop|authentication\\s+meticulous\\s+keyed\\s+sha1|keyed\\s+md5|keyed\\s+sha1|meticulous\\s+keyed\\s+md5|meticulous\\s+keyed\\s+sha1|express\\s+thread\\s+group|multiplier|keyed|meticulous)\\b"
         },
         {
           "name": "keyword.other.babel.phrase.bird",
@@ -925,7 +925,7 @@
         },
         {
           "name": "keyword.other.bgp.phrase.bird",
-          "match": "\\b(?:ipv4\\s+multicast|ipv4\\s+mpls|ipv6\\s+multicast|ipv6\\s+mpls|vpn4\\s+multicast|vpn4\\s+mpls|vpn6\\s+multicast|vpn6\\s+mpls|next\\s+hop\\s+(?:self|address|ibgp|ebgp)|next\\s+hop\\s+prefer\\s+global|next\\s+hop\\s+prefer\\s+local|next\\s+hop\\s+keep|link\\s+local\\s+next\\s+hop\\s+format|import\\s+table|export\\s+table|base\\s+table|igp\\s+table|add\\s+paths|require\\s+add\\s+paths|aigp\\s+originate|long\\s+lived\\s+graceful\\s+restart|long\\s+lived\\s+stale\\s+time|dynamic\\s+name(?:\\s+digits)?|free\\s+bind|ttl\\s+security|multihop\\s+password|authentication\\s+ao|tx\\s+size\\s+warning|rr\\s+client|rs\\s+client|advertise\\s+hostname|interpret\\s+communities|deterministic\\s+med|default\\s+bgp_local_pref|default\\s+bgp_med|med\\s+metric|igp\\s+metric|missing\\s+lladdr|gateway\\s+address|forwarding\\s+addressed|gateway\\s+recursive|allow\\s+local\\s+as|allow\\s+bogus\\s+as|allow\\s+bgp_local_pref|allow\\s+bgp_med|allow\\s+as\\s+sets|enable\\s+route\\s+refresh|enable\\s+enhanced\\s+route\\s+refresh|require\\s+route\\s+refresh|require\\s+enhanced\\s+route\\s+refresh|enable\\s+as4|require\\s+as4|enable\\s+extended\\s+messages|require\\s+extended\\s+messages|require\\s+hostname|require\\s+graceful\\s+restart|require\\s+long\\s+lived\\s+graceful\\s+restart|require\\s+extended\\s+next\\s+hop|disable\\s+after\\s+error|disable\\s+after\\s+cease|enforce\\s+first\\s+as|neighbor\\s+range|interface\\s+range|originate\\s+community|full\\s+route\\s+table|capabilities|primary)\\b"
+          "match": "\\b(?:ipv4\\s+multicast|ipv4\\s+mpls|ipv6\\s+multicast|ipv6\\s+mpls|vpn4\\s+multicast|vpn4\\s+mpls|vpn6\\s+multicast|vpn6\\s+mpls|rr\\s+cluster\\s+id|confederation\\s+member|hold\\s+time|min\\s+hold\\s+time|startup\\s+hold\\s+time|path\\s+metric|prefer\\s+older|connect\\s+delay\\s+time|connect\\s+retry\\s+time|keepalive\\s+time|min\\s+keepalive\\s+time|send\\s+hold\\s+time|error\\s+forget\\s+time|error\\s+wait\\s+time|min\\s+graceful\\s+restart\\s+time|max\\s+graceful\\s+restart\\s+time|long\\s+lived\\s+graceful\\s+restart\\s+aware|min\\s+long\\s+lived\\s+stale\\s+time|max\\s+long\\s+lived\\s+stale\\s+time|disable\\s+rx|send\\s+id|recv\\s+id|next\\s+hop\\s+self|next\\s+hop\\s+address|next\\s+hop\\s+ibgp|next\\s+hop\\s+ebgp|next\\s+hop\\s+prefer\\s+global|next\\s+hop\\s+prefer\\s+local|next\\s+hop\\s+keep|link\\s+local\\s+next\\s+hop\\s+format|import\\s+table|export\\s+table|base\\s+table|igp\\s+table|add\\s+paths\\s+rx|add\\s+paths\\s+tx|add\\s+paths|require\\s+add\\s+paths|gateway\\s+direct|aigp\\s+originate|long\\s+lived\\s+graceful\\s+restart|long\\s+lived\\s+stale\\s+time|dynamic\\s+name(?:\\s+digits)?|free\\s+bind|ttl\\s+security|multihop\\s+password|authentication\\s+ao|tx\\s+size\\s+warning|rr\\s+client|rs\\s+client|advertise\\s+hostname|interpret\\s+communities|deterministic\\s+med|default\\s+bgp_local_pref|default\\s+bgp_med|med\\s+metric|igp\\s+metric|missing\\s+lladdr|gateway\\s+address|forwarding\\s+addressed|gateway\\s+recursive|allow\\s+local\\s+as|allow\\s+bogus\\s+as|allow\\s+bgp_local_pref|allow\\s+bgp_med|allow\\s+as\\s+sets|enable\\s+route\\s+refresh|enable\\s+enhanced\\s+route\\s+refresh|require\\s+route\\s+refresh|require\\s+enhanced\\s+route\\s+refresh|enable\\s+as4|require\\s+as4|enable\\s+extended\\s+messages|require\\s+extended\\s+messages|require\\s+hostname|require\\s+graceful\\s+restart|require\\s+long\\s+lived\\s+graceful\\s+restart|require\\s+extended\\s+next\\s+hop|disable\\s+after\\s+error|disable\\s+after\\s+cease|enforce\\s+first\\s+as|neighbor\\s+range|interface\\s+range|originate\\s+community|full\\s+route\\s+table|capabilities|primary)\\b"
         },
         {
           "name": "keyword.other.bgp-role.phrase.bird",
@@ -1013,7 +1013,7 @@
         },
         {
           "name": "keyword.other.cli-show.phrase.bird",
-          "match": "\\b(?:show\\s+protocols\\s+all|show\\s+interfaces\\s+summary|show\\s+symbols\\s+table|show\\s+symbols\\s+filter|show\\s+symbols\\s+function|show\\s+symbols\\s+protocol|show\\s+symbols\\s+template|show\\s+symbols|show\\s+bfd\\s+sessions\\s+address|show\\s+bfd\\s+sessions\\s+direct|show\\s+bfd\\s+sessions\\s+multihop|show\\s+bfd\\s+sessions|show\\s+mpls\\s+ranges)\\b"
+          "match": "\\b(?:show\\s+protocols\\s+all|show\\s+interfaces\\s+summary|show\\s+symbols\\s+table|show\\s+symbols\\s+filter|show\\s+symbols\\s+function|show\\s+symbols\\s+protocol|show\\s+symbols\\s+template|show\\s+symbols|show\\s+bfd\\s+sessions\\s+address|show\\s+bfd\\s+sessions\\s+direct|show\\s+bfd\\s+sessions\\s+multihop|show\\s+bfd\\s+sessions\\s+interface|show\\s+bfd\\s+sessions\\s+dev|show\\s+bfd\\s+sessions\\s+all|show\\s+bfd\\s+sessions\\s+ipv4|show\\s+bfd\\s+sessions\\s+ipv6|show\\s+bfd\\s+sessions|show\\s+mpls\\s+ranges|show\\s+memory|show\\s+route\\s+primary)\\b"
         },
         {
           "name": "keyword.other.cli-reload.phrase.bird",
@@ -1021,7 +1021,7 @@
         },
         {
           "name": "keyword.other.cli-dump.phrase.bird",
-          "match": "\\b(?:dump\\s+tables|dump\\s+attribute\\s+stats|dump\\s+ao\\s+keys|dump\\s+filter\\s+all|mrt\\s+dump\\s+table|mrt\\s+dump\\s+where|mrt\\s+dump)\\b"
+          "match": "\\b(?:dump\\s+tables|dump\\s+attribute\\s+stats|dump\\s+ao\\s+keys|dump\\s+filter\\s+all|dump\\s+resources|dump\\s+sockets|dump\\s+attributes|dump\\s+routes|mrt\\s+dump\\s+table|mrt\\s+dump\\s+where|mrt\\s+dump\\s+to|mrt\\s+dump\\s+filter|mrt\\s+dump|timeformat\\s+iso)\\b"
         }
       ]
     },
