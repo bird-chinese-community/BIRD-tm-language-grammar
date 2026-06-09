@@ -245,6 +245,31 @@ const checks = [
       "expire keep",
     ],
   },
+  {
+    label: "BIRD 3 CLI diagnostics and management phrases",
+    tokens: [
+      "show threads",
+      "show threads all",
+      "reload filters",
+      "reload filters in",
+      "reload filters out",
+      "dump tables",
+      "dump attribute stats",
+      "dump ao keys",
+      "dump filter all",
+      "show protocols all",
+      "show interfaces summary",
+      "show bfd sessions",
+      "show bfd sessions address",
+      "show bfd sessions direct",
+      "show bfd sessions multihop",
+      "mrt dump",
+      "mrt dump table",
+      "mrt dump where",
+      "show mpls ranges",
+      "debug show route",
+    ],
+  },
 ];
 
 const missing = [];

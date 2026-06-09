@@ -957,7 +957,7 @@
         },
         {
           "name": "keyword.other.diagnostics.phrase.bird",
-          "match": "\\b(?:debug\\s+latency\\s+limit|debug\\s+latency|watchdog\\s+warning|watchdog\\s+timeout)\\b"
+          "match": "\\b(?:debug\\s+latency\\s+limit|debug\\s+latency|debug\\s+show\\s+route|watchdog\\s+warning|watchdog\\s+timeout)\\b"
         },
         {
           "name": "keyword.other.table.phrase.bird",
@@ -1005,11 +1005,23 @@
         },
         {
           "name": "keyword.other.threading.phrase.bird",
-          "match": "\\b(?:thread\\s+group|cork\\s+threshold|route\\s+refresh\\s+export\\s+settle\\s+time|digest\\s+settle\\s+time|filter\\s+stacks|max\\s+generation)\\b"
+          "match": "\\b(?:thread\\s+group|show\\s+threads\\s+all|show\\s+threads|cork\\s+threshold|route\\s+refresh\\s+export\\s+settle\\s+time|digest\\s+settle\\s+time|filter\\s+stacks|max\\s+generation)\\b"
         },
         {
           "name": "keyword.other.operations.phrase.bird",
           "match": "\\b(?:router\\s+id\\s+from|vrf\\s+default|receive\\s+limit|import\\s+keep\\s+filtered|rpki\\s+reload|mrtdump\\s+protocols)\\b"
+        },
+        {
+          "name": "keyword.other.cli-show.phrase.bird",
+          "match": "\\b(?:show\\s+protocols\\s+all|show\\s+interfaces\\s+summary|show\\s+bfd\\s+sessions\\s+address|show\\s+bfd\\s+sessions\\s+direct|show\\s+bfd\\s+sessions\\s+multihop|show\\s+bfd\\s+sessions|show\\s+mpls\\s+ranges)\\b"
+        },
+        {
+          "name": "keyword.other.cli-reload.phrase.bird",
+          "match": "\\b(?:reload\\s+filters\\s+in|reload\\s+filters\\s+out|reload\\s+filters)\\b"
+        },
+        {
+          "name": "keyword.other.cli-dump.phrase.bird",
+          "match": "\\b(?:dump\\s+tables|dump\\s+attribute\\s+stats|dump\\s+ao\\s+keys|dump\\s+filter\\s+all|mrt\\s+dump\\s+table|mrt\\s+dump\\s+where|mrt\\s+dump)\\b"
         }
       ]
     },
