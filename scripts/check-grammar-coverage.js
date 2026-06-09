@@ -128,6 +128,10 @@ const checks = [
   {
     label: "BIRD 2.19 / 3.3 core configuration phrases",
     tokens: [
+      "graceful restart wait",
+      "sorted",
+      "trie",
+      "debug all",
       "generate from",
       "generate to",
       "accept from",
