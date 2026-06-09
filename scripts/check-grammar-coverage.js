@@ -286,6 +286,29 @@ const checks = [
       "reload bgp out",
     ],
   },
+  {
+    label: "BIRD 2 RIP and RADV protocol phrases",
+    tokens: [
+      "poison reverse",
+      "demand circuit",
+      "ecmp weight",
+      "ttl security",
+      "ttl security tx only",
+      "authentication plaintext",
+      "authentication cryptographic",
+      "propagate routes",
+      "managed",
+      "other config",
+      "reachable time",
+      "retrans timer",
+      "valid lifetime",
+      "preferred lifetime",
+      "rdnss local",
+      "dnssl local",
+      "custom option type",
+      "custom option local",
+    ],
+  },
 ];
 
 const missing = [];

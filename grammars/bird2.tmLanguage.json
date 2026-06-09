@@ -985,11 +985,11 @@
         },
         {
           "name": "keyword.other.radv.phrase.bird",
-          "match": "\\b(?:solicited\\s+ra\\s+unicast|router\\s+discovery|min\\s+ra\\s+interval|max\\s+ra\\s+interval|default\\s+lifetime|current\\s+hop\\s+limit)\\b"
+          "match": "\\b(?:solicited\\s+ra\\s+unicast|router\\s+discovery|min\\s+ra\\s+interval|max\\s+ra\\s+interval|default\\s+lifetime|current\\s+hop\\s+limit|propagate\\s+routes|other\\s+config|reachable\\s+time|retrans\\s+timer|valid\\s+lifetime|preferred\\s+lifetime|rdnss\\s+local|dnssl\\s+local|custom\\s+option\\s+type|custom\\s+option\\s+local|managed)\\b"
         },
         {
           "name": "keyword.other.rip.phrase.bird",
-          "match": "\\b(?:split\\s+horizon)\\b"
+          "match": "\\b(?:split\\s+horizon|poison\\s+reverse|demand\\s+circuit|ecmp\\s+weight|ttl\\s+security\\s+tx\\s+only|authentication\\s+plaintext|authentication\\s+cryptographic)\\b"
         },
         {
           "name": "keyword.other.ospf.phrase.bird",
