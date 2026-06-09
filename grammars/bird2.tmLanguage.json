@@ -1079,7 +1079,7 @@
         },
         {
           "name": "keyword.other.radv.phrase.bird",
-          "match": "\\b(?:solicited\\s+ra\\s+unicast|router\\s+discovery|min\\s+ra\\s+interval|max\\s+ra\\s+interval|min\\s+delay|link\\s+mtu|default\\s+lifetime|route\\s+lifetime|default\\s+preference|route\\s+preference|prefix\\s+linger\\s+time|route\\s+linger\\s+time|current\\s+hop\\s+limit|propagate\\s+routes|other\\s+config|reachable\\s+time|retrans\\s+timer|valid\\s+lifetime|preferred\\s+lifetime|lifetime\\s+sensitive|lifetime\\s+mult|pd\\s+preferred|rdnss\\s+local|dnssl\\s+local|custom\\s+option\\s+type|custom\\s+option\\s+local|managed|trigger|rdnss|dnssl|domain|lifetime|value|ns)\\b"
+          "match": "\\b(?:solicited\\s+ra\\s+unicast|router\\s+discovery|min\\s+ra\\s+interval|max\\s+ra\\s+interval|min\\s+delay|link\\s+mtu|default\\s+lifetime|route\\s+lifetime|default\\s+preference|route\\s+preference|prefix\\s+linger\\s+time|route\\s+linger\\s+time|current\\s+hop\\s+limit|propagate\\s+routes|other\\s+config|reachable\\s+time|retrans\\s+timer|valid\\s+lifetime|preferred\\s+lifetime|lifetime\\s+mult|pd\\s+preferred|rdnss\\s+local|dnssl\\s+local|custom\\s+option\\s+type|custom\\s+option\\s+local|managed|trigger|sensitive|rdnss|dnssl|domain|lifetime|value|ns)\\b"
         },
         {
           "name": "keyword.other.rip.phrase.bird",

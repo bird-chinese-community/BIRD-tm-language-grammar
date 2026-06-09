@@ -9,6 +9,12 @@ const grammarText = JSON.stringify(grammar)
   .replaceAll("\\\\s+", " ")
   .replaceAll("\\s+", " ");
 
+const repository = grammar.repository ?? {};
+const phrasePattern = repository["protocol-phrases"]?.patterns?.find(
+  (pattern) => pattern.name === "keyword.other.radv.phrase.bird",
+);
+const radvPhraseRegex = new RegExp(phrasePattern.match, "gi");
+
 const checks = [
   {
     label: "BIRD 2.19 protocol keywords",
@@ -559,7 +565,7 @@ const checks = [
       "prefix linger time",
       "route linger time",
       "pd preferred",
-      "lifetime sensitive",
+      "sensitive",
       "rfc1583compat",
       "rfc5838",
       "vpn pe",
@@ -605,6 +611,36 @@ for (const check of checks) {
   }
 }
 
+const phraseChecks = [
+  {
+    label: "RADV sensitive route lifetime phrase",
+    input: "route lifetime 1800 sensitive yes;",
+    expected: ["route lifetime", "sensitive"],
+  },
+  {
+    label: "RADV sensitive valid lifetime phrase",
+    input: "valid lifetime 3600 sensitive yes;",
+    expected: ["valid lifetime", "sensitive"],
+  },
+  {
+    label: "RADV sensitive preferred lifetime phrase",
+    input: "preferred lifetime 1800 sensitive yes;",
+    expected: ["preferred lifetime", "sensitive"],
+  },
+];
+
+for (const check of phraseChecks) {
+  const matches = [...check.input.matchAll(radvPhraseRegex)].map((match) =>
+    match[0].toLowerCase(),
+  );
+
+  for (const expected of check.expected) {
+    if (!matches.includes(expected)) {
+      missing.push(`${check.label}: ${expected}`);
+    }
+  }
+}
+
 if (missing.length > 0) {
   console.error("Missing grammar coverage:");
   for (const item of missing) {
@@ -613,4 +649,6 @@ if (missing.length > 0) {
   process.exit(1);
 }
 
-console.log(`Grammar coverage checks passed (${checks.reduce((sum, check) => sum + check.tokens.length, 0)} tokens).`);
+console.log(
+  `Grammar coverage checks passed (${checks.reduce((sum, check) => sum + check.tokens.length, 0)} tokens, ${phraseChecks.length} phrase checks).`,
+);
