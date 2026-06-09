@@ -530,6 +530,7 @@ const checks = [
       "domain",
       "custom option type",
       "custom option local",
+      "value",
     ],
   },
   {
