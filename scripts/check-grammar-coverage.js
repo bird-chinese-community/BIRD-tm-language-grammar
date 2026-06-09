@@ -375,6 +375,7 @@ const checks = [
       "show static",
       "igp table",
       "check link",
+      "weight",
       "kernel table",
       "transport tcp",
       "transport ssh",
