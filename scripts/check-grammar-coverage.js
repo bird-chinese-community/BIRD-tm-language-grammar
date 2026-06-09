@@ -523,6 +523,7 @@ const checks = [
       "rfc1583compat",
       "rfc5838",
       "vpn pe",
+      "instance",
       "stub cost",
       "summary",
       "networks",
