@@ -1027,7 +1027,7 @@
         },
         {
           "name": "keyword.other.diagnostics.phrase.bird",
-          "match": "\\b(?:debug\\s+latency\\s+limit|debug\\s+latency|debug\\s+show\\s+route|debug\\s+protocols|debug\\s+channels|debug\\s+tables|debug\\s+commands|debug\\s+all|watchdog\\s+warning|watchdog\\s+timeout)\\b"
+          "match": "\\b(?:debug\\s+latency\\s+limit|debug\\s+latency|debug\\s+show\\s+route|debug\\s+protocols|debug\\s+channels|debug\\s+tables|debug\\s+commands|debug\\s+all|watchdog\\s+warning|watchdog\\s+timeout|states|packets|messages)\\b"
         },
         {
           "name": "keyword.other.table.phrase.bird",
