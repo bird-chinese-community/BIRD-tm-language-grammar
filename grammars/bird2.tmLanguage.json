@@ -1059,7 +1059,7 @@
         },
         {
           "name": "keyword.other.kernel.phrase.bird",
-          "match": "\\b(?:merge\\s+paths|kernel\\s+table|netlink\\s+rx\\s+buffer)\\b"
+          "match": "\\b(?:merge\\s+paths\\s+limit|merge\\s+paths|kernel\\s+table|netlink\\s+rx\\s+buffer)\\b"
         },
         {
           "name": "keyword.other.l3vpn.phrase.bird",
