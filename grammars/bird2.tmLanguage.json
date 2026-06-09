@@ -998,6 +998,10 @@
           "match": "\\b(?:local\\s+role|require\\s+roles)\\b"
         },
         {
+          "name": "constant.language.bgp-role.bird",
+          "match": "\\b(?:provider|customer|rs_server|rs_client)\\b"
+        },
+        {
           "name": "keyword.other.mpls.phrase.bird",
           "match": "\\b(?:mpls\\s+domain|label\\s+range\\s+static|label\\s+range\\s+dynamic|label\\s+range|label\\s+policy|static\\s+label|dynamic\\s+label)\\b"
         },
