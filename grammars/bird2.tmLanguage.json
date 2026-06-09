@@ -961,7 +961,11 @@
         },
         {
           "name": "keyword.other.table.phrase.bird",
-          "match": "\\b(?:min\\s+settle\\s+time|max\\s+settle\\s+time|gc\\s+threshold|export\\s+settle\\s+time)\\b"
+          "match": "\\b(?:min\\s+settle\\s+time|max\\s+settle\\s+time|gc\\s+threshold|gc\\s+period|export\\s+settle\\s+time)\\b"
+        },
+        {
+          "name": "keyword.other.aggregator.phrase.bird",
+          "match": "\\b(?:peer\\s+table|aggregate\\s+on|merge\\s+by)\\b"
         },
         {
           "name": "keyword.other.kernel.phrase.bird",
@@ -1008,6 +1012,10 @@
           "match": "\\b(?:thread\\s+group|show\\s+threads\\s+all|show\\s+threads|cork\\s+threshold|route\\s+refresh\\s+export\\s+settle\\s+time|digest\\s+settle\\s+time|filter\\s+stacks|max\\s+generation)\\b"
         },
         {
+          "name": "keyword.other.mrt.phrase.bird",
+          "match": "\\b(?:always\\s+add\\s+path)\\b"
+        },
+        {
           "name": "keyword.other.operations.phrase.bird",
           "match": "\\b(?:router\\s+id\\s+from|vrf\\s+default|receive\\s+limit|import\\s+keep\\s+filtered|rpki\\s+reload|mrtdump\\s+protocols)\\b"
         },
@@ -1045,7 +1053,7 @@
         },
         {
           "name": "keyword.other.auth.bird",
-          "match": "\\b(?:authentication|none|mac|permissive|password|generate|accept|from|to|algorithm|hmac|sha1|sha256|sha384|sha512|blake2s128|blake2s256|blake2b256|blake2b512)\\b"
+          "match": "\\b(?:cmac\\s+aes128|authentication|none|mac|permissive|password|generate|accept|from|to|algorithm|hmac|cmac|aes128|sha1|sha256|sha384|sha512|blake2s128|blake2s256|blake2b256|blake2b512)\\b"
         },
         {
           "name": "keyword.other.time.bird",

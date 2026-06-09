@@ -147,6 +147,7 @@ const checks = [
       "min settle time",
       "max settle time",
       "gc threshold",
+      "gc period",
       "export settle time",
       "allow bgp_local_pref",
       "allow bgp_med",
@@ -231,6 +232,16 @@ const checks = [
       "icmp code",
       "tcp flags",
       "route aspa",
+      "always add path",
+    ],
+  },
+  {
+    label: "BIRD 2.19 / 3.3 aggregator phrases",
+    tokens: [
+      "peer table",
+      "aggregate on",
+      "merge by",
+      "cmac aes128",
     ],
   },
   {
