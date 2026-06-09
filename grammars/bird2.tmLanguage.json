@@ -1142,6 +1142,10 @@
           "match": "\\b(?:interface|type|wired|wireless|tunnel|rxcost|limit|hello|update|interval|port|tx|class|dscp|priority|rx|buffer|length|check|link|rtt|cost|min|max|decay|send|timestamps)\\b"
         },
         {
+          "name": "keyword.other.device.bird",
+          "match": "\\b(?:preferred)\\b"
+        },
+        {
           "name": "keyword.other.rpki.bird",
           "match": "\\b(?:refresh\\s+keep|retry\\s+keep|expire\\s+keep|transport\\s+tcp|transport\\s+ssh|authentication\\s+none|authentication\\s+md5|local\\s+address|ignore\\s+max\\s+length|min\\s+version|max\\s+version|bird\\s+private\\s+key|remote\\s+public\\s+key)\\b|\\b(?:refresh|retry|expire|transport|ssh|tcp|user|address|version|ignore|private|public|key)\\b"
         },

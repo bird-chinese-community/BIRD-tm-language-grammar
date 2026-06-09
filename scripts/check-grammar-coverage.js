@@ -137,6 +137,7 @@ const checks = [
       "key",
       "keys",
       "secret",
+      "keyword.other.device.bird",
       "preferred",
       "deprecated",
       "sha224",
