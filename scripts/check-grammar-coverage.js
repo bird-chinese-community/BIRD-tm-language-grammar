@@ -482,7 +482,9 @@ const checks = [
     tokens: [
       "poison reverse",
       "demand circuit",
+      "ecmp limit",
       "ecmp weight",
+      "infinity",
       "ttl security",
       "ttl security tx only",
       "authentication plaintext",

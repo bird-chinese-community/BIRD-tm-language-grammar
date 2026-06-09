@@ -1063,7 +1063,7 @@
         },
         {
           "name": "keyword.other.rip.phrase.bird",
-          "match": "\\b(?:rip\\s+ng|mode\\s+multicast|mode\\s+broadcast|version\\s+only|check\\s+zero|update\\s+time|timeout\\s+time|garbage\\s+time|retransmit\\s+time|split\\s+horizon|poison\\s+reverse|demand\\s+circuit|ecmp\\s+weight|show\\s+rip\\s+interfaces|show\\s+rip\\s+neighbors|ttl\\s+security\\s+tx\\s+only|authentication\\s+plaintext|authentication\\s+cryptographic)\\b"
+          "match": "\\b(?:rip\\s+ng|mode\\s+multicast|mode\\s+broadcast|version\\s+only|check\\s+zero|update\\s+time|timeout\\s+time|garbage\\s+time|retransmit\\s+time|split\\s+horizon|poison\\s+reverse|demand\\s+circuit|ecmp\\s+limit|ecmp\\s+weight|infinity|show\\s+rip\\s+interfaces|show\\s+rip\\s+neighbors|ttl\\s+security\\s+tx\\s+only|authentication\\s+plaintext|authentication\\s+cryptographic)\\b"
         },
         {
           "name": "keyword.other.ospf.phrase.bird",
