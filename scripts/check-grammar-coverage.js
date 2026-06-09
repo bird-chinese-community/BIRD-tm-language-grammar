@@ -270,6 +270,22 @@ const checks = [
       "debug show route",
     ],
   },
+  {
+    label: "BIRD 3 CLI symbol and protocol operation phrases",
+    tokens: [
+      "show symbols",
+      "show symbols table",
+      "show symbols filter",
+      "show symbols function",
+      "show symbols protocol",
+      "show symbols template",
+      "show babel neighbors",
+      "show babel routes",
+      "reload bgp",
+      "reload bgp in",
+      "reload bgp out",
+    ],
+  },
 ];
 
 const missing = [];

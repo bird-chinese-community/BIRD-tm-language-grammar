@@ -921,7 +921,7 @@
         },
         {
           "name": "keyword.other.babel.phrase.bird",
-          "match": "\\b(?:send\\s+timestamps|rtt\\s+(?:cost|min|max|decay)|next\\s+hop\\s+prefer|next\\s+hop\\s+ipv4|authentication\\s+mac\\s+permissive|randomize\\s+router\\s+id|show\\s+babel\\s+interfaces|show\\s+babel\\s+entries|prefer|native)\\b"
+          "match": "\\b(?:send\\s+timestamps|rtt\\s+(?:cost|min|max|decay)|next\\s+hop\\s+prefer|next\\s+hop\\s+ipv4|authentication\\s+mac\\s+permissive|randomize\\s+router\\s+id|show\\s+babel\\s+interfaces|show\\s+babel\\s+neighbors|show\\s+babel\\s+entries|show\\s+babel\\s+routes|prefer|native)\\b"
         },
         {
           "name": "keyword.other.bgp.phrase.bird",
@@ -1013,11 +1013,11 @@
         },
         {
           "name": "keyword.other.cli-show.phrase.bird",
-          "match": "\\b(?:show\\s+protocols\\s+all|show\\s+interfaces\\s+summary|show\\s+bfd\\s+sessions\\s+address|show\\s+bfd\\s+sessions\\s+direct|show\\s+bfd\\s+sessions\\s+multihop|show\\s+bfd\\s+sessions|show\\s+mpls\\s+ranges)\\b"
+          "match": "\\b(?:show\\s+protocols\\s+all|show\\s+interfaces\\s+summary|show\\s+symbols\\s+table|show\\s+symbols\\s+filter|show\\s+symbols\\s+function|show\\s+symbols\\s+protocol|show\\s+symbols\\s+template|show\\s+symbols|show\\s+bfd\\s+sessions\\s+address|show\\s+bfd\\s+sessions\\s+direct|show\\s+bfd\\s+sessions\\s+multihop|show\\s+bfd\\s+sessions|show\\s+mpls\\s+ranges)\\b"
         },
         {
           "name": "keyword.other.cli-reload.phrase.bird",
-          "match": "\\b(?:reload\\s+filters\\s+in|reload\\s+filters\\s+out|reload\\s+filters)\\b"
+          "match": "\\b(?:reload\\s+filters\\s+in|reload\\s+filters\\s+out|reload\\s+filters|reload\\s+bgp\\s+in|reload\\s+bgp\\s+out|reload\\s+bgp)\\b"
         },
         {
           "name": "keyword.other.cli-dump.phrase.bird",
