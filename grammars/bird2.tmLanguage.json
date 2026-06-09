@@ -933,7 +933,7 @@
         },
         {
           "name": "keyword.other.mpls.phrase.bird",
-          "match": "\\b(?:mpls\\s+domain|label\\s+range|label\\s+policy|static\\s+label|dynamic\\s+label)\\b"
+          "match": "\\b(?:mpls\\s+domain|label\\s+range\\s+static|label\\s+range\\s+dynamic|label\\s+range|label\\s+policy|static\\s+label|dynamic\\s+label)\\b"
         },
         {
           "name": "keyword.other.static.phrase.bird",
@@ -1013,7 +1013,7 @@
         },
         {
           "name": "keyword.other.cli-show.phrase.bird",
-          "match": "\\b(?:show\\s+protocols\\s+all|show\\s+interfaces\\s+summary|show\\s+symbols\\s+table|show\\s+symbols\\s+filter|show\\s+symbols\\s+function|show\\s+symbols\\s+protocol|show\\s+symbols\\s+template|show\\s+symbols|show\\s+bfd\\s+sessions\\s+address|show\\s+bfd\\s+sessions\\s+direct|show\\s+bfd\\s+sessions\\s+multihop|show\\s+bfd\\s+sessions\\s+interface|show\\s+bfd\\s+sessions\\s+dev|show\\s+bfd\\s+sessions\\s+all|show\\s+bfd\\s+sessions\\s+ipv4|show\\s+bfd\\s+sessions\\s+ipv6|show\\s+bfd\\s+sessions|show\\s+mpls\\s+ranges|show\\s+memory|show\\s+route\\s+primary)\\b"
+          "match": "\\b(?:show\\s+protocols\\s+all|show\\s+interfaces\\s+summary|show\\s+symbols\\s+table|show\\s+symbols\\s+filter|show\\s+symbols\\s+function|show\\s+symbols\\s+protocol|show\\s+symbols\\s+template|show\\s+symbols|show\\s+route\\s+for|show\\s+route\\s+in|show\\s+route\\s+table|show\\s+route\\s+filter|show\\s+route\\s+where|show\\s+route\\s+all|show\\s+route\\s+primary|show\\s+route\\s+filtered|show\\s+route\\s+import|show\\s+route\\s+export|show\\s+route\\s+exported|show\\s+route\\s+preexport|show\\s+route\\s+noexport|show\\s+route\\s+protocol|show\\s+route\\s+stats|show\\s+route\\s+count|show\\s+bfd\\s+sessions\\s+address|show\\s+bfd\\s+sessions\\s+direct|show\\s+bfd\\s+sessions\\s+multihop|show\\s+bfd\\s+sessions\\s+interface|show\\s+bfd\\s+sessions\\s+dev|show\\s+bfd\\s+sessions\\s+all|show\\s+bfd\\s+sessions\\s+ipv4|show\\s+bfd\\s+sessions\\s+ipv6|show\\s+bfd\\s+sessions|show\\s+mpls\\s+ranges|show\\s+memory)\\b"
         },
         {
           "name": "keyword.other.cli-reload.phrase.bird",
@@ -1021,7 +1021,7 @@
         },
         {
           "name": "keyword.other.cli-dump.phrase.bird",
-          "match": "\\b(?:dump\\s+tables|dump\\s+attribute\\s+stats|dump\\s+ao\\s+keys|dump\\s+filter\\s+all|dump\\s+resources|dump\\s+sockets|dump\\s+attributes|dump\\s+routes|mrt\\s+dump\\s+table|mrt\\s+dump\\s+where|mrt\\s+dump\\s+to|mrt\\s+dump\\s+filter|mrt\\s+dump|timeformat\\s+iso)\\b"
+          "match": "\\b(?:dump\\s+tables|dump\\s+attribute\\s+stats|dump\\s+ao\\s+keys|dump\\s+filter\\s+all|dump\\s+resources|dump\\s+sockets|dump\\s+events|dump\\s+interfaces|dump\\s+neighbors|dump\\s+attributes|dump\\s+routes|dump\\s+protocols|mrt\\s+dump\\s+table|mrt\\s+dump\\s+where|mrt\\s+dump\\s+to|mrt\\s+dump\\s+filter|mrt\\s+dump|timeformat\\s+iso|configure\\s+soft\\s+timeout|configure\\s+soft|configure\\s+timeout|configure\\s+confirm|configure\\s+undo|configure\\s+status|configure\\s+check)\\b"
         }
       ]
     },
