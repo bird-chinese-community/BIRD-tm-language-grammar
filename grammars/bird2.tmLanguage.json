@@ -943,6 +943,26 @@
           ]
         },
         {
+          "name": "meta.export-prefilter-clause.bird",
+          "begin": "\\b(export\\s+in)\\b",
+          "end": ";",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.import-export.bird"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.terminator.statement.bird"
+            }
+          },
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
           "name": "meta.export-statement.bird",
           "match": "\\b(export)\\s+(filter)\\s+((?:[a-zA-Z_][a-zA-Z0-9_]*|'[0-9A-Za-z_.:-]+'))\\b",
           "captures": {
@@ -1096,6 +1116,10 @@
         {
           "name": "keyword.other.cli-reload.phrase.bird",
           "match": "\\b(?:reload\\s+filters\\s+in|reload\\s+filters\\s+out|reload\\s+filters|reload\\s+bgp\\s+in|reload\\s+bgp\\s+out|reload\\s+bgp|reload\\s+in|reload\\s+out)\\b"
+        },
+        {
+          "name": "keyword.other.cli-reload-modifier.bird",
+          "match": "\\bpartial\\b"
         },
         {
           "name": "keyword.other.cli-dump.phrase.bird",
