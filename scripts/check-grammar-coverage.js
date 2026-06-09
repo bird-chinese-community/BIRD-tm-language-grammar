@@ -514,6 +514,7 @@ const checks = [
       "authentication plaintext",
       "authentication cryptographic",
       "propagate routes",
+      "trigger",
       "managed",
       "other config",
       "reachable time",
