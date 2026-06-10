@@ -34,23 +34,39 @@ jobs:
         run: node scripts/release.js --gha-outputs
 
       - name: Create/Update TextMate release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.meta.outputs.tm_tag }}
-          name: ${{ steps.meta.outputs.tm_name }}
-          body: ${{ steps.meta.outputs.tm_body }}
-          files: |
-            grammars/bird2.tmLanguage.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TM_TAG: ${{ steps.meta.outputs.tm_tag }}
+          TM_NAME: ${{ steps.meta.outputs.tm_name }}
+          TM_BODY: ${{ steps.meta.outputs.tm_body }}
+        run: |
+          notes_file=$(mktemp)
+          printf '%s' "$TM_BODY" > "$notes_file"
+          if gh release view "$TM_TAG" --json tagName >/dev/null 2>&1; then
+            gh release upload "$TM_TAG" grammars/bird2.tmLanguage.json --clobber
+          else
+            gh release create "$TM_TAG" \
+              --title "$TM_NAME" \
+              --notes-file "$notes_file" \
+              grammars/bird2.tmLanguage.json
+          fi
+          rm -f "$notes_file"
 
       - name: Create/Update Vim release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.meta.outputs.vim_tag }}
-          name: ${{ steps.meta.outputs.vim_name }}
-          body: ${{ steps.meta.outputs.vim_body }}
-          files: |
-            grammars/bird2.syntax.vim
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VIM_TAG: ${{ steps.meta.outputs.vim_tag }}
+          VIM_NAME: ${{ steps.meta.outputs.vim_name }}
+          VIM_BODY: ${{ steps.meta.outputs.vim_body }}
+        run: |
+          notes_file=$(mktemp)
+          printf '%s' "$VIM_BODY" > "$notes_file"
+          if gh release view "$VIM_TAG" --json tagName >/dev/null 2>&1; then
+            gh release upload "$VIM_TAG" grammars/bird2.syntax.vim --clobber
+          else
+            gh release create "$VIM_TAG" \
+              --title "$VIM_NAME" \
+              --notes-file "$notes_file" \
+              grammars/bird2.syntax.vim
+          fi
+          rm -f "$notes_file"
