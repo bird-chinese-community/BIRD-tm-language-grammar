@@ -83,10 +83,10 @@
       "include": "#constants"
     },
     {
-      "include": "#structural-keywords"
+      "include": "#protocol-phrases"
     },
     {
-      "include": "#protocol-phrases"
+      "include": "#structural-keywords"
     },
     {
       "include": "#functional-keywords"
@@ -995,7 +995,7 @@
         },
         {
           "name": "keyword.control.structure.bird",
-          "match": "\\b(?:protocol|table|define|include|attribute|eval|ipv4|ipv6|ipv6\\s+sadr|ipv4\\s+mpls|ipv6\\s+mpls|vpn4\\s+mpls|vpn6\\s+mpls|local|as|from|where|cost|limit|action)\\b"
+          "match": "\\b(?:protocol|table|define|include|attribute|eval|ipv6\\s+sadr|ipv4\\s+mpls|ipv6\\s+mpls|vpn4\\s+mpls|vpn6\\s+mpls|ipv4|ipv6|local|as|from|where|cost|limit|action)\\b"
         }
       ]
     },
