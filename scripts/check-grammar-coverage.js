@@ -13,6 +13,10 @@ const repository = grammar.repository ?? {};
 const phrasePattern = repository["protocol-phrases"]?.patterns?.find(
   (pattern) => pattern.name === "keyword.other.radv.phrase.bird",
 );
+if (!phrasePattern || !phrasePattern.match) {
+  console.error("Error: RADV phrase pattern not found in grammar");
+  process.exit(1);
+}
 const radvPhraseRegex = new RegExp(phrasePattern.match, "gi");
 
 const checks = [
@@ -42,7 +46,6 @@ const checks = [
       "krt_rtt",
       "krt_rttvar",
       "krt_ssthresh",
-      "krt_sstresh",
       "krt_cwnd",
       "krt_advmss",
       "krt_reordering",
@@ -57,7 +60,6 @@ const checks = [
       "krt_lock_rtt",
       "krt_lock_rttvar",
       "krt_lock_ssthresh",
-      "krt_lock_sstresh",
       "krt_lock_cwnd",
       "krt_lock_advmss",
       "krt_lock_reordering",
