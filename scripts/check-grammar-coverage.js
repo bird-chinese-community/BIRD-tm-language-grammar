@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { readFileSync } from "node:fs";
+import { performance } from "node:perf_hooks";
 
 import {
   collectGrammarPatterns,
@@ -774,6 +775,73 @@ if (!bitwisePattern) {
   }
 }
 
+const patternByName = (name) =>
+  grammarPatterns.find((pattern) => pattern.key === "match" && pattern.name === name);
+const matchesEntireInput = (regex, input) => {
+  const match = regex.exec(input);
+  return match?.index === 0 && match[0].length === input.length;
+};
+
+const declarationPattern = patternByName("meta.variable-declaration.bird");
+if (!declarationPattern) {
+  missing.push("Variable declarations: pattern missing");
+} else {
+  const declarationRegex = new RegExp(declarationPattern.source, "i");
+  for (const check of [
+    {
+      input: "mac address = 02:00:00:00:00:01;",
+      expectedType: "mac",
+    },
+    {
+      input: "mac set allowed = [ 02:00:00:00:00:01 ];",
+      expectedType: "mac set",
+    },
+  ]) {
+    const match = declarationRegex.exec(check.input);
+    if (match?.index !== 0 || match[1]?.toLowerCase() !== check.expectedType) {
+      missing.push(`Variable declarations: ${check.input}`);
+    }
+  }
+}
+
+const escapePattern = patternByName("constant.character.escape.bird");
+if (!escapePattern) {
+  missing.push("String escapes: pattern missing");
+} else {
+  const escapeRegex = new RegExp(escapePattern.source);
+  if (!escapeRegex.test("\\n") || escapeRegex.test(".")) {
+    missing.push("String escapes: escaped character matching");
+  }
+}
+
+const prefixPattern = patternByName("constant.numeric.prefix.bird");
+const prefixChecks = [
+  "10.0.0.0/8",
+  "10.0.0.0/8+",
+  "10.0.0.0/8{16,24}",
+  "2001:db8::/32",
+  "::/0",
+];
+
+if (!prefixPattern) {
+  missing.push("Network prefixes: pattern missing");
+} else {
+  const prefixRegex = new RegExp(prefixPattern.source, "i");
+  for (const prefix of prefixChecks) {
+    if (!matchesEntireInput(prefixRegex, prefix)) {
+      missing.push(`Network prefixes: ${prefix}`);
+    }
+  }
+
+  const adversarialInput = "01:".repeat(7000);
+  const startedAt = performance.now();
+  prefixRegex.test(adversarialInput);
+  const elapsedMs = performance.now() - startedAt;
+  if (elapsedMs > 250) {
+    missing.push(`Network prefixes: pathological input took ${elapsedMs.toFixed(1)} ms`);
+  }
+}
+
 if (missing.length > 0) {
   console.error("Missing grammar coverage:");
   for (const item of missing) {
@@ -783,5 +851,5 @@ if (missing.length > 0) {
 }
 
 console.log(
-  `Grammar coverage checks passed (${checks.reduce((sum, check) => sum + check.tokens.length, 0)} tokens, ${phraseChecks.length} phrase checks, ${operatorChecks.length} operator checks).`,
+  `Grammar coverage checks passed (${checks.reduce((sum, check) => sum + check.tokens.length, 0)} tokens, ${phraseChecks.length} phrase checks, ${operatorChecks.length} operator checks, ${prefixChecks.length} prefix checks).`,
 );
