@@ -132,6 +132,8 @@ Neovim (使用 lazy.nvim):
 2. 在修改语法文件前后执行定向检查：
    - `prek run --files grammars/bird2.tmLanguage.json`
    - `node scripts/check-grammar-coverage.js`
+   - `node scripts/audit-upstream-grammar.js ../BIRD2 ../BIRD3`，从已检出的 BIRD
+     源码精确比对关键字、枚举常量、CLI 短语和过滤器属性
    - `prek run --files external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim`
 3. 在提交或发起 PR 前执行：
    - `prek run --all-files`

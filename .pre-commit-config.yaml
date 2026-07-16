@@ -31,7 +31,7 @@ repos:
         language: system
         entry: node scripts/check-grammar-coverage.js
         pass_filenames: false
-        files: ^(grammars/bird2\.tmLanguage\.json|scripts/check-grammar-coverage\.js)$
+        files: ^(grammars/bird2\.tmLanguage\.json|scripts/(?:check-grammar-coverage|grammar-patterns)\.js)$
 
       - id: bird2-vim-source-check
         name: Source Vim syntax files headlessly

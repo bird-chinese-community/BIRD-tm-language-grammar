@@ -140,6 +140,9 @@ This repository uses **Prek** as the pre-commit runner.
 2. Before/after editing syntax files, run targeted checks:
    - `prek run --files grammars/bird2.tmLanguage.json`
    - `node scripts/check-grammar-coverage.js`
+   - `node scripts/audit-upstream-grammar.js ../BIRD2 ../BIRD3` to compare exact
+     keywords, enum constants, CLI phrases, and filter attributes from checked-out
+     BIRD sources
    - `prek run --files external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim`
 3. Before pushing or opening a PR, run:
    - `prek run --all-files`
