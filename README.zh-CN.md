@@ -88,7 +88,7 @@ Neovim (使用 lazy.nvim):
 ```lua
 {
   "bird-chinese-community/bird2.nvim",
-  ft = "bird2",
+  lazy = false,
   config = function()
     require("bird2").setup()
   end
@@ -97,7 +97,7 @@ Neovim (使用 lazy.nvim):
 
 **向后兼容（本仓库仍可安装）：**
 
-1. 克隆此仓库：`git clone https://github.com/bird-chinese-community/bird-tm-language-grammar.git`
+1. 连同插件源一起克隆此仓库：`git clone --recurse-submodules https://github.com/bird-chinese-community/bird-tm-language-grammar.git`
 2. 一键安装：`bash scripts/install.sh`（同时安装 Vim 和 Neovim）
    - 仅 Neovim：`bash scripts/install.sh --neovim`
    - 仅 Vim：`bash scripts/install.sh --vim`
