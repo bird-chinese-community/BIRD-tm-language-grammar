@@ -2,83 +2,148 @@ name: Release grammars
 
 on:
   push:
-    branches: [ main ]
-    paths:
-      - 'CHANGELOG.md'
-      - 'grammars/bird2.tmLanguage.json'
-      - 'grammars/bird2.syntax.vim'
-      - 'external/bird2.vim'
-      - 'external/bird2.vim/**'
-      - '.gitmodules'
-      # Re-run the release workflow when it changes, so fixes are validated.
-      - '.github/workflows/release.yml'
-  workflow_dispatch: {}
+    tags:
+      - "tm-v*"
+      - "vim-v*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing grammar or Vim syntax tag to rebuild exactly
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ inputs.tag || github.ref_name }}
+  cancel-in-progress: false
 
 jobs:
   release:
+    name: Export, verify, and publish
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
-      - name: Checkout
+      - name: Checkout release tooling
         uses: actions/checkout@v7
         with:
+          fetch-depth: 0
+          ref: ${{ github.event.repository.default_branch }}
           submodules: recursive
 
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
-          node-version: '24'
+          node-version: "24"
 
-      - name: Compute release metadata
+      - name: Export exact tag asset
+        id: asset
+        env:
+          MANUAL_TAG: ${{ inputs.tag }}
+        run: |
+          TAG="${MANUAL_TAG:-$GITHUB_REF_NAME}"
+          node scripts/export-release-asset.mjs gha-outputs "$TAG" dist
+
+      - name: Compute current release notes
         id: meta
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: node scripts/release.js --gha-outputs
 
-      - name: Create/Update TextMate release
+      - name: Validate release state
+        id: state
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TM_TAG: ${{ steps.meta.outputs.tm_tag }}
-          TM_NAME: ${{ steps.meta.outputs.tm_name }}
-          TM_BODY: ${{ steps.meta.outputs.tm_body }}
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.asset.outputs.tag }}
+          TRACK: ${{ steps.asset.outputs.track }}
+          CURRENT_TM_TAG: ${{ steps.meta.outputs.tm_tag }}
+          CURRENT_VIM_TAG: ${{ steps.meta.outputs.vim_tag }}
         run: |
-          notes_file=$(mktemp)
-          printf '%s' "$TM_BODY" > "$notes_file"
-          if gh release view "$TM_TAG" --json tagName >/dev/null 2>&1; then
-            gh release edit "$TM_TAG" \
-              --title "$TM_NAME" \
-              --notes-file "$notes_file"
-            gh release upload "$TM_TAG" grammars/bird2.tmLanguage.json --clobber
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "existing=true" >> "$GITHUB_OUTPUT"
           else
-            gh release create "$TM_TAG" \
-              --target "$GITHUB_SHA" \
-              --title "$TM_NAME" \
-              --notes-file "$notes_file" \
-              grammars/bird2.tmLanguage.json
+            echo "existing=false" >> "$GITHUB_OUTPUT"
+            if [[ "$TRACK" == "tm" && "$TAG" != "$CURRENT_TM_TAG" ]]; then
+              echo "New TextMate release $TAG does not match $CURRENT_TM_TAG" >&2
+              exit 1
+            fi
+            if [[ "$TRACK" == "vim" && "$TAG" != "$CURRENT_VIM_TAG" ]]; then
+              echo "New Vim release $TAG does not match $CURRENT_VIM_TAG" >&2
+              exit 1
+            fi
           fi
-          rm -f "$notes_file"
 
-      - name: Create/Update Vim release
+      - name: Verify exported asset
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VIM_TAG: ${{ steps.meta.outputs.vim_tag }}
-          VIM_NAME: ${{ steps.meta.outputs.vim_name }}
+          ASSET: ${{ steps.asset.outputs.asset }}
+          TRACK: ${{ steps.asset.outputs.track }}
+          VERSION: ${{ steps.asset.outputs.version }}
+          PRERELEASE: ${{ steps.asset.outputs.prerelease }}
+        run: |
+          if [[ "$TRACK" == "tm" ]]; then
+            jq -e --arg version "$VERSION" '.version == $version' "$ASSET"
+          else
+            grep -Fqx '" Version: '"$VERSION" "$ASSET"
+            if [[ "$PRERELEASE" != "true" ]]; then
+              vim -Nu NONE -n -es \
+                -c "execute 'source ' . fnameescape('$ASSET')" \
+                -c 'qa!'
+            fi
+          fi
+          printf '%s  %s\n' '${{ steps.asset.outputs.sha256 }}' \
+            '${{ steps.asset.outputs.asset_name }}'
+
+      - name: Preserve exported asset
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ steps.asset.outputs.tag }}
+          path: ${{ steps.asset.outputs.asset }}
+          if-no-files-found: error
+
+      - name: Restore existing release asset
+        if: steps.state.outputs.existing == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.asset.outputs.tag }}
+          ASSET: ${{ steps.asset.outputs.asset }}
+        run: gh release upload "$TAG" "$ASSET" --clobber
+
+      - name: Create new release
+        if: steps.state.outputs.existing == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.asset.outputs.tag }}
+          TRACK: ${{ steps.asset.outputs.track }}
+          TITLE: ${{ steps.asset.outputs.title }}
+          ASSET: ${{ steps.asset.outputs.asset }}
+          PRERELEASE: ${{ steps.asset.outputs.prerelease }}
+          LATEST: ${{ steps.asset.outputs.latest }}
+          TM_BODY: ${{ steps.meta.outputs.tm_body }}
           VIM_BODY: ${{ steps.meta.outputs.vim_body }}
         run: |
           notes_file=$(mktemp)
-          printf '%s' "$VIM_BODY" > "$notes_file"
-          if gh release view "$VIM_TAG" --json tagName >/dev/null 2>&1; then
-            gh release edit "$VIM_TAG" \
-              --title "$VIM_NAME" \
-              --notes-file "$notes_file"
-            gh release upload "$VIM_TAG" grammars/bird2.syntax.vim --clobber
+          if [[ "$TRACK" == "tm" ]]; then
+            printf '%s' "$TM_BODY" > "$notes_file"
           else
-            gh release create "$VIM_TAG" \
-              --target "$GITHUB_SHA" \
-              --title "$VIM_NAME" \
-              --notes-file "$notes_file" \
-              grammars/bird2.syntax.vim
+            printf '%s' "$VIM_BODY" > "$notes_file"
           fi
-          rm -f "$notes_file"
+
+          if [[ "$PRERELEASE" == "true" ]]; then
+            state_flags=(--prerelease --latest=false)
+          elif [[ "$LATEST" == "true" ]]; then
+            state_flags=(--prerelease=false --latest)
+          else
+            state_flags=(--prerelease=false --latest=false)
+          fi
+
+          gh release create "$TAG" \
+            --verify-tag \
+            --title "$TITLE" \
+            --notes-file "$notes_file" \
+            "${state_flags[@]}" \
+            "$ASSET"
+          rm "$notes_file"
