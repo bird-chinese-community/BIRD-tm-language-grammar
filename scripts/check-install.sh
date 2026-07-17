@@ -12,6 +12,9 @@ trap cleanup EXIT
 
 VIM_HOME="$TEMP_DIR/vim"
 XDG_CONFIG_HOME="$TEMP_DIR/xdg"
+LEGACY_NVIM_PLUGIN="$XDG_CONFIG_HOME/nvim/plugin/bird2-filetype.lua"
+mkdir -p "$(dirname "$LEGACY_NVIM_PLUGIN")"
+printf '%s\n' '-- legacy installer output' >"$LEGACY_NVIM_PLUGIN"
 
 HOME="$TEMP_DIR/home" \
   VIM_HOME="$VIM_HOME" \
@@ -34,8 +37,8 @@ for module in config health init; do
   cmp "$REPO_ROOT/external/bird2.nvim/lua/bird2/$module.lua" "$NVIM_HOME/lua/bird2/$module.lua"
 done
 
-if [[ -e "$NVIM_HOME/plugin/bird2-filetype.lua" ]]; then
-  echo "Unexpected legacy Neovim plugin filename: $NVIM_HOME/plugin/bird2-filetype.lua" >&2
+if [[ -e "$LEGACY_NVIM_PLUGIN" || -L "$LEGACY_NVIM_PLUGIN" ]]; then
+  echo "Legacy Neovim plugin was not removed: $LEGACY_NVIM_PLUGIN" >&2
   exit 1
 fi
 
