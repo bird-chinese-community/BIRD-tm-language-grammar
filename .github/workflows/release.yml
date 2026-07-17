@@ -87,7 +87,7 @@ jobs:
           if [[ "$TRACK" == "tm" ]]; then
             jq -e --arg version "$VERSION" '.version == $version' "$ASSET"
           else
-            grep -Fqx '" Version: '"$VERSION" "$ASSET"
+            grep -Eq '^" Version:[[:space:]]+'"$VERSION"'[[:space:]]*$' "$ASSET"
             if [[ "$PRERELEASE" != "true" ]]; then
               vim -Nu NONE -n -es \
                 -c "execute 'source ' . fnameescape('$ASSET')" \
