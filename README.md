@@ -82,20 +82,20 @@ To address this issue, the **BIRD Chinese Community** has officially open-source
 
 **Dedicated Plugin Repositories:**
 
-- **Vim**: [bird-chinese-community/BIRD2.vim](https://github.com/bird-chinese-community/BIRD2.vim)
-- **Neovim**: [bird-chinese-community/BIRD2.nvim](https://github.com/bird-chinese-community/BIRD2.nvim)
+- **Vim**: [bird-chinese-community/BIRD.vim](https://github.com/bird-chinese-community/BIRD.vim)
+- **Neovim**: [bird-chinese-community/BIRD.nvim](https://github.com/bird-chinese-community/BIRD.nvim)
 
 **Installation:**
 
 Vim (using vim-plug):
 ```vim
-Plug 'bird-chinese-community/BIRD2.vim'
+Plug 'bird-chinese-community/BIRD.vim'
 ```
 
 Neovim (using lazy.nvim):
 ```lua
 {
-  "bird-chinese-community/BIRD2.nvim",
+  "bird-chinese-community/BIRD.nvim",
   lazy = false,
   config = function()
     require("bird2").setup()

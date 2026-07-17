@@ -55,7 +55,7 @@ repos:
         files: ^external/(bird2\.vim|bird2\.nvim)/syntax/bird2\.vim$
 
       - id: bird2-vim-mirror-consistency
-        name: Ensure bird2.vim and bird2.nvim syntax mirrors stay in sync
+        name: Ensure BIRD.vim and BIRD.nvim syntax mirrors stay in sync
         language: system
         entry: bash -lc 'diff -u external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim'
         pass_filenames: false

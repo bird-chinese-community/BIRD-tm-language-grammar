@@ -74,20 +74,20 @@
 
 **独立插件仓库：**
 
-- **Vim**: [bird-chinese-community/bird2.vim](https://github.com/bird-chinese-community/bird2.vim)
-- **Neovim**: [bird-chinese-community/bird2.nvim](https://github.com/bird-chinese-community/bird2.nvim)
+- **Vim**: [bird-chinese-community/BIRD.vim](https://github.com/bird-chinese-community/BIRD.vim)
+- **Neovim**: [bird-chinese-community/BIRD.nvim](https://github.com/bird-chinese-community/BIRD.nvim)
 
 **安装方式：**
 
 Vim (使用 vim-plug):
 ```vim
-Plug 'bird-chinese-community/bird2.vim'
+Plug 'bird-chinese-community/BIRD.vim'
 ```
 
 Neovim (使用 lazy.nvim):
 ```lua
 {
-  "bird-chinese-community/bird2.nvim",
+  "bird-chinese-community/BIRD.nvim",
   lazy = false,
   config = function()
     require("bird2").setup()
