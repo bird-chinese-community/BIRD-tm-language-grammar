@@ -33,6 +33,20 @@ repos:
         pass_filenames: false
         files: ^(grammars/bird2\.tmLanguage\.json|scripts/(?:check-grammar-coverage|grammar-patterns)\.js)$
 
+      - id: bird2-audit-cli-errors
+        name: Check upstream audit CLI errors
+        language: system
+        entry: node scripts/check-audit-cli-errors.js
+        pass_filenames: false
+        files: ^scripts/(?:audit-upstream-grammar|check-audit-cli-errors)\.js$
+
+      - id: bird2-install-smoke
+        name: Check compatibility installer layout
+        language: system
+        entry: bash scripts/check-install.sh
+        pass_filenames: false
+        files: ^(scripts/(?:install|check-install)\.sh|external/(?:bird2\.vim|bird2\.nvim))$
+
       - id: bird2-vim-source-check
         name: Source Vim syntax files headlessly
         language: system

@@ -62,6 +62,25 @@ const internalAttributeClassNames = new Set(["krt_", "krt_features", "krt_lock"]
 const normalizeSourcePath = (value) =>
   isAbsolute(value) ? value : resolve(REPO_ROOT, value);
 
+const validateSourceDirectory = (sourceRoot) => {
+  try {
+    if (!statSync(sourceRoot).isDirectory()) {
+      return `BIRD source path is not a directory: ${sourceRoot}`;
+    }
+  } catch (error) {
+    const code =
+      error && typeof error === "object" && "code" in error ? error.code : null;
+    if (code === "ENOENT") {
+      return `BIRD source path does not exist: ${sourceRoot}`;
+    }
+
+    const detail = code ? ` (${code})` : "";
+    return `BIRD source path cannot be read: ${sourceRoot}${detail}`;
+  }
+
+  return null;
+};
+
 const listFiles = (root) => {
   const files = [];
 
@@ -244,10 +263,17 @@ const formatList = (values) =>
 
 const sourceArgs = process.argv.slice(2);
 const sources = sourceArgs.length > 0 ? sourceArgs : ["../BIRD2", "../BIRD3"];
+const sourceRoots = sources.map(normalizeSourcePath);
+const sourceErrors = sourceRoots.map(validateSourceDirectory).filter(Boolean);
+
+if (sourceErrors.length > 0) {
+  for (const error of sourceErrors) console.error(`Error: ${error}`);
+  process.exit(2);
+}
+
 let hasMissingCoverage = false;
 
-for (const sourceArg of sources) {
-  const sourceRoot = normalizeSourcePath(sourceArg);
+for (const sourceRoot of sourceRoots) {
   const { keywords, enumConstants, cliPhrases, attributeNames } =
     extractSourceGrammar(sourceRoot);
   const missingKeywords = [...keywords].filter((value) => !mentionsKeyword(value)).sort();

@@ -712,6 +712,27 @@ const checks = [
 
 const missing = [];
 
+const invalidPatternFixture = {
+  key: "match",
+  name: "invalid.regression.bird",
+  source: "(",
+};
+try {
+  compilePatterns([invalidPatternFixture]);
+  missing.push("Grammar regex validation: invalid regex was silently accepted");
+} catch (error) {
+  const message = error instanceof Error ? error.message : String(error);
+  for (const expected of [
+    invalidPatternFixture.key,
+    invalidPatternFixture.name,
+    JSON.stringify(invalidPatternFixture.source),
+  ]) {
+    if (!message.includes(expected)) {
+      missing.push(`Grammar regex validation: error omitted ${expected}`);
+    }
+  }
+}
+
 for (const check of checks) {
   for (const token of check.tokens) {
     const isScopeName = token.endsWith(".bird");

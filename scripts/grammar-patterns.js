@@ -21,11 +21,15 @@ export const collectGrammarPatterns = (value, patterns = []) => {
 };
 
 export const compilePatterns = (patterns) =>
-  patterns.flatMap((pattern) => {
+  patterns.map((pattern, index) => {
     try {
-      return [{ ...pattern, regex: new RegExp(pattern.source, "i") }];
-    } catch {
-      return [];
+      return { ...pattern, regex: new RegExp(pattern.source, "i") };
+    } catch (error) {
+      const detail = error instanceof Error ? error.message : String(error);
+      const scope = pattern.name || "<unnamed>";
+      throw new Error(
+        `Invalid grammar regex at index ${index} (${pattern.key}, ${scope}): ${JSON.stringify(pattern.source)} (${detail})`,
+      );
     }
   });
 
