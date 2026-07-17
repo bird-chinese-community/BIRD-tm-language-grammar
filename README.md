@@ -149,6 +149,8 @@ This repository uses **Prek** as the pre-commit runner.
 4. Bump patch version for tm grammar + Vim/Neovim syntax snapshots:
    - `node scripts/bump-version.js --dry-run`
    - `node scripts/bump-version.js`
+5. For release-worthy changes, add a bilingual change fragment. See the
+   [changelog](CHANGELOG.md) and [change-fragment guide](.changeset/README.md).
 
 ## Project Status
 

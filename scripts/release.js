@@ -5,6 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+const { execFileSync } = require('child_process');
 
 function getRepoContextOptional() {
   const repoEnv = process.env.GITHUB_REPOSITORY || '';
@@ -17,6 +18,14 @@ function getRepoContextOptional() {
 function readJson(filePath) {
   const content = fs.readFileSync(filePath, 'utf8');
   return JSON.parse(content);
+}
+
+function readChangelogNotes(repoRoot, version) {
+  const changesetScript = path.join(repoRoot, 'scripts', 'changeset.mjs');
+  return execFileSync(process.execPath, [changesetScript, 'notes', version], {
+    cwd: repoRoot,
+    encoding: 'utf8',
+  }).trim();
 }
 
 function readVimVersion(filePath) {
@@ -79,7 +88,7 @@ async function listReleases(owner, repo, token) {
   return res.data || [];
 }
 
-function buildReleaseBody({ kind, version, owner, repo, previousTag, tag }) {
+function buildReleaseBody({ kind, version, owner, repo, previousTag, tag, notes }) {
   const repoUrl = owner && repo ? `https://github.com/${owner}/${repo}` : '';
   const compareLine = previousTag && repoUrl ? `Compare: ${repoUrl}/compare/${previousTag}...${tag}` : 'Initial release for this track.';
   const installLinks = repoUrl
@@ -93,6 +102,7 @@ function buildReleaseBody({ kind, version, owner, repo, previousTag, tag }) {
   return (
     `Release ${kind} - \`${version}\`\n\n` +
     `${compareLine}\n\n` +
+    `## Changes\n\n${notes}\n\n` +
     `## Installation\n${installLinks}`
   );
 }
@@ -124,11 +134,16 @@ async function main() {
   const args = process.argv.slice(2);
   const toGhaOutputs = args.includes('--gha-outputs');
 
-  const tmPath = path.join(__dirname, '..', 'grammars', 'bird2.tmLanguage.json');
-  const vimPath = path.join(__dirname, '..', 'grammars', 'bird2.syntax.vim');
+  const repoRoot = path.join(__dirname, '..');
+  const tmPath = path.join(repoRoot, 'grammars', 'bird2.tmLanguage.json');
+  const vimPath = path.join(repoRoot, 'grammars', 'bird2.syntax.vim');
 
   const tmVersion = readJson(tmPath).version;
   const vimVersion = readVimVersion(vimPath);
+  const tmNotes = readChangelogNotes(repoRoot, tmVersion);
+  const vimNotes = tmVersion === vimVersion
+    ? tmNotes
+    : readChangelogNotes(repoRoot, vimVersion);
 
   const tmTag = `tm-v${tmVersion}`;
   const vimTag = `vim-v${vimVersion}`;
@@ -141,8 +156,24 @@ async function main() {
   const owner = ctx ? ctx.owner : null;
   const repo = ctx ? ctx.repo : null;
 
-  const tmBody = buildReleaseBody({ kind: 'TextMate Grammar', version: tmVersion, owner, repo, previousTag: tmPrevious, tag: tmTag });
-  const vimBody = buildReleaseBody({ kind: 'Vim Syntax', version: vimVersion, owner, repo, previousTag: vimPrevious, tag: vimTag });
+  const tmBody = buildReleaseBody({
+    kind: 'TextMate Grammar',
+    version: tmVersion,
+    owner,
+    repo,
+    previousTag: tmPrevious,
+    tag: tmTag,
+    notes: tmNotes,
+  });
+  const vimBody = buildReleaseBody({
+    kind: 'Vim Syntax',
+    version: vimVersion,
+    owner,
+    repo,
+    previousTag: vimPrevious,
+    tag: vimTag,
+    notes: vimNotes,
+  });
 
   const tmName = `TextMate Grammar ${tmVersion}`;
   const vimName = `Vim Syntax ${vimVersion}`;

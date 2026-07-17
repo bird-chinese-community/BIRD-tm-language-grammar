@@ -61,6 +61,13 @@ repos:
         pass_filenames: false
         files: ^external/(bird2\.vim|bird2\.nvim)/syntax/bird2\.vim$
 
+      - id: bird2-changesets
+        name: Validate changelog changesets
+        language: system
+        entry: node scripts/changeset.mjs check
+        pass_filenames: false
+        files: ^(CHANGELOG\.md|\.changeset/.*|scripts/changeset\.mjs)$
+
       - id: commitlint
         name: Commit message lint (commitlint)
         language: node
