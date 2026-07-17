@@ -14,7 +14,7 @@
   ],
   "author": "BIRD Chinese Community (Alice39s) <dev-bird@xmsl.dev>",
   "description": "BIRD 2 and BIRD 3 Configuration Language",
-  "version": "1.0.12-20260716",
+  "version": "1.0.13-20260717",
   "patterns": [
     {
       "include": "#comments"
