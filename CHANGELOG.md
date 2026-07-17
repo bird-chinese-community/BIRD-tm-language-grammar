@@ -124,4 +124,182 @@ were published on 2026-07-17. The implementation was merged in
   shipped the Neovim runtime, detection, CI, and syntax
   mirror fixes.
 
+## [tm-v1.0.11-20260611] / [vim-v1.0.11-20260611] - 2026-06-11
+
+### 🔧 Changed / 变更
+
+- 🧩 **扩展协议与 CLI 语法** / **Expanded protocol and CLI grammar**
+
+  扩展协议专用配置与管理 CLI 短语，补充独立的 `show route` 命令，并修复
+  structural keyword 的正则遮蔽与历史拼写变体。
+
+  Expanded protocol-specific configuration and management CLI phrases, added
+  the standalone `show route` command, and removed structural-keyword regex
+  shadowing and obsolete typo variants.
+
+- 🔄 **同步 TextMate 与 Vim 快照** / **Synchronized TextMate and Vim snapshots**
+
+  TextMate grammar 与 Vim syntax 均发布 `1.0.11-20260611` 快照；Vim 资产延后
+  补发，但继续对应同一语法版本。
+
+  Published `1.0.11-20260611` snapshots for both the TextMate grammar and Vim
+  syntax. The Vim asset was backfilled later while retaining the same syntax
+  version.
+
+## [tm-v1.0.10-20260609] - 2026-06-09
+
+### ✨ Added / 新增
+
+- 🛰️ **BIRD 2.19 与 BIRD 3.3 token 覆盖** / **BIRD 2.19 and BIRD 3.3 token coverage**
+
+  补充 BIRD 2.19 与 BIRD 3.3 的配置 token，并新增对应 sample fixture 与自动
+  coverage check；本版本仅发布 TextMate grammar 轨道。
+
+  Added configuration tokens for BIRD 2.19 and BIRD 3.3 together with a sample
+  fixture and automated coverage check. This version was published only on the
+  TextMate grammar track.
+
+## [tm-v1.0.9-20260306] - 2026-03-06
+
+### 🐛 Fixed / 修复
+
+- 🧭 **对齐 neighbor 与 local AS 高亮** / **Aligned neighbor and local-AS highlighting**
+
+  调整 `neighbor` 与 `local as` 相关规则，使 TextMate grammar 的高亮范围与
+  parser 接受的配置形式一致，并修复 Prek CI 参数。
+
+  Aligned `neighbor` and `local as` highlighting with parser-supported forms and
+  corrected the Prek CI arguments. This release affected only the TextMate
+  grammar track.
+
+## [tm-v1.0.8-20260301] / [vim-v1.0.8-20260301] - 2026-03-01
+
+### ✨ Added / 新增
+
+- 🔤 **协议短语与发布工具** / **Protocol phrases and release tooling**
+
+  新增高优先级协议短语、sample 覆盖与 syntax patch bump 工具，并让 TextMate、
+  Vim 与 Neovim 快照同步到同一版本。
+
+  Added high-priority protocol phrases, sample coverage, and a syntax patch-bump
+  tool while synchronizing the TextMate, Vim, and Neovim snapshots.
+
+### 🐛 Fixed / 修复
+
+- 🧵 **匹配优先级与词法边界** / **Matcher priority and lexical boundaries**
+
+  修正 matcher reachability、symbol/definition、operator、typed set、byte string、
+  压缩 IPv6 与 property/method 边界，避免通用规则遮蔽更具体的语法组。
+
+  Corrected matcher reachability, symbols and definitions, operators, typed
+  sets, byte strings, compressed IPv6, and property/method boundaries so broad
+  rules no longer shadow specialized groups.
+
+### 🧪 Verification / 验证
+
+- 引入 submodule-aware Prek workflow、commitlint 与仓库级格式守卫。
+- Introduced a submodule-aware Prek workflow, commitlint, and repository-wide
+  formatting guards.
+
+## [tm-v1.0.7-20260228] / [vim-v1.0.7-20260228] - 2026-02-28
+
+### 🔧 Changed / 变更
+
+- 🧩 **迁移到独立编辑器仓库** / **Migrated to dedicated editor repositories**
+
+  将 Vim 与 Neovim runtime 迁移到独立仓库，并以 Git submodule 保留本仓的兼容
+  安装入口；Release workflow 同步支持递归检出。
+
+  Migrated the Vim and Neovim runtimes to dedicated repositories while keeping
+  compatibility installation through Git submodules, and made the Release
+  workflow initialize them recursively.
+
+### 🐛 Fixed / 修复
+
+- 🔐 **协议、地址族与 RPKI 关键字** / **Protocol, address-family, and RPKI keywords**
+
+  修复 `vpn4`、`vpn6`、`roa4`、`roa6`、`protocol`、`all`、`none` 及缺失的 RPKI
+  协议关键字，并改进许可证自动识别。
+
+  Corrected `vpn4`, `vpn6`, `roa4`, `roa6`, `protocol`, `all`, `none`, and
+  missing RPKI protocol keywords, and improved automated license detection.
+
+## [tm-v1.0.6-20250808] / [vim-v1.0.6-20250808] - 2025-08-08
+
+### 🔧 Changed / 变更
+
+- 📦 **统一 Vim 与 Neovim 安装入口** / **Unified Vim and Neovim installation**
+
+  将分散的安装流程统一到 `scripts/install.sh`，补充错误处理与 syntax setup，
+  同时重构 Vim 高亮规则并发布两个稳定轨道的 `1.0.6` 资产。
+
+  Unified the editor installation flow under `scripts/install.sh`, added error
+  handling and syntax setup, refactored Vim highlighting, and published stable
+  `1.0.6` assets for both release tracks.
+
+## [vim-v1.0.5-20250808] - 2025-08-08
+
+### 🔧 Changed / 变更
+
+- 🐦 **扩展 Vim runtime 识别与语法** / **Expanded Vim runtime detection and syntax**
+
+  大幅扩展 Vim syntax 规则与 `ftdetect` 识别逻辑，并将此前 beta 轨道推进到
+  `1.0.5` 稳定版本；本次没有新的 TextMate tag。
+
+  Substantially expanded the Vim syntax and `ftdetect` logic and promoted the
+  former beta track to stable `1.0.5`. No new TextMate tag accompanied this
+  release.
+
+## [vim-v1.0.2-beta-20250808] - 2025-08-08
+
+### 🐛 Fixed / 修复
+
+- 🛠️ **改进 Vim 安装与协议语法** / **Improved Vim installation and protocol syntax**
+
+  修正早期 Vim 安装流程并补充协议语法规则，发布第三个 beta 快照。
+
+  Corrected the early Vim installation flow and expanded protocol syntax in the
+  third beta snapshot.
+
+## [tm-v1.0.5-20250808] / [vim-v1.0.1-beta-20250808] - 2025-08-08
+
+### 🔧 Changed / 变更
+
+- 🏷️ **同步早期轨道版本元数据** / **Synchronized early-track version metadata**
+
+  将 TextMate grammar 更新为 `1.0.5`、Vim syntax 更新为 `1.0.1-beta`，并同步
+  grammar、文档与发布元数据。
+
+  Updated the TextMate grammar to `1.0.5` and Vim syntax to `1.0.1-beta`, with
+  synchronized grammar, documentation, and release metadata.
+
+## [tm-v1.0.4-20250808] / [vim-v1.0.0-beta-20250808] - 2025-08-08
+
+### ✨ Added / 新增
+
+- 🕊️ **建立双发布轨道** / **Established both release tracks**
+
+  首次发布 TextMate Grammar `1.0.4` 与 Vim Syntax `1.0.0-beta`，提供 BIRD 配置
+  高亮资产、编辑器安装说明与初始版本 badge。
+
+  Published the initial TextMate Grammar `1.0.4` and Vim Syntax `1.0.0-beta`
+  assets with BIRD configuration highlighting, editor installation guidance,
+  and the first release badges.
+
 [1.0.13-20260717]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.13-20260717
+[tm-v1.0.11-20260611]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.11-20260611
+[vim-v1.0.11-20260611]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.11-20260611
+[tm-v1.0.10-20260609]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.10-20260609
+[tm-v1.0.9-20260306]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.9-20260306
+[tm-v1.0.8-20260301]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.8-20260301
+[vim-v1.0.8-20260301]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.8-20260301
+[tm-v1.0.7-20260228]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.7-20260228
+[vim-v1.0.7-20260228]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.7-20260228
+[tm-v1.0.6-20250808]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.6-20250808
+[vim-v1.0.6-20250808]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.6-20250808
+[vim-v1.0.5-20250808]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.5-20250808
+[vim-v1.0.2-beta-20250808]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.2-beta-20250808
+[tm-v1.0.5-20250808]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.5-20250808
+[vim-v1.0.1-beta-20250808]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.1-beta-20250808
+[tm-v1.0.4-20250808]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.4-20250808
+[vim-v1.0.0-beta-20250808]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.0-beta-20250808
