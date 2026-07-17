@@ -4,3 +4,5 @@
 .worktrees/
 *.md
 !README*
+!CHANGELOG.md
+!.changeset/*.md

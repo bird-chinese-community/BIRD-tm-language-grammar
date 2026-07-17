@@ -1,0 +1,35 @@
+{
+  "project": "BIRD TextMate Grammar",
+  "changelog": "CHANGELOG.md",
+  "releaseLink": "https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v{version}",
+  "categories": [
+    {
+      "id": "breaking",
+      "heading": "💥 Breaking / 破坏性变更"
+    },
+    {
+      "id": "added",
+      "heading": "✨ Added / 新增"
+    },
+    {
+      "id": "changed",
+      "heading": "🔧 Changed / 变更"
+    },
+    {
+      "id": "fixed",
+      "heading": "🐛 Fixed / 修复"
+    },
+    {
+      "id": "performance",
+      "heading": "⚡ Performance / 性能"
+    },
+    {
+      "id": "documentation",
+      "heading": "📖 Documentation / 文档"
+    },
+    {
+      "id": "security",
+      "heading": "🔒 Security / 安全"
+    }
+  ]
+}
