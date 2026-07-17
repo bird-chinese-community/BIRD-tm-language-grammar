@@ -90,8 +90,12 @@ jobs:
             header_version=$(sed -nE \
               's/^" Version:[[:space:]]+([^[:space:]]+)[[:space:]]*$/\1/p' \
               "$ASSET")
+            if [[ -z "$header_version" ]]; then
+              echo "Vim asset is missing a valid Version header" >&2
+              exit 1
+            fi
             if [[ "$header_version" != "$VERSION" ]]; then
-              echo "Vim asset version $header_version does not match $VERSION" >&2
+              echo "Vim asset version '$header_version' does not match '$VERSION'" >&2
               exit 1
             fi
             if [[ "$PRERELEASE" != "true" ]]; then
