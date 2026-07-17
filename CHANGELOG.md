@@ -11,16 +11,23 @@ snapshots are documented in this file.
 > constants, CLI phrases, filter attributes, and grammar behavior. They do not
 > cover upstream runtime semantics such as AS-SET defaults, disabled BGP
 > instance behavior, routing behavior, or memory management.
+>
+> 覆盖范围声明针对 BIRD 配置语法：关键字、枚举常量、CLI 短语、过滤器属性与
+> 语法行为；不涵盖上游运行时语义，如 AS-SET 默认值、BGP 实例禁用行为、
+> 路由行为或内存管理。
 
 <!-- changeset-release-marker -->
 
 ## [1.0.13-20260717] - 2026-07-17
 
-[TextMate Grammar 1.0.13-20260717] 与 [Vim Syntax 1.0.13-20260717] 已于
-2026-07-17 发布；本轮实现由 [PR #14] 合并。
+[TextMate Grammar 1.0.13-20260717](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.13-20260717)
+与 [Vim Syntax 1.0.13-20260717](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.13-20260717)
+已于 2026-07-17 发布；本轮实现由 [PR #14](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/pull/14) 合并。
 
-[TextMate Grammar 1.0.13-20260717] and [Vim Syntax 1.0.13-20260717] were
-published on 2026-07-17. The implementation was merged in [PR #14].
+[TextMate Grammar 1.0.13-20260717](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.13-20260717)
+and [Vim Syntax 1.0.13-20260717](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.13-20260717)
+were published on 2026-07-17. The implementation was merged in
+[PR #14](https://github.com/bird-chinese-community/BIRD-tm-language-grammar/pull/14).
 
 ### ✨ Added / 新增
 
@@ -55,12 +62,14 @@ published on 2026-07-17. The implementation was merged in [PR #14].
 
   审计基准更新为 BIRD 2 `stable-v2.19` 的 `cb400b6c`（`v2.19.1`）与
   BIRD 3 `stable-v3.3` 的 `a69711d1`（`v3.3.1-1-ga69711d1`）。该基准仅表示
-  配置语法审计范围，不代表覆盖 [BIRD 3.3.0 与 2.19.0 发布公告]中的运行时变化。
+  配置语法审计范围，不代表覆盖
+  [BIRD 3.3.0 与 2.19.0 发布公告](https://bird.network.cz/pipermail/bird-users/2026-May/018761.html)
+  中的运行时变化。
 
   Audited BIRD 2 `stable-v2.19` at `cb400b6c` (`v2.19.1`) and BIRD 3
   `stable-v3.3` at `a69711d1` (`v3.3.1-1-ga69711d1`). These baselines describe
   configuration-syntax coverage only, not runtime changes in the
-  [BIRD 3.3.0 and 2.19.0 release announcement].
+  [BIRD 3.3.0 and 2.19.0 release announcement](https://bird.network.cz/pipermail/bird-users/2026-May/018761.html).
 
 - ⚙️ **操作符与匹配优先级校正** / **Operator and matching precedence alignment**
 
@@ -104,18 +113,15 @@ published on 2026-07-17. The implementation was merged in [PR #14].
 
 ### 🔌 Editor integrations / 编辑器集成
 
-- [BIRD.vim PR #3] 同步交付 Vim 语法、启发式文件识别、ftplugin 与兼容性测试。
-- [BIRD.vim PR #3] delivered the Vim syntax, heuristic file detection,
+- [BIRD.vim PR #3](https://github.com/bird-chinese-community/BIRD.vim/pull/3)
+  同步交付 Vim 语法、启发式文件识别、ftplugin 与兼容性测试。
+- [BIRD.vim PR #3](https://github.com/bird-chinese-community/BIRD.vim/pull/3)
+  delivered the Vim syntax, heuristic file detection,
   ftplugin behavior, and compatibility tests.
-- [BIRD.nvim PR #1] 同步交付 Neovim runtime、文件识别、CI 与语法镜像修复。
-- [BIRD.nvim PR #1] delivered the Neovim runtime, detection, CI, and syntax
+- [BIRD.nvim PR #1](https://github.com/bird-chinese-community/BIRD.nvim/pull/1)
+  一并带来 Neovim runtime、文件识别、CI 与语法镜像修复。
+- [BIRD.nvim PR #1](https://github.com/bird-chinese-community/BIRD.nvim/pull/1)
+  shipped the Neovim runtime, detection, CI, and syntax
   mirror fixes.
 
 [1.0.13-20260717]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.13-20260717
-[TextMate Grammar 1.0.13-20260717]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/tm-v1.0.13-20260717
-[Vim Syntax 1.0.13-20260717]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/releases/tag/vim-v1.0.13-20260717
-[PR #14]: https://github.com/bird-chinese-community/BIRD-tm-language-grammar/pull/14
-[BIRD.vim PR #3]: https://github.com/bird-chinese-community/BIRD.vim/pull/3
-[BIRD.nvim PR #1]: https://github.com/bird-chinese-community/BIRD.nvim/pull/1
-[BIRD 3.3.0 与 2.19.0 发布公告]: https://bird.network.cz/pipermail/bird-users/2026-May/018761.html
-[BIRD 3.3.0 and 2.19.0 release announcement]: https://bird.network.cz/pipermail/bird-users/2026-May/018761.html

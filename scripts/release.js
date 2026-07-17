@@ -5,6 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
+const { execFileSync } = require('child_process');
 
 function getRepoContextOptional() {
   const repoEnv = process.env.GITHUB_REPOSITORY || '';
@@ -19,22 +20,12 @@ function readJson(filePath) {
   return JSON.parse(content);
 }
 
-function readChangelogNotes(filePath, version) {
-  const lines = fs.readFileSync(filePath, 'utf8').replace(/\r\n/g, '\n').split('\n');
-  const escaped = version.replaceAll('.', '\\.');
-  const heading = new RegExp(
-    `^## (?:\\[)?${escaped}(?:\\])? - \\d{4}-\\d{2}-\\d{2}$`
-  );
-  const start = lines.findIndex((line) => heading.test(line));
-  if (start < 0) {
-    throw new Error(`CHANGELOG.md does not contain release notes for ${version}`);
-  }
-  const next = lines.findIndex(
-    (line, index) => index > start && line.startsWith('## ')
-  );
-  const notes = lines.slice(start + 1, next < 0 ? undefined : next).join('\n').trim();
-  if (!notes) throw new Error(`CHANGELOG.md release ${version} has no notes`);
-  return notes;
+function readChangelogNotes(repoRoot, version) {
+  const changesetScript = path.join(repoRoot, 'scripts', 'changeset.mjs');
+  return execFileSync(process.execPath, [changesetScript, 'notes', version], {
+    cwd: repoRoot,
+    encoding: 'utf8',
+  }).trim();
 }
 
 function readVimVersion(filePath) {
@@ -143,16 +134,16 @@ async function main() {
   const args = process.argv.slice(2);
   const toGhaOutputs = args.includes('--gha-outputs');
 
-  const tmPath = path.join(__dirname, '..', 'grammars', 'bird2.tmLanguage.json');
-  const vimPath = path.join(__dirname, '..', 'grammars', 'bird2.syntax.vim');
-  const changelogPath = path.join(__dirname, '..', 'CHANGELOG.md');
+  const repoRoot = path.join(__dirname, '..');
+  const tmPath = path.join(repoRoot, 'grammars', 'bird2.tmLanguage.json');
+  const vimPath = path.join(repoRoot, 'grammars', 'bird2.syntax.vim');
 
   const tmVersion = readJson(tmPath).version;
   const vimVersion = readVimVersion(vimPath);
-  const tmNotes = readChangelogNotes(changelogPath, tmVersion);
+  const tmNotes = readChangelogNotes(repoRoot, tmVersion);
   const vimNotes = tmVersion === vimVersion
     ? tmNotes
-    : readChangelogNotes(changelogPath, vimVersion);
+    : readChangelogNotes(repoRoot, vimVersion);
 
   const tmTag = `tm-v${tmVersion}`;
   const vimTag = `vim-v${vimVersion}`;

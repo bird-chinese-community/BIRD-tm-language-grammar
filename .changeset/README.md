@@ -25,9 +25,9 @@ category: fixed
 
 - 🐛 **中文标题** / **English title**
 
-中文说明。
+  中文说明。
 
-English summary.
+  English summary.
 ```
 
 Supported bumps are `patch`, `minor`, and `major`. Supported categories are
@@ -41,8 +41,9 @@ node scripts/changeset.mjs check
 node scripts/changeset.mjs status
 ```
 
-CI runs `check` automatically. `status` lists pending fragments and reports the
-highest requested bump.
+CI runs `check` automatically. It validates the emoji, bilingual title,
+two-space paragraph indentation, and Chinese/English paragraph order. `status`
+lists pending fragments and reports the highest requested bump.
 
 To preview the notes for a version that is already in the changelog:
 

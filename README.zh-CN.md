@@ -140,6 +140,8 @@ Neovim (使用 lazy.nvim):
 4. 快速提升 tm 语法 + Vim/Neovim 语法快照的 patch 版本：
    - `node scripts/bump-version.js --dry-run`
    - `node scripts/bump-version.js`
+5. 对需要进入发布说明的变更，请添加双语 change fragment。参见
+   [更新日志](CHANGELOG.md)与 [change fragment 指南](.changeset/README.md)。
 
 ### 进展公示
 

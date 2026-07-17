@@ -34,7 +34,7 @@ function repositoryPath(value, label) {
   }
   const target = resolve(ROOT, value);
   const fromRoot = relative(ROOT, target);
-  if (fromRoot === ".." || fromRoot.startsWith(`..${sep}`)) {
+  if (fromRoot === ".." || isAbsolute(fromRoot) || fromRoot.startsWith(`..${sep}`)) {
     fail(`${label} must stay inside the repository`);
   }
   return target;
@@ -80,6 +80,58 @@ function readConfig() {
   return { ...config, categoryIds: ids };
 }
 
+function validateBilingualBody(name, body) {
+  const lines = body.split("\n");
+  const title = lines[0];
+  const firstBold = title.indexOf("**");
+  const separator = title.indexOf("** / **", firstBold + 2);
+  if (
+    !title.startsWith("- ") ||
+    firstBold <= 2 ||
+    separator < 0 ||
+    !title.endsWith("**")
+  ) {
+    fail(`${name}: title must use "- emoji **中文标题** / **English title**"`);
+  }
+
+  const icon = title.slice(2, firstBold).trim();
+  const chineseTitle = title.slice(firstBold + 2, separator);
+  const englishTitle = title.slice(separator + "** / **".length, -2);
+  if (!/\p{Extended_Pictographic}/u.test(icon)) {
+    fail(`${name}: title must start with an emoji`);
+  }
+  if (!/\p{Script=Han}/u.test(chineseTitle)) {
+    fail(`${name}: title must include a Simplified Chinese title first`);
+  }
+  if (!/[A-Za-z]/.test(englishTitle)) {
+    fail(`${name}: title must include an English title second`);
+  }
+
+  const paragraphs = [];
+  let current = [];
+  for (const line of lines.slice(1)) {
+    if (line.trim() === "") {
+      if (current.length > 0) paragraphs.push(current.join("\n"));
+      current = [];
+      continue;
+    }
+    if (!line.startsWith("  ")) {
+      fail(`${name}: paragraphs below the list item must use two-space indentation`);
+    }
+    current.push(line.slice(2));
+  }
+  if (current.length > 0) paragraphs.push(current.join("\n"));
+  if (paragraphs.length < 2) {
+    fail(`${name}: add a Chinese paragraph followed by an English paragraph`);
+  }
+  if (!/\p{Script=Han}/u.test(paragraphs[0])) {
+    fail(`${name}: first paragraph must be Simplified Chinese`);
+  }
+  if (!/[A-Za-z]/.test(paragraphs[paragraphs.length - 1])) {
+    fail(`${name}: final paragraph must be English`);
+  }
+}
+
 function parseFragment(name, source, config) {
   const normalized = source.replace(/\r\n/g, "\n");
   const lines = normalized.split("\n");
@@ -89,6 +141,7 @@ function parseFragment(name, source, config) {
 
   const metadata = {};
   for (const line of lines.slice(1, closing)) {
+    if (line.trim() === "") continue;
     const match = /^([a-z][a-z0-9-]*):\s*(\S(?:.*\S)?)\s*$/.exec(line);
     if (!match) fail(`${name}: invalid frontmatter line: ${line}`);
     if (metadata[match[1]] !== undefined) {
@@ -116,6 +169,7 @@ function parseFragment(name, source, config) {
   if (placeholders.some((placeholder) => body.includes(placeholder))) {
     fail(`${name}: replace all generated template placeholders`);
   }
+  validateBilingualBody(name, body);
 
   return { name, bump: metadata.bump, category: metadata.category, body };
 }
@@ -147,19 +201,51 @@ function readChangelog(config) {
   return { changelog, changelogPath };
 }
 
-function notesFor(changelog, version) {
+function versionHeadingPattern(version, command) {
   if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(version)) {
-    fail("notes requires a semantic version");
+    fail(`${command} requires a semantic version`);
   }
-  const escaped = version.replaceAll(".", "\\.");
-  const heading = new RegExp(
-    `^## (?:\\[)?${escaped}(?:\\])? - \\d{4}-\\d{2}-\\d{2}$`,
+  const escaped = version.replace(/\./g, "\\.");
+  return new RegExp(
+    `^## (?:\\[${escaped}\\]|${escaped}) - \\d{4}-\\d{2}-\\d{2}\\s*$`,
   );
+}
+
+function findVersionStart(lines, version, command) {
+  const heading = versionHeadingPattern(version, command);
+  return lines.findIndex((line) => heading.test(line));
+}
+
+function stripTrailingLinkDefinitions(lines) {
+  let end = lines.length;
+  while (end > 0 && lines[end - 1].trim() === "") end -= 1;
+
+  while (end > 0) {
+    const line = lines[end - 1].trim();
+    const delimiter = line.indexOf("]:");
+    const isLinkDefinition =
+      line.startsWith("[") &&
+      delimiter > 1 &&
+      line.slice(delimiter + 2).trim().length > 0;
+    if (!isLinkDefinition) break;
+    end -= 1;
+    while (end > 0 && lines[end - 1].trim() === "") end -= 1;
+  }
+
+  return lines.slice(0, end);
+}
+
+function notesFor(changelog, version) {
   const lines = changelog.replace(/\r\n/g, "\n").split("\n");
-  const start = lines.findIndex((line) => heading.test(line));
+  const start = findVersionStart(lines, version, "notes");
   if (start < 0) fail(`CHANGELOG does not contain version ${version}`);
-  const next = lines.findIndex((line, index) => index > start && line.startsWith("## "));
-  const notes = lines.slice(start + 1, next < 0 ? undefined : next).join("\n").trim();
+  const next = lines.findIndex(
+    (line, index) => index > start && line.trimEnd().startsWith("## "),
+  );
+  const noteLines = stripTrailingLinkDefinitions(
+    lines.slice(start + 1, next < 0 ? undefined : next),
+  );
+  const notes = noteLines.join("\n").trim();
   if (!notes) fail(`CHANGELOG version ${version} has no release notes`);
   return notes;
 }
@@ -173,8 +259,7 @@ function recommendedBump(fragments) {
 }
 
 function sectionFor(version, date, config, fragments) {
-  const title = config.releaseLink ? `[${version}]` : version;
-  const sections = [`## ${title} - ${date}`];
+  const sections = [`## [${version}] - ${date}`];
   for (const category of config.categories) {
     const matching = fragments.filter((fragment) => fragment.category === category.id);
     if (matching.length === 0) continue;
@@ -184,11 +269,46 @@ function sectionFor(version, date, config, fragments) {
   return sections.join("\n\n");
 }
 
+function runRegressionChecks() {
+  const fixture = [
+    "## [1.0.14] - 2026-07-18",
+    "",
+    "New notes.",
+    "",
+    "## [1.0.13] - 2026-07-17  ",
+    "",
+    "Old notes.",
+    "",
+    "[1.0.14]: https://example.invalid/1.0.14",
+    "[1.0.13]: https://example.invalid/1.0.13",
+    "",
+  ].join("\n");
+  if (notesFor(fixture, "1.0.13") !== "Old notes.") {
+    fail("internal regression: notes must exclude trailing link definitions");
+  }
+  const lines = fixture.split("\n");
+  if (findVersionStart(lines, "1.0.1", "check") >= 0) {
+    fail("internal regression: version matching must not use prefixes");
+  }
+  if (findVersionStart(lines, "1.0.13", "check") < 0) {
+    fail("internal regression: bracketed headings must be detected");
+  }
+  const section = sectionFor(
+    "1.0.1",
+    "2026-07-18",
+    { categories: [{ id: "fixed", heading: "🐛 Fixed / 修复" }] },
+    [{ category: "fixed", body: "- 🐛 **修复** / **Fix**" }],
+  );
+  if (!section.startsWith("## [1.0.1] - 2026-07-18")) {
+    fail("internal regression: generated headings must use brackets");
+  }
+}
+
 function today() {
   const now = new Date();
-  const year = String(now.getFullYear());
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
+  const year = String(now.getUTCFullYear());
+  const month = String(now.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(now.getUTCDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
 
@@ -205,7 +325,9 @@ function createFragment(args, config) {
 
   const target = join(CHANGESET_DIR, `${slug}.md`);
   if (existsSync(target)) fail(`changeset already exists: ${slug}.md`);
-  const template = `---\nbump: ${bump}\ncategory: ${category}\n---\n\n- **中文标题** / **English title**\n\n中文说明。\n\nEnglish summary.\n`;
+  const categoryConfig = config.categories.find((item) => item.id === category);
+  const icon = categoryConfig.heading.split(" ", 1)[0];
+  const template = `---\nbump: ${bump}\ncategory: ${category}\n---\n\n- ${icon} **中文标题** / **English title**\n\n  中文说明。\n\n  English summary.\n`;
   writeFileSync(target, template, { encoding: "utf8", flag: "wx" });
   process.stdout.write(`Created .changeset/${slug}.md\n`);
 }
@@ -224,9 +346,7 @@ function printStatus(config, fragments) {
 function release(args, config, fragments) {
   if (fragments.length === 0) fail("no pending changesets to release");
   const version = args.shift();
-  if (!version || !/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(version)) {
-    fail("release requires a semantic version");
-  }
+  versionHeadingPattern(version, "release");
 
   let date = today();
   let dryRun = false;
@@ -241,8 +361,10 @@ function release(args, config, fragments) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) fail("date must use YYYY-MM-DD");
 
   const { changelog, changelogPath } = readChangelog(config);
-  const heading = config.releaseLink ? `## [${version}]` : `## ${version}`;
-  if (changelog.includes(heading)) fail(`CHANGELOG already contains version ${version}`);
+  const changelogLines = changelog.replace(/\r\n/g, "\n").split("\n");
+  if (findVersionStart(changelogLines, version, "release") >= 0) {
+    fail(`CHANGELOG already contains version ${version}`);
+  }
 
   const section = sectionFor(version, date, config, fragments);
   if (dryRun) {
@@ -253,8 +375,12 @@ function release(args, config, fragments) {
   const [before, after] = changelog.split(RELEASE_MARKER);
   let next = `${before.trimEnd()}\n\n${RELEASE_MARKER}\n\n${section}\n\n${after.trimStart()}`;
   if (config.releaseLink) {
-    const link = `[${version}]: ${config.releaseLink.replaceAll("{version}", version)}`;
-    if (next.includes(`${link}\n`) || next.endsWith(link)) fail(`CHANGELOG already defines ${version}`);
+    const linkPrefix = `[${version}]:`;
+    if (next.split(/\r?\n/).some((line) => line.startsWith(linkPrefix))) {
+      fail(`CHANGELOG already defines ${version}`);
+    }
+    const releaseUrl = config.releaseLink.replace(/\{version\}/g, version);
+    const link = `${linkPrefix} ${releaseUrl}`;
     next = `${next.trimEnd()}\n${link}\n`;
   } else {
     next = `${next.trimEnd()}\n`;
@@ -292,6 +418,7 @@ function main() {
   }
   const fragments = readFragments(config);
   if (command === "check") {
+    runRegressionChecks();
     process.stdout.write(`Validated ${fragments.length} pending changeset(s).\n`);
   } else if (command === "status") {
     printStatus(config, fragments);

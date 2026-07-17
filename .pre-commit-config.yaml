@@ -66,7 +66,7 @@ repos:
         language: system
         entry: node scripts/changeset.mjs check
         pass_filenames: false
-        files: ^(CHANGELOG\.md|\.changeset/|scripts/changeset\.mjs)$
+        files: ^(CHANGELOG\.md|\.changeset/.*|scripts/changeset\.mjs)$
 
       - id: commitlint
         name: Commit message lint (commitlint)

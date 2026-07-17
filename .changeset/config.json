@@ -28,6 +28,18 @@
       "heading": "📖 Documentation / 文档"
     },
     {
+      "id": "verification",
+      "heading": "🧪 Verification / 验证"
+    },
+    {
+      "id": "integrations",
+      "heading": "🔌 Editor integrations / 编辑器集成"
+    },
+    {
+      "id": "compatibility",
+      "heading": "🔌 Compatibility / 兼容性"
+    },
+    {
       "id": "security",
       "heading": "🔒 Security / 安全"
     }
