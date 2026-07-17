@@ -68,8 +68,7 @@ const validateSourceDirectory = (sourceRoot) => {
       return `BIRD source path is not a directory: ${sourceRoot}`;
     }
   } catch (error) {
-    const code =
-      error && typeof error === "object" && "code" in error ? error.code : null;
+    const code = error?.code;
     if (code === "ENOENT") {
       return `BIRD source path does not exist: ${sourceRoot}`;
     }
