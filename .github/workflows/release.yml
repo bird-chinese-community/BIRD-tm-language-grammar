@@ -87,7 +87,13 @@ jobs:
           if [[ "$TRACK" == "tm" ]]; then
             jq -e --arg version "$VERSION" '.version == $version' "$ASSET"
           else
-            grep -Eq '^" Version:[[:space:]]+'"$VERSION"'[[:space:]]*$' "$ASSET"
+            header_version=$(sed -nE \
+              's/^" Version:[[:space:]]+([^[:space:]]+)[[:space:]]*$/\1/p' \
+              "$ASSET")
+            if [[ "$header_version" != "$VERSION" ]]; then
+              echo "Vim asset version $header_version does not match $VERSION" >&2
+              exit 1
+            fi
             if [[ "$PRERELEASE" != "true" ]]; then
               vim -Nu NONE -n -es \
                 -c "execute 'source ' . fnameescape('$ASSET')" \
