@@ -5,4 +5,5 @@
 *.md
 !README*
 !CHANGELOG.md
+!RELEASING.md
 !.changeset/*.md
