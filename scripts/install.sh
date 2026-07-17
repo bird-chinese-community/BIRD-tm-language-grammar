@@ -87,7 +87,12 @@ install_neovim() {
     "$NVIM_CONFIG_DIR/lua/bird2" \
     "$NVIM_CONFIG_DIR/doc"
   INSTALL_SYNTAX="$NVIM_CONFIG_DIR/syntax/bird2.vim"
-  INSTALL_PLUGIN="$NVIM_CONFIG_DIR/plugin/bird2-filetype.lua"
+  INSTALL_PLUGIN="$NVIM_CONFIG_DIR/plugin/bird2.lua"
+  LEGACY_INSTALL_PLUGIN="$NVIM_CONFIG_DIR/plugin/bird2-filetype.lua"
+  if [[ -e "$LEGACY_INSTALL_PLUGIN" || -L "$LEGACY_INSTALL_PLUGIN" ]]; then
+    rm -f -- "$LEGACY_INSTALL_PLUGIN"
+    info "Removed legacy Neovim plugin: ${YELLOW}$LEGACY_INSTALL_PLUGIN${RESET}"
+  fi
   cp "$NVIM_PLUGIN_ROOT/syntax/bird2.vim" "$INSTALL_SYNTAX"
   cp "$NVIM_PLUGIN_ROOT/plugin/bird2.lua" "$INSTALL_PLUGIN"
   cp "$NVIM_PLUGIN_ROOT/ftplugin/bird2.lua" "$NVIM_CONFIG_DIR/ftplugin/bird2.lua"
