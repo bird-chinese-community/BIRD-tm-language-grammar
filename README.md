@@ -96,7 +96,7 @@ Neovim (using lazy.nvim):
 ```lua
 {
   "bird-chinese-community/BIRD2.nvim",
-  ft = "bird2",
+  lazy = false,
   config = function()
     require("bird2").setup()
   end
@@ -105,7 +105,7 @@ Neovim (using lazy.nvim):
 
 **Backward Compatibility (still installable from this repo):**
 
-1. Clone this repository: `git clone https://github.com/bird-chinese-community/bird-tm-language-grammar.git`
+1. Clone this repository with its plugin sources: `git clone --recurse-submodules https://github.com/bird-chinese-community/bird-tm-language-grammar.git`
 2. Quick install: `bash scripts/install.sh` (installs Vim and Neovim)
    - Only Neovim: `bash scripts/install.sh --neovim`
    - Only Vim: `bash scripts/install.sh --vim`
@@ -140,6 +140,9 @@ This repository uses **Prek** as the pre-commit runner.
 2. Before/after editing syntax files, run targeted checks:
    - `prek run --files grammars/bird2.tmLanguage.json`
    - `node scripts/check-grammar-coverage.js`
+   - `node scripts/audit-upstream-grammar.js ../BIRD2 ../BIRD3` to compare exact
+     keywords, enum constants, CLI phrases, and filter attributes from checked-out
+     BIRD sources
    - `prek run --files external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim`
 3. Before pushing or opening a PR, run:
    - `prek run --all-files`

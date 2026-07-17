@@ -4,9 +4,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-SRC_SYNTAX="$REPO_ROOT/grammars/bird2.syntax.vim"
-SRC_FTDETECT="$REPO_ROOT/misc/vim/ftdetect/bird2.vim"
-SRC_PLUGIN_LUA="$REPO_ROOT/misc/nvim/plugin/bird2-filetype.lua"
+VIM_PLUGIN_ROOT="$REPO_ROOT/external/bird2.vim"
+NVIM_PLUGIN_ROOT="$REPO_ROOT/external/bird2.nvim"
 
 # Color support
 if [[ -t 1 ]] && command -v tput >/dev/null 2>&1 && [[ $(tput colors 2>/dev/null || echo 0) -ge 8 ]]; then
@@ -37,29 +36,68 @@ EOF
 }
 
 install_vim() {
-  if [[ ! -f "$SRC_SYNTAX" ]]; then err "Grammar not found: $SRC_SYNTAX"; return 1; fi
-  if [[ ! -f "$SRC_FTDETECT" ]]; then err "Vim ftdetect not found: $SRC_FTDETECT"; return 1; fi
+  local syntax_file="$VIM_PLUGIN_ROOT/syntax/bird2.vim"
+  local ftdetect_file="$VIM_PLUGIN_ROOT/ftdetect/bird2.vim"
+  local ftplugin_file="$VIM_PLUGIN_ROOT/ftplugin/bird2.vim"
+  local doc_file="$VIM_PLUGIN_ROOT/doc/bird2.txt"
+  local required_file
+  for required_file in "$syntax_file" "$ftdetect_file" "$ftplugin_file"; do
+    if [[ ! -f "$required_file" ]]; then
+      err "Vim plugin file not found: $required_file"
+      err "Initialize repository submodules with: git submodule update --init --recursive"
+      return 1
+    fi
+  done
   VIM_HOME="${VIM_HOME:-$HOME/.vim}"
-  mkdir -p "$VIM_HOME/syntax" "$VIM_HOME/ftdetect"
+  mkdir -p "$VIM_HOME/syntax" "$VIM_HOME/ftdetect" "$VIM_HOME/ftplugin" "$VIM_HOME/doc"
   INSTALL_SYNTAX="$VIM_HOME/syntax/bird2.vim"
   INSTALL_FTDETECT="$VIM_HOME/ftdetect/bird2.vim"
-  cp "$SRC_SYNTAX" "$INSTALL_SYNTAX"
-  cp "$SRC_FTDETECT" "$INSTALL_FTDETECT"
+  INSTALL_FTPLUGIN="$VIM_HOME/ftplugin/bird2.vim"
+  cp "$syntax_file" "$INSTALL_SYNTAX"
+  cp "$ftdetect_file" "$INSTALL_FTDETECT"
+  cp "$ftplugin_file" "$INSTALL_FTPLUGIN"
+  if [[ -f "$doc_file" ]]; then
+    cp "$doc_file" "$VIM_HOME/doc/bird2.txt"
+  fi
   ok "Installed Vim syntax to: ${YELLOW}$INSTALL_SYNTAX${RESET}"
   ok "Filetype detection written to: ${YELLOW}$INSTALL_FTDETECT${RESET}"
+  ok "Filetype plugin written to: ${YELLOW}$INSTALL_FTPLUGIN${RESET}"
 }
 
 install_neovim() {
-  if [[ ! -f "$SRC_SYNTAX" ]]; then err "Grammar not found: $SRC_SYNTAX"; return 1; fi
-  if [[ ! -f "$SRC_PLUGIN_LUA" ]]; then err "Neovim plugin not found: $SRC_PLUGIN_LUA"; return 1; fi
+  local required_file
+  for required_file in \
+    "$NVIM_PLUGIN_ROOT/syntax/bird2.vim" \
+    "$NVIM_PLUGIN_ROOT/plugin/bird2.lua" \
+    "$NVIM_PLUGIN_ROOT/ftplugin/bird2.lua" \
+    "$NVIM_PLUGIN_ROOT/lua/bird2/init.lua" \
+    "$NVIM_PLUGIN_ROOT/lua/bird2/config.lua" \
+    "$NVIM_PLUGIN_ROOT/lua/bird2/health.lua"; do
+    if [[ ! -f "$required_file" ]]; then
+      err "Neovim plugin file not found: $required_file"
+      err "Initialize repository submodules with: git submodule update --init --recursive"
+      return 1
+    fi
+  done
   NVIM_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
-  mkdir -p "$NVIM_CONFIG_DIR/syntax" "$NVIM_CONFIG_DIR/plugin"
+  mkdir -p \
+    "$NVIM_CONFIG_DIR/syntax" \
+    "$NVIM_CONFIG_DIR/plugin" \
+    "$NVIM_CONFIG_DIR/ftplugin" \
+    "$NVIM_CONFIG_DIR/lua/bird2" \
+    "$NVIM_CONFIG_DIR/doc"
   INSTALL_SYNTAX="$NVIM_CONFIG_DIR/syntax/bird2.vim"
   INSTALL_PLUGIN="$NVIM_CONFIG_DIR/plugin/bird2-filetype.lua"
-  cp "$SRC_SYNTAX" "$INSTALL_SYNTAX"
-  cp "$SRC_PLUGIN_LUA" "$INSTALL_PLUGIN"
+  cp "$NVIM_PLUGIN_ROOT/syntax/bird2.vim" "$INSTALL_SYNTAX"
+  cp "$NVIM_PLUGIN_ROOT/plugin/bird2.lua" "$INSTALL_PLUGIN"
+  cp "$NVIM_PLUGIN_ROOT/ftplugin/bird2.lua" "$NVIM_CONFIG_DIR/ftplugin/bird2.lua"
+  cp "$NVIM_PLUGIN_ROOT/lua/bird2/"*.lua "$NVIM_CONFIG_DIR/lua/bird2/"
+  if [[ -f "$NVIM_PLUGIN_ROOT/doc/bird2.txt" ]]; then
+    cp "$NVIM_PLUGIN_ROOT/doc/bird2.txt" "$NVIM_CONFIG_DIR/doc/bird2.txt"
+  fi
   ok "Installed Neovim syntax to: ${YELLOW}$INSTALL_SYNTAX${RESET}"
-  ok "Lua filetype registration written to: ${YELLOW}$INSTALL_PLUGIN${RESET}"
+  ok "Neovim plugin written to: ${YELLOW}$INSTALL_PLUGIN${RESET}"
+  ok "Lua modules written to: ${YELLOW}$NVIM_CONFIG_DIR/lua/bird2${RESET}"
 }
 
 # Ensure Vim enables filetype/plugins/indent and syntax highlighting
@@ -117,8 +155,14 @@ fi
 if ! $DO_VIM && ! $DO_NVIM; then DO_VIM=true; DO_NVIM=true; fi
 
 info "Installing BIRD2 syntax..."
-$DO_VIM && { install_vim; ensure_vim_runtime_config; } || true
-$DO_NVIM && { install_neovim; ensure_neovim_runtime_config; } || true
+if $DO_VIM; then
+  install_vim
+  ensure_vim_runtime_config
+fi
+if $DO_NVIM; then
+  install_neovim
+  ensure_neovim_runtime_config
+fi
 
 ok "Installation completed."
 

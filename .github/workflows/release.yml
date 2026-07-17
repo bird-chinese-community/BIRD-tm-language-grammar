@@ -6,6 +6,7 @@ on:
     paths:
       - 'grammars/bird2.tmLanguage.json'
       - 'grammars/bird2.syntax.vim'
+      - 'external/bird2.vim'
       - 'external/bird2.vim/**'
       - '.gitmodules'
       # Re-run the release workflow when it changes, so fixes are validated.

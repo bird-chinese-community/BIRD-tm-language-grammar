@@ -1,13 +1,23 @@
 #!/usr/bin/env node
 
 import { readFileSync } from "node:fs";
+import { performance } from "node:perf_hooks";
+
+import {
+  collectGrammarPatterns,
+  collectLiteralWords,
+  collectScopeNames,
+  compilePatterns,
+  isSemanticPattern,
+  matchesFullPhrase,
+} from "./grammar-patterns.js";
 
 const grammarPath = new URL("../grammars/bird2.tmLanguage.json", import.meta.url);
 const grammar = JSON.parse(readFileSync(grammarPath, "utf8"));
-const grammarText = JSON.stringify(grammar)
-  .toLowerCase()
-  .replaceAll("\\\\s+", " ")
-  .replaceAll("\\s+", " ");
+const grammarPatterns = collectGrammarPatterns(grammar.repository);
+const semanticPatterns = compilePatterns(grammarPatterns).filter(isSemanticPattern);
+const literalWords = collectLiteralWords(grammarPatterns);
+const scopeNames = collectScopeNames(grammar.repository);
 
 const repository = grammar.repository ?? {};
 const phrasePattern = repository["protocol-phrases"]?.patterns?.find(
@@ -23,6 +33,103 @@ const checks = [
   {
     label: "BIRD 2.19 protocol keywords",
     tokens: ["bridge", "evpn"],
+  },
+  {
+    label: "BIRD 2.19 / 3.3 upstream keyword audit",
+    tokens: [
+      "aspa_providers",
+      "auth",
+      "autonomous",
+      "bug",
+      "cli",
+      "double",
+      "drop",
+      "ead",
+      "es",
+      "fatal",
+      "filename",
+      "high",
+      "imet",
+      "info",
+      "ipv4_mc",
+      "ipv6_mc",
+      "krt_lock_sstresh",
+      "krt_sstresh",
+      "low",
+      "medium",
+      "pri",
+      "ra_lifetime",
+      "ra_preference",
+      "repeat",
+      "roa",
+      "sec",
+      "setkey",
+      "short",
+      "single",
+      "skip",
+      "station",
+      "tag",
+      "trace",
+      "trie",
+      "udp",
+      "v2",
+      "v3",
+    ],
+  },
+  {
+    label: "BIRD 2.19 / 3.3 upstream enum constants",
+    tokens: [
+      "AF_IPV4",
+      "AF_IPV6",
+      "KBR_SRC_BIRD",
+      "KBR_SRC_DYNAMIC",
+      "KBR_SRC_LOCAL",
+      "KBR_SRC_STATIC",
+    ],
+  },
+  {
+    label: "BIRD 3.3 filter and route attribute additions",
+    tokens: [
+      "mac",
+      "mac set",
+      "&",
+      "|",
+      "local_metric",
+      "nexthop",
+      "hostentry",
+      "flowspec_valid",
+      "roa_aggregated",
+      "bgp_mp_reach_nlri",
+      "bgp_mp_unreach_nlri",
+      "bgp_as4_path",
+      "bgp_as4_aggregator",
+      "bgp_unknown_0x2a",
+      "iface_bridge_vlan_filtering",
+      "proto_protocol_type",
+      "bgp_in_conn_state",
+    ],
+  },
+  {
+    label: "BIRD 2.19 / 3.3 exact CLI additions",
+    tokens: [
+      "configure",
+      "debug events",
+      "debug filters",
+      "debug interfaces",
+      "debug off",
+      "debug packets",
+      "debug routes",
+      "debug states",
+      "down",
+      "graceful restart",
+      "show ospf",
+      "show ospf state",
+      "show ospf topology",
+      "timeformat long",
+      "timeformat ms",
+      "timeformat short",
+      "timeformat us",
+    ],
   },
   {
     label: "BIRD 2.19 EVPN route attributes",
@@ -607,7 +714,12 @@ const missing = [];
 
 for (const check of checks) {
   for (const token of check.tokens) {
-    if (!grammarText.includes(token)) {
+    const isScopeName = token.endsWith(".bird");
+    const covered = isScopeName
+      ? scopeNames.has(token)
+      : literalWords.has(token) || matchesFullPhrase(semanticPatterns, token);
+
+    if (!covered) {
       missing.push(`${check.label}: ${token}`);
     }
   }
@@ -643,6 +755,93 @@ for (const check of phraseChecks) {
   }
 }
 
+const bitwisePattern = semanticPatterns.find(
+  (pattern) => pattern.name === "keyword.operator.bitwise.bird",
+);
+const operatorChecks = [
+  { input: "&", expected: true },
+  { input: "|", expected: true },
+  { input: "&&", expected: false },
+  { input: "||", expected: false },
+];
+
+if (!bitwisePattern) {
+  missing.push("BIRD 3.3 bitwise operators: pattern missing");
+} else {
+  for (const check of operatorChecks) {
+    if (bitwisePattern.regex.test(check.input) !== check.expected) {
+      missing.push(`BIRD 3.3 bitwise operators: ${check.input}`);
+    }
+  }
+}
+
+const patternByName = (name) =>
+  grammarPatterns.find((pattern) => pattern.key === "match" && pattern.name === name);
+const matchesEntireInput = (regex, input) => {
+  const match = regex.exec(input);
+  return match?.index === 0 && match[0].length === input.length;
+};
+
+const declarationPattern = patternByName("meta.variable-declaration.bird");
+if (!declarationPattern) {
+  missing.push("Variable declarations: pattern missing");
+} else {
+  const declarationRegex = new RegExp(declarationPattern.source, "i");
+  for (const check of [
+    {
+      input: "mac address = 02:00:00:00:00:01;",
+      expectedType: "mac",
+    },
+    {
+      input: "mac set allowed = [ 02:00:00:00:00:01 ];",
+      expectedType: "mac set",
+    },
+  ]) {
+    const match = declarationRegex.exec(check.input);
+    if (match?.index !== 0 || match[1]?.toLowerCase() !== check.expectedType) {
+      missing.push(`Variable declarations: ${check.input}`);
+    }
+  }
+}
+
+const escapePattern = patternByName("constant.character.escape.bird");
+if (!escapePattern) {
+  missing.push("String escapes: pattern missing");
+} else {
+  const escapeRegex = new RegExp(escapePattern.source);
+  if (!escapeRegex.test("\\n") || escapeRegex.test(".")) {
+    missing.push("String escapes: escaped character matching");
+  }
+}
+
+const prefixPattern = patternByName("constant.numeric.prefix.bird");
+const prefixChecks = [
+  "10.0.0.0/8",
+  "10.0.0.0/8+",
+  "10.0.0.0/8{16,24}",
+  "2001:db8::/32",
+  "::/0",
+];
+
+if (!prefixPattern) {
+  missing.push("Network prefixes: pattern missing");
+} else {
+  const prefixRegex = new RegExp(prefixPattern.source, "i");
+  for (const prefix of prefixChecks) {
+    if (!matchesEntireInput(prefixRegex, prefix)) {
+      missing.push(`Network prefixes: ${prefix}`);
+    }
+  }
+
+  const adversarialInput = "01:".repeat(7000);
+  const startedAt = performance.now();
+  prefixRegex.test(adversarialInput);
+  const elapsedMs = performance.now() - startedAt;
+  if (elapsedMs > 250) {
+    missing.push(`Network prefixes: pathological input took ${elapsedMs.toFixed(1)} ms`);
+  }
+}
+
 if (missing.length > 0) {
   console.error("Missing grammar coverage:");
   for (const item of missing) {
@@ -652,5 +851,5 @@ if (missing.length > 0) {
 }
 
 console.log(
-  `Grammar coverage checks passed (${checks.reduce((sum, check) => sum + check.tokens.length, 0)} tokens, ${phraseChecks.length} phrase checks).`,
+  `Grammar coverage checks passed (${checks.reduce((sum, check) => sum + check.tokens.length, 0)} tokens, ${phraseChecks.length} phrase checks, ${operatorChecks.length} operator checks, ${prefixChecks.length} prefix checks).`,
 );

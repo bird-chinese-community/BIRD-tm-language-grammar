@@ -88,7 +88,7 @@ Neovim (使用 lazy.nvim):
 ```lua
 {
   "bird-chinese-community/bird2.nvim",
-  ft = "bird2",
+  lazy = false,
   config = function()
     require("bird2").setup()
   end
@@ -97,7 +97,7 @@ Neovim (使用 lazy.nvim):
 
 **向后兼容（本仓库仍可安装）：**
 
-1. 克隆此仓库：`git clone https://github.com/bird-chinese-community/bird-tm-language-grammar.git`
+1. 连同插件源一起克隆此仓库：`git clone --recurse-submodules https://github.com/bird-chinese-community/bird-tm-language-grammar.git`
 2. 一键安装：`bash scripts/install.sh`（同时安装 Vim 和 Neovim）
    - 仅 Neovim：`bash scripts/install.sh --neovim`
    - 仅 Vim：`bash scripts/install.sh --vim`
@@ -132,6 +132,8 @@ Neovim (使用 lazy.nvim):
 2. 在修改语法文件前后执行定向检查：
    - `prek run --files grammars/bird2.tmLanguage.json`
    - `node scripts/check-grammar-coverage.js`
+   - `node scripts/audit-upstream-grammar.js ../BIRD2 ../BIRD3`，从已检出的 BIRD
+     源码精确比对关键字、枚举常量、CLI 短语和过滤器属性
    - `prek run --files external/bird2.vim/syntax/bird2.vim external/bird2.nvim/syntax/bird2.vim`
 3. 在提交或发起 PR 前执行：
    - `prek run --all-files`
