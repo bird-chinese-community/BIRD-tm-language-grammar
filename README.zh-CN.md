@@ -96,7 +96,11 @@ Neovim (使用 lazy.nvim):
 }
 ```
 
-**向后兼容（本仓库仍可安装）：**
+**源码检出兼容安装器（不建议新安装使用）：**
+
+本仓库保留 `scripts/install.sh`，用于兼容既有的源码检出工作流。该脚本安装的是独立仓库
+submodule 所锁定的插件快照，并不构成第二个维护或发布渠道；新安装应使用上方的
+`BIRD.vim` 或 `BIRD.nvim`。
 
 1. 连同插件源一起克隆此仓库：`git clone --recurse-submodules https://github.com/bird-chinese-community/bird-tm-language-grammar.git`
 2. 一键安装：`bash scripts/install.sh`（同时安装 Vim 和 Neovim）
