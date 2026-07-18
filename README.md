@@ -104,7 +104,11 @@ Neovim (using lazy.nvim):
 }
 ```
 
-**Backward Compatibility (still installable from this repo):**
+**Source-checkout compatibility installer (not recommended for new installs):**
+
+This repository keeps `scripts/install.sh` for existing source-checkout workflows. It installs
+the plugin snapshots referenced by the dedicated-repository submodules; it is not a second
+maintained distribution channel. New installations should use `BIRD.vim` or `BIRD.nvim` above.
 
 1. Clone this repository with its plugin sources: `git clone --recurse-submodules https://github.com/bird-chinese-community/bird-tm-language-grammar.git`
 2. Quick install: `bash scripts/install.sh` (installs Vim and Neovim)

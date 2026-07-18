@@ -27,11 +27,13 @@ Usage: scripts/install.sh [--vim] [--neovim]
 - Use --vim to install only Vim support.
 - Use --neovim to install only Neovim support.
 
-NOTE: Vim/Neovim support has moved to dedicated repositories:
+COMPATIBILITY NOTE: This installer is retained for existing source-checkout workflows.
+New installations should use the dedicated repositories:
   - Vim:   https://github.com/bird-chinese-community/BIRD.vim
   - Neovim: https://github.com/bird-chinese-community/BIRD.nvim
 
-Consider using the dedicated plugins for better maintenance and features.
+The submodules in this repository pin plugin snapshots; they are not a separate
+maintained distribution channel.
 EOF
 }
 
@@ -181,9 +183,11 @@ ${BOLD}Next steps:${RESET}
 You should see: ${YELLOW}filetype=bird2${RESET}
 ========================================
 
-${BLUE}${BOLD}NOTE:${RESET} Vim/Neovim support is now maintained in dedicated repositories:
+${BLUE}${BOLD}COMPATIBILITY NOTE:${RESET} This installer is retained for existing source-checkout workflows.
+New installations should use the dedicated repositories:
   - Vim:   ${GREEN}https://github.com/bird-chinese-community/BIRD.vim${RESET}
   - Neovim: ${GREEN}https://github.com/bird-chinese-community/BIRD.nvim${RESET}
 
-Consider using the dedicated plugins for automatic updates and better features!
+The submodules in this repository pin plugin snapshots; they are not a separate
+maintained distribution channel.
 EOF
